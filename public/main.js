@@ -13,7 +13,8 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true
-    }
+    }, 
+    title: "obServerJS",
   })
 
   win.loadURL(
