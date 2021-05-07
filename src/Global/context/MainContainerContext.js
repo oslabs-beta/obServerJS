@@ -7,7 +7,7 @@ const initialState = {
   sidebarSelections: [], // i.e. Collections, tree, request, response, etc. (min 1, max2)
 }
 
-export const MainContainerContext = React.createContext();
+const MainContainerContext = React.createContext();
 
 const MainContainerReducer = (state = initialState, action) => {
   switch(action.type) {

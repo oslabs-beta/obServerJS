@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import './App.css';
 import { AppContext } from './Global/context/AppContext';
 import * as actions from './Global/actionTypes';
-import MainContainer from './components/MainContainer';
 
 function App() {
   const { state: { currentWindow }, dispatch } = useContext(AppContext);
@@ -17,7 +16,6 @@ function App() {
   return (
     <div className="App" onClick={changeWindow}>
       {`CURRENT WINDOW: ${currentWindow}`}
-      <MainContainer />
     </div>
   );
 }
