@@ -2,8 +2,6 @@ import React, { useContext } from 'react'
 import {
   Container,
 } from '@material-ui/core';
-import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
-import TuneIcon from '@material-ui/icons/Tune';
 import Button from './Buttons';
 import Help from './Help';
 import Settings from './Settings';
@@ -21,9 +19,7 @@ const styles = {
 }
 
 const SidebarContainer = () => {
-  // const [];
   const primaryButtons = ['Collections', 'Variables', 'Tree', 'Request', 'Response'];
-  // const secondaryButtons = [<HelpOutlineOutlinedIcon />, <TuneIcon />];
   return (
     <Container maxWidth="sm" style={styles.container}>
       <div>
