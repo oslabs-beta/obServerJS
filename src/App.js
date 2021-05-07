@@ -4,9 +4,9 @@ import { AppContext } from './Global/context/AppContext';
 import * as actions from './Global/actionTypes';
 
 function App() {
-  console.log('APP')
   const { state: { currentWindow }, dispatch } = useContext(AppContext);
 
+  // Function will change the current window text to a random number when the screen is clicked
   const changeWindow = () => {
     const newWindow = Math.floor(Math.random() * 100)
     console.log(newWindow)

@@ -2,10 +2,10 @@ import React, { useReducer } from 'react';
 import * as actions from '../actionTypes';
 
 const initialState = {
-  currentWindow: 'Dashboard',
+  currentWindow: 'Dashboard', // Current window view i.e. Dashboard, Performance Metrics, etc.
 }
 
-export const AppContext = React.createContext(initialState);
+export const AppContext = React.createContext();
 
 const AppReducer = (state = initialState, action) => {
   switch(action.type) {
@@ -16,7 +16,9 @@ const AppReducer = (state = initialState, action) => {
   }
 }
 
+// Function that gets exposed when context is used inside of the application 
 const AppProvider = ({ children }) => {
+ // useReducer exposes the state and dispatch functions
  const [state, dispatch] = useReducer(AppReducer, initialState)
   return (
     <AppContext.Provider value={{ state, dispatch }}>
@@ -26,45 +28,4 @@ const AppProvider = ({ children }) => {
 }
 
 export default AppProvider
-
-
-/* GLOBAL STATE
-  - current tab (1min 2 max)
-  - current window ()
-
-// COMPONENT-LEVEL STATE
-  Sidebar 
-    - current tabs open (1 min, 2 max)
-    - help modal open 
-    - settings modal open 
-  Route Component 
-    - route middleware open and expanded to the right 
-  Variable Component
-    - variables open and expanded to the right
-
-    
-    App
-      Main Container
-        Navigation Container
-          URL/Route Address Component 
-          Request Type Component
-          Body Component
-          (s)Login Component
-          (s)Signup Component
-        Sidebar Container - currentTabs, helpModal, settingsModal
-          Help Component
-          Settings Component
-          *Other Buttons TBD...*
-        Tab Container
-          Tab Component
-        Middleware Container
-          Middleware Function Container
-            Middleware Function Component
-        Source Code Container
-          Code Component
-        Reponse Container
-          Variable Component - 
-          Response Object Component
-
-*/
 

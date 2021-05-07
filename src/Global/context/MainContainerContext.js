@@ -2,11 +2,12 @@ import React, { useReducer } from 'react';
 import * as actions from '../actionTypes';
 
 const initialState = {
-  currentTabs: [],
-  
+  allTabs: [], // all available tabs
+  currentTab: null, // currently open tab 
+  sidebarSelections: [], // i.e. Collections, tree, request, response, etc. (min 1, max2)
 }
 
-const MainContainerContext = React.createContext(initialState);
+const MainContainerContext = React.createContext();
 
 const MainContainerReducer = (state = initialState, action) => {
   switch(action.type) {
@@ -19,7 +20,9 @@ const MainContainerReducer = (state = initialState, action) => {
   }
 }
 
+// Function that gets exposed when context is used inside of the application
 const MainContainerProvider = ({ children }) => {
+  // useReducer exposes the state and dispatch functions
   const [state, dispatch] = useReducer(MainContainerReducer, initialState)
   return (
     <MainContainerContext.Provider value={{state, dispatch}}>
