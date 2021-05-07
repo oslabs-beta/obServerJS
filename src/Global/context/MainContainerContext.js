@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import * as actions from '../actionTypes';
 
 const initialState = {
-  currentWindow: 'Dashboard',
+  currentTabs: [],
   
 }
 
@@ -19,10 +19,13 @@ const MainContainerReducer = (state = initialState, action) => {
   }
 }
 
-const MainContainerProvider = ({ children }) => (
-  <MainContainerContext.Provider value={{MainContainerContext, MainContainerReducer}}>
+const MainContainerProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(MainContainerReducer, initialState)
+  return (
+    <MainContainerContext.Provider value={{state, dispatch}}>
     {children}
   </MainContainerContext.Provider>
-)
+  )
+}
 
 export default MainContainerProvider
