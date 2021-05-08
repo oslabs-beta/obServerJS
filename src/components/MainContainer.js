@@ -1,10 +1,8 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import {
   Container,
 } from '@material-ui/core'
-import MainContainerProvider, { MainContainerContext }  from '../Global/context/MainContainerContext';
-import SidebarContainer from './Sidebar/SidebarContainer';
-import NavContainer from './Nav/NavContainer';
+import MainContainerProvider from '../Global/context/MainContainerContext';
 
 const styles = {
   container: {
@@ -28,16 +26,11 @@ const styles = {
   }
 }
 
-const MainContainer = () => {
-  // const { state, dispatch } = useContext(MainContainerContext)
-  return (
-    <MainContainerProvider>
-      <Container style={styles.container}>
-        <NavContainer />
-        <SidebarContainer />
-      </Container>
-    </MainContainerProvider>
-  )
-}
+const MainContainer = () => (
+  <MainContainerProvider>
+    <Container style={styles.container}>
+    </Container>
+  </MainContainerProvider>
+)
 
 export default MainContainer
