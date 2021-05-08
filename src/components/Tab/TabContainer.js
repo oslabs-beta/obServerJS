@@ -15,7 +15,8 @@ const styles = {
     border: '1px solid pink',
   }, 
   addTab: {
-    width: '10%',
+    width: '5%',
+    height: '33%',
     display: 'flex', 
     justifyContent: 'space-around',
     alignItems: 'center',

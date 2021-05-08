@@ -13,11 +13,12 @@ const styles = {
     width: '100vw',
     border: '1px solid purple',
     display: 'grid', 
-    gridTemplateRows: 'repeat(8, 100/8)',
+    gridTemplateRows: 'repeat(7, 100/9)',
     gridTemplateColumns: 'repeat(6, 100/6)',
     gridTemplateAreas: `
       "nav nav nav nav nav nav nav nav"
       "sidebar tabs tabs tabs tabs tabs tabs tabs"
+      "sidebar . . . . . . ."
       "sidebar windows windows windows windows windows windows windows"
       "sidebar windows windows windows windows windows windows windows"
       "sidebar windows windows windows windows windows windows windows"
