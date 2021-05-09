@@ -31,10 +31,15 @@ const styles = {
 
 const TabContainer = () => {
   const { state: { allTabs } } = useContext(MainContainerContext);
+
+  const addNewTab = () => {
+
+  }
+
   return (
     <Container style={styles.container}>
       {allTabs.map((tab) => <Tab tabData={tab}/>)}
-      <Container style={styles.addTab}>
+      <Container style={styles.addTab} onClick={addNewTab}>
         <AddIcon />
       </Container>
     </Container>
