@@ -15,6 +15,7 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'space-between',
     padding: 0,
+    gridArea: 'sidebar',
   }
 }
 
@@ -23,7 +24,7 @@ const SidebarContainer = () => {
   return (
     <Container maxWidth="sm" style={styles.container}>
       <div>
-        {primaryButtons.map((option) => <Button text={option} key={option}/>)}
+        {primaryButtons.map((option) => <Button text={option} key={option} />)}
       </div>
 
       {/* {secondaryButtons.map((option) => <Button text={option} key={option}/>)} */}
