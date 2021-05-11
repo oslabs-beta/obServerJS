@@ -3,6 +3,7 @@ import {
   Container,
 } from '@material-ui/core'
 import MainContainerProvider from '../Global/context/MainContainerContext';
+import TabContainer from './Tab/TabContainer';
 
 const styles = {
   container: {
@@ -11,8 +12,8 @@ const styles = {
     maxHeight: '800px',
     width: '100vw',
     border: '1px solid purple',
-    display: 'grid', 
-    gridTemplateRows: 'repeat(7, 100/7)',
+    display: 'grid',
+    gridTemplateRows: 'repeat(7, 100/9)',
     gridTemplateColumns: 'repeat(6, 100/6)',
     gridTemplateAreas: `
       "nav nav nav nav nav nav nav nav"
@@ -30,6 +31,7 @@ const styles = {
 const MainContainer = () => (
   <MainContainerProvider>
     <Container style={styles.container}>
+      <TabContainer />
     </Container>
   </MainContainerProvider>
 )
