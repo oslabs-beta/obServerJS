@@ -12,7 +12,7 @@ const styles = {
     maxHeight: '800px',
     width: '100vw',
     border: '1px solid purple',
-    display: 'grid', 
+    display: 'grid',
     gridTemplateRows: 'repeat(7, 100/9)',
     gridTemplateColumns: 'repeat(6, 100/6)',
     gridTemplateAreas: `
