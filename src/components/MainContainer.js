@@ -5,7 +5,7 @@ import {
 import MainContainerProvider from '../Global/context/MainContainerContext';
 import TabContainer from './Tab/TabContainer';
 import SidebarContainer from './Sidebar/SidebarContainer';
-import TreeStruct from './Windows/Tree/Tree'
+import TreeStruct from './Tree/Tree'
 
 const styles = {
   container: {
@@ -15,8 +15,8 @@ const styles = {
     width: '100vw',
     border: '1px solid purple',
     display: 'grid',
-    gridTemplateRows: 'auto 45px repeat(5, auto)',
-    gridTemplateColumns: '100px repeat(7, auto)',
+    gridTemplateRows: '1fr 45px repeat(5, 1fr)',
+    gridTemplateColumns: '100px repeat(7, 1fr)',
     gridTemplateAreas: `
       "nav nav nav nav nav nav nav nav"
       "sidebar tabs tabs tabs tabs tabs tabs tabs"
@@ -33,6 +33,7 @@ const styles = {
 const MainContainer = () => (
   <MainContainerProvider>
     <Container style={styles.container}>
+      <div style={{gridArea: 'nav', backgrond: 'orange'}}></div>
       <SidebarContainer />
       <TabContainer />
       <TreeStruct />
