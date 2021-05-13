@@ -5,16 +5,10 @@ import {
   LinkHorizontal,
 } from '@visx/shape';
 import useForceUpdate from "./useForceUpdate";
-
-const styles = {
-    rect: {
-    cursor: 'pointer',
-    '&:hover': {
-      cursor: 'pointer',
-      fill: 'blue'
-    },
-  }
-}
+import AppNode from './AppNode';
+import MiddlewareNode from './MiddlewareNode';
+import RouteNode from './RouteNode';
+import NodeText from './NodeText';
 
 const Graph = ({ margin, sizeWidth, sizeHeight, origin, zoom }) => {
   const forceUpdate = useForceUpdate()
@@ -42,51 +36,29 @@ const Graph = ({ margin, sizeWidth, sizeHeight, origin, zoom }) => {
                   const width = 40;
                   const height = 20;
 
-                  let top = node.x
-                  let left = node.y
-
                   return (
-                    <Group top={top} left={left} key={key}>
+                    <Group top={node.x} left={node.y} key={key}>
                       {node.depth === 0 && (
-                        <circle
-                          r={12}
-                          fill="url('#links-gradient')"
-                          onClick={() => {
-                            console.log('click')
-                            node.data.isExpanded = !node.data.isExpanded;
-                            forceUpdate()
-                          }}
-                        />
+                        <AppNode forceUpdate={forceUpdate} node={node} />
                       )}
-                      {node.depth !== 0 && (
-                        <rect
+                      {(node.depth !== 0 && node.data.type === 'function') && (
+                        <MiddlewareNode 
                           height={height}
-                          width={width * 2}
-                          y={-height / 2}
-                          x={-width}
-                          fill="#272b4d"
-                          stroke={node.data.children ? '#03c0dc' : '#26deb0'}
-                          strokeWidth={1}
-                          strokeDasharray={node.data.children ? '0' : '2,2'}
-                          strokeOpacity={node.data.children ? 1 : 0.6}
-                          rx={node.data.children ? 0 : 10}
-                          onClick={() => {
-                            console.log('click')
-                            node.data.isExpanded = !node.data.isExpanded;
-                            forceUpdate()
-                          }}
+                          width={width}
+                          node={node}
+                          forceUpdate={forceUpdate}
                         />
                       )}
-                      <text
-                        dy=".33em"
-                        fontSize={9}
-                        fontFamily="Arial"
-                        textAnchor="middle"
-                        style={{ pointerEvents: 'none' }}
-                        fill={node.depth === 0 ? '#71248e' : node.children ? 'white' : '#26deb0'}
-                      >
-                        {node.data.name}
-                      </text>
+                      {(node.depth !== 0 && node.data.type === 'route') && (
+                        <RouteNode 
+                          height={height}
+                          width={width}
+                          node={node}
+                          forceUpdate={forceUpdate}
+                        />
+                      )}
+                      
+                      <NodeText node={node} />
                     </Group>
                   );
                 })}

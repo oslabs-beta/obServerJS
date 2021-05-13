@@ -28,7 +28,6 @@ const MainContainerReducer = (state = initialState, action) => {
     case actions.NEW_TAB: 
       return state
     case actions.CHANGE_ACTIVE_TAB: 
-      console.log('AAL TABS', state.allTabs, state)
       const newTabs = state.allTabs;
       newTabs.forEach((tab) => {
         if (tab.tabOrder === action.payload) {
