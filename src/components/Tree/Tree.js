@@ -14,20 +14,21 @@ const styles = {
   }, 
 }
 
-const initialTransform = {
-  scaleX: 1.27,
-  scaleY: 1.27,
-  translateX: -211.62,
-  translateY: 162.59,
-  skewX: 0,
-  skewY: 0,
-};
-
 
 const Tree = () => (
   <ParentSize style={styles.parent}>
-    {({ width, height }) => (
-      <Zoom
+    {({ width, height }) => {
+      const initialTransform = {
+        scaleX: 1,
+        scaleY: 1,
+        translateX: -211.62,
+        translateY: 162.59,
+        skewX: 0,
+        skewY: 0,
+      };
+
+      return (
+        <Zoom
         height={height}
         width={width}
         scaleXMin={1 / 2}
@@ -41,7 +42,9 @@ const Tree = () => (
         )}
         
       </Zoom>
-    )}
+      )
+
+    }}
   </ParentSize>
 )
 
