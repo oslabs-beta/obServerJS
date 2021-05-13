@@ -5,7 +5,7 @@ import {
 import MainContainerProvider from '../Global/context/MainContainerContext';
 import TabContainer from './Tab/TabContainer';
 import SidebarContainer from './Sidebar/SidebarContainer';
-import TreeStruct from './Tree/Tree'
+import Tree from './Tree/Tree'
 
 const styles = {
   container: {
@@ -36,7 +36,7 @@ const MainContainer = () => (
       <div style={{gridArea: 'nav', backgrond: 'orange'}}></div>
       <SidebarContainer />
       <TabContainer />
-      <TreeStruct />
+      <Tree />
     </Container>
   </MainContainerProvider>
 )

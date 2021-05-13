@@ -5,28 +5,12 @@ import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import Graph from './Graph/Graph';
 import TreeRect from './TreeRect';
 
-import { Group } from '@visx/group'
-import { hierarchy, Tree } from '@visx/hierarchy';
-import {
-  LinkHorizontal,
-} from '@visx/shape';
-
 const styles = {
   parent: {
     gridArea: 'windows',
     border: '1px solid yellow',
     margin: 0,
     padding: 0,
-  }, 
-  tree: {
-   
-  },
-  rect: {
-    cursor: 'pointer',
-    '&:hover': {
-      cursor: 'pointer',
-      fill: 'blue'
-    },
   }, 
 }
 
@@ -40,7 +24,7 @@ const initialTransform = {
 };
 
 
-const TreeStruct = () => (
+const Tree = () => (
   <ParentSize style={styles.parent}>
     {({ width, height }) => (
       <Zoom
@@ -57,7 +41,6 @@ const TreeStruct = () => (
         )}
         
       </Zoom>
-
     )}
   </ParentSize>
 )
@@ -78,7 +61,7 @@ const TreeStructChild = ({ totalWidth, totalHeight, zoom }) => {
 
 
   return (
-    <div style={styles.tree} style={{ cursor: zoom.isDragging ? 'grabbing' : 'grab' }}>
+    <div style={{ cursor: zoom.isDragging ? 'grabbing' : 'grab' }}>
       <svg width={totalWidth} height={totalHeight}>
       <LinearGradient id="links-gradient" from="#fd9b93" to="#fe6e9e" />
       <TreeRect width={totalWidth} height={totalHeight} zoom={zoom} />
@@ -93,7 +76,7 @@ const TreeStructChild = ({ totalWidth, totalHeight, zoom }) => {
   )
 }
 
-export default TreeStruct
+export default Tree
 
 
 const data = {
