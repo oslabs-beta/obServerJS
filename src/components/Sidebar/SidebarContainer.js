@@ -8,13 +8,15 @@ import Settings from './Settings';
 
 const styles = {
   container: {
-    height: '500px',
+    minHeight: '500px',
     width: '100px',
     background: '#1e2125',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
     padding: 0,
+    margin: 0,
+    gridArea: 'sidebar'
   }
 }
 
@@ -25,8 +27,6 @@ const SidebarContainer = () => {
       <div>
         {primaryButtons.map((option) => <Button text={option} key={option}/>)}
       </div>
-
-      {/* {secondaryButtons.map((option) => <Button text={option} key={option}/>)} */}
       <div>
         <Help />
         <Settings />

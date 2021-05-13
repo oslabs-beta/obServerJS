@@ -8,7 +8,7 @@ const styles = {
   box: {
     background: '#292c30',
     color: 'white',
-    height: '60px',
+    // height: '60px',
     width: '100%',
     margin: '0 0 5px 0',
     display: 'flex', 

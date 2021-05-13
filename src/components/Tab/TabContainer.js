@@ -13,10 +13,11 @@ const styles = {
     display: 'flex',
     justifyContent: 'flex-start',
     border: '1px solid pink',
+    padding: 0,
+    margin: 0,
   }, 
   addTab: {
     width: '5%',
-    height: '33%',
     display: 'flex', 
     justifyContent: 'space-around',
     alignItems: 'center',
@@ -38,7 +39,7 @@ const TabContainer = () => {
 
   return (
     <Container style={styles.container}>
-      {allTabs.map((tab) => <Tab tabData={tab}/>)}
+      {allTabs.map((tab, idx) => <Tab tabData={tab} key={idx}/>)}
       <Container style={styles.addTab} onClick={addNewTab}>
         <AddIcon />
       </Container>
