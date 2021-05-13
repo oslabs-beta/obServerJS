@@ -15,9 +15,9 @@ const styles = {
   }
 }
 
-const Graph = ({ margin, sizeWidth, sizeHeight, origin }) => {
+const Graph = ({ margin, sizeWidth, sizeHeight, origin, zoom }) => {
   return (
-    <Group top={margin.top} left={margin.left}>
+    <Group top={margin.top} left={margin.left} transform={zoom.toString()}>
       <Tree
           root={hierarchy(data, d => (d.isExpanded ? null : d.children))}
           size={[sizeWidth, sizeHeight]}
@@ -49,6 +49,7 @@ const Graph = ({ margin, sizeWidth, sizeHeight, origin }) => {
                           r={12}
                           fill="url('#links-gradient')"
                           onClick={() => {
+                            console.log('click')
                             node.data.isExpanded = !node.data.isExpanded;
                           }}
                         />
@@ -66,6 +67,7 @@ const Graph = ({ margin, sizeWidth, sizeHeight, origin }) => {
                           strokeOpacity={node.data.children ? 1 : 0.6}
                           rx={node.data.children ? 0 : 10}
                           onClick={() => {
+                            console.log('click')
                             node.data.isExpanded = !node.data.isExpanded;
                           }}
                         />
@@ -131,6 +133,30 @@ const data = {
           ],
         },
       ],
+    },
+    { name: 'Cors', type: 'function' },
+    {
+      name: 'registerUser',
+      type: 'route',
+      children: [{ name: 'santitizeData', type: 'function' }, { name: 'addToDB', type: 'function' }, { name: 'redirectUser', type: 'function' }],
+    },
+    { name: 'Cors', type: 'function' },
+    {
+      name: 'registerUser',
+      type: 'route',
+      children: [{ name: 'santitizeData', type: 'function' }, { name: 'addToDB', type: 'function' }, { name: 'redirectUser', type: 'function' }],
+    },
+    { name: 'Cors', type: 'function' },
+    {
+      name: 'registerUser',
+      type: 'route',
+      children: [{ name: 'santitizeData', type: 'function' }, { name: 'addToDB', type: 'function' }, { name: 'redirectUser', type: 'function' }],
+    },
+    { name: 'Cors', type: 'function' },
+    {
+      name: 'registerUser',
+      type: 'route',
+      children: [{ name: 'santitizeData', type: 'function' }, { name: 'addToDB', type: 'function' }, { name: 'redirectUser', type: 'function' }],
     },
     { name: 'Cors', type: 'function' },
     {

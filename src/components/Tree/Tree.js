@@ -37,7 +37,7 @@ const Tree = () => (
         transformMatrix={initialTransform}
       >
         {zoom => (
-          <TreeStructChild totalWidth={width} totalHeight={height} zoom={zoom} />
+          <TreeStructure totalWidth={width} totalHeight={height} zoom={zoom} />
         )}
         
       </Zoom>
@@ -45,7 +45,7 @@ const Tree = () => (
   </ParentSize>
 )
 
-const TreeStructChild = ({ totalWidth, totalHeight, zoom }) => {
+const TreeStructure = ({ totalWidth, totalHeight, zoom }) => {
   let margin = { top: 30, left: 30, right: 30, bottom: 70 }
 
   let innerWidth = totalWidth - margin.left - margin.right
@@ -70,6 +70,7 @@ const TreeStructChild = ({ totalWidth, totalHeight, zoom }) => {
         margin={margin}
         sizeWidth={sizeWidth}
         sizeHeight={sizeHeight}
+        zoom={zoom}
       />
       </svg>
     </div>
