@@ -25,7 +25,7 @@ const SidebarContainer = () => {
   return (
     <Container maxWidth="sm" style={styles.container}>
       <div>
-        {primaryButtons.map((option) => <Button text={option} key={option}/>)}
+        {primaryButtons.map((option) => <Button text={option} key={option} />)}
       </div>
       <div>
         <Help />
