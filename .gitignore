@@ -1,9 +1,6 @@
 node_modules
-<<<<<<< HEAD
-=======
 
 yarn.lock
 package-lock.json
 
 .DS_Store
->>>>>>> b578cf4fe78a25d338eb3d77cfd0d95837235779
