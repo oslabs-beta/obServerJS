@@ -1,9 +1,11 @@
 import React from 'react'
+import SidebarContainer from './Sidebar/SidebarContainer'
 import {
   Container,
 } from '@material-ui/core'
 import MainContainerProvider from '../Global/context/MainContainerContext';
 import TabContainer from './Tab/TabContainer';
+import NavContainer from './Nav/NavContainer';
 
 const styles = {
   container: {
@@ -13,7 +15,7 @@ const styles = {
     width: '100vw',
     border: '1px solid purple',
     display: 'grid',
-    gridTemplateRows: 'repeat(7, 100/9)',
+    gridTemplateRows: 'repeat(7, 100/7)',
     gridTemplateColumns: 'repeat(6, 100/6)',
     gridTemplateAreas: `
       "nav nav nav nav nav nav nav nav"
@@ -31,7 +33,9 @@ const styles = {
 const MainContainer = () => (
   <MainContainerProvider>
     <Container style={styles.container}>
+      <NavContainer/>
       <TabContainer />
+      <SidebarContainer />
     </Container>
   </MainContainerProvider>
 )

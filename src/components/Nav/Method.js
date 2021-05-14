@@ -1,69 +1,69 @@
 import React, { useState } from 'react'
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
-
-const styles = {
-  requestType: {
-    background: '#383838',
-    color: '#aaaaaa',
-  }
-};
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 
 const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
   root: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: '25ch',
-    },
+    background: '#383838',
+  },
+  cssLabel: {
+    color: '#aaaaaa',
   },
 }));
 
 
-const requestTypes = [
-  {
-    value: 'GET',
-    label: 'GET',
-  },
-  {
-    value: 'POST',
-    label: 'POST',
-  },
-  {
-    value: 'PUT',
-    label: 'PUT',
-  },
-  {
-    value: 'DELETE',
-    label: 'DELETE',
-  },
-];
+
+
 
 export default function Method() {
+
+
   const classes = useStyles();
-  const [request, setRequest] = useState('GET');
+  const [state, setState] = useState({
+    method: '',
+  });
 
   const handleChange = (event) => {
-    setRequest(event.target.value);
+    const method = event.target.method;
+    setState({
+      ...state,
+      [method]: event.target.value,
+    });
   };
+
 
 
   return (
     <div>
-      <TextField style={styles.requestType}
-        id="outlined-select-currency"
-        select
-        label="Select"
-        value={request}
-        onChange={handleChange}
-        variant="outlined"
-      >
-        {requestTypes.map((option) => (
-          <MenuItem key={option.value} value={option.value}>
-            {option.label}
-          </MenuItem>
-        ))}
-      </TextField>
+      <FormControl variant="outlined" className={classes.formControl}>
+        <InputLabel htmlFor="method">Method</InputLabel>
+        <Select
+          className={classes.cssLabel}
+          native
+          value={state.method}
+          onChange={handleChange}
+          label="method"
+          classes={{
+            root: classes.root,
+            icon: classes.cssLabel,
+          }}
+          inputProps={{
+            method: '',
+            id: 'method',
+          }}
+        >
+          <option value='get'>GET</option>
+          <option value='put'>PUT</option>
+          <option value='post'>POST</option>
+          <option value='delete'>DELETE</option>
+        </Select>
+      </FormControl>
     </div>
   )
 }

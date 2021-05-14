@@ -10,15 +10,16 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-
+import Body from './Body';
 
 
 const styles = {
   AppBar: {
     background: '#333333',
     height: '5.5rem',
-    display: 'flex',
-  
+    display: 'grid',
+    gridArea: 'nav',
+
   },
 }
 
@@ -26,8 +27,11 @@ const SendButton = withStyles({
   root: {
     boxShadow: '12px solid white',
     fontSize: 18,
+    height: 50,
+    width: 120,
     padding: '6px 12px',
     border: '1px solid',
+    borderRadius: 0,
     lineHeight: 1.5,
     backgroundColor: '#097bed',
     borderColor: '#0063cc',
@@ -48,12 +52,18 @@ const SendButton = withStyles({
 })(Button);
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  Icon: {
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
       width: '25ch',
     },
   },
+  Url: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  }
 }));
 
 
@@ -63,32 +73,34 @@ export default function NavContainer() {
   return (
     <div>
       <AppBar position="static" style={styles.AppBar}>
-       
-          <Toolbar component='form' noValidate autoComplete="off" variant="dense">
-            {/* <form className={classes.root} noValidate autoComplete="off"> */}
-            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-              <MenuIcon />
-            </IconButton>
-            
 
-              <Url />
+        <Toolbar component='form' noValidate autoComplete="off" variant="dense">
 
-              <Method />
+          <IconButton edge="start" className={classes.Icon} color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton>
 
-              <SendButton variant="contained" color="primary">
-                Send
+
+          <Url style={classes.Url} />
+
+          <Method style={classes.Icon} />
+
+          <Body />
+
+          <SendButton variant="contained" color="primary">
+            Send
               </SendButton>
 
-              <Login />
+          <Login />
 
-              <Signup />
+          <Signup />
 
-              < AccountCircleIcon fontSize="large" />
-            
-            {/* </form> */}
-            
-          </Toolbar>
-          
+          < AccountCircleIcon fontSize="large" />
+
+
+
+        </Toolbar>
+
       </AppBar>
     </div>
   );
