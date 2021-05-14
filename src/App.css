@@ -2,9 +2,13 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  --Nav-bar: #333333;
+  --Darkest-black: #181818;
+  --Nav-Button: #383838;
+  --Send-Button-Blue: #097bed;
+  --Nav-Text-Grey: #aaaaaa; 
+  --Tab-Line-Green: #3ecc96;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -27,6 +31,8 @@
 .App-link {
   color: #61dafb;
 }
+
+
 
 @keyframes App-logo-spin {
   from {

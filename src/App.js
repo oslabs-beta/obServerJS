@@ -1,4 +1,4 @@
-import { useContext } from 'react'; 
+import { useContext } from 'react';
 import './App.css';
 import { AppContext } from './Global/context/AppContext';
 import * as actions from './Global/actionTypes';
