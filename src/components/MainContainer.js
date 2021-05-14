@@ -5,6 +5,7 @@ import {
 } from '@material-ui/core'
 import MainContainerProvider from '../Global/context/MainContainerContext';
 import TabContainer from './Tab/TabContainer';
+import MiddlewareContainer from './Middleware/MiddlewareContainer'
 
 const styles = {
   container: {
@@ -34,6 +35,7 @@ const MainContainer = () => (
     <Container style={styles.container}>
       <TabContainer />
       <SidebarContainer />
+      <MiddlewareContainer />
     </Container>
   </MainContainerProvider>
 )
