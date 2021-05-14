@@ -32,10 +32,12 @@ const Graph = ({ margin, sizeWidth, sizeHeight, origin, zoom }) => {
                     fill="none"
                   />
                 ))}
+
+               
                 {tree.descendants().map((node, key) => {
                   const width = 40;
                   const height = 20;
-
+  
                   return (
                     <Group top={node.x} left={node.y} key={key}>
                       {node.depth === 0 && (
