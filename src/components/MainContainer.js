@@ -1,11 +1,11 @@
 import React from 'react'
-import SidebarContainer from './Sidebar/SidebarContainer'
 import {
   Container,
 } from '@material-ui/core'
 import MainContainerProvider from '../Global/context/MainContainerContext';
 import TabContainer from './Tab/TabContainer';
-import NavContainer from './Nav/NavContainer';
+import SidebarContainer from './Sidebar/SidebarContainer';
+import Tree from './Tree/Tree'
 
 const styles = {
   container: {
@@ -15,12 +15,12 @@ const styles = {
     width: '100vw',
     border: '1px solid purple',
     display: 'grid',
-    gridTemplateRows: 'repeat(7, 100/7)',
-    gridTemplateColumns: 'repeat(6, 100/6)',
+    gridTemplateRows: '1fr 45px repeat(5, 1fr)',
+    gridTemplateColumns: '100px repeat(7, 1fr)',
     gridTemplateAreas: `
       "nav nav nav nav nav nav nav nav"
       "sidebar tabs tabs tabs tabs tabs tabs tabs"
-      "sidebar . . . . . . ."
+      "sidebar windows windows windows windows windows windows windows"
       "sidebar windows windows windows windows windows windows windows"
       "sidebar windows windows windows windows windows windows windows"
       "sidebar windows windows windows windows windows windows windows"
@@ -33,9 +33,10 @@ const styles = {
 const MainContainer = () => (
   <MainContainerProvider>
     <Container style={styles.container}>
-      <NavContainer/>
-      <TabContainer />
+      <div style={{gridArea: 'nav', backgrond: 'orange'}}></div>
       <SidebarContainer />
+      <TabContainer />
+      <Tree />
     </Container>
   </MainContainerProvider>
 )

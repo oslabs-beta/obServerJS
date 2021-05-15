@@ -9,7 +9,6 @@ const makeStyles = (tabData) => ({
   container: {
     background: '#1e2125',
     width: '250px',
-    height: '33%',
     borderBottom: tabData.active ? '3px solid #8bd8bd' : 'none',
     borderRight: '1px solid gray',
     color: 'white',
