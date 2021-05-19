@@ -30,7 +30,6 @@ const initialState = {
           value: 4,
         }, 
         variables: [
-          {}
         ]
       }, 
       {
@@ -40,7 +39,10 @@ const initialState = {
         toggled: true,
         response: {
           value: 6,
-        }
+        }, 
+        variables: [
+          {}
+        ]
       }, 
       {
         name: 'fourPlusFour',
@@ -48,17 +50,24 @@ const initialState = {
         status: 'skipped', 
         toggled: false,
         response: {
-          value: 8,
+          value: 4,
           value1: 8, 
           value2: 6, 
           value3: 10, 
           value4: 12
-        }
+        }, 
+        variables: [
+          {
+            userRouter: 'blue',
+            user: 'Ashley', 
+            faveColor: 'blue'
+          }
+        ]
       }
     ], 
     activeMiddleware:  {
       name: 'twoPlusTwo',
-      code: 'const twoPlusTwo = () => 2 + 2', 
+      code: 'const twoPlusFour = () => 2 + 2', 
       status: 'passed',
       toggled: false,
       response: {
@@ -100,15 +109,19 @@ const MainContainerReducer = (state, action) => {
     case actions.TOGGLE_MIDDLEWARE: 
       const { idx } = action.payload
 
-      const currentToggleStatus = state.currentRoute.middleware[idx].toggled
+      const newRoutes = state.currentRoute
 
-      let newRoutes = state.currentRoute
+      newRoutes.activeMiddleware = state.currentRoute.middleware[idx]
 
-      console.log('before update', newRoutes.middleware[idx].toggled)
+      // const currentToggleStatus = state.currentRoute.middleware[idx].toggled
 
-      newRoutes.middleware[idx].toggled = !currentToggleStatus
+      // let newRoutes = state.currentRoute
 
-      console.log('after update', newRoutes.middleware[idx].toggled)
+      // console.log('before update', newRoutes.middleware[idx].toggled)
+
+      // newRoutes.middleware[idx].toggled = !currentToggleStatus
+
+      // console.log('after update', newRoutes.middleware[idx].toggled)
       return {...state, currentRoute: newRoutes}
     default: 
       return state    
