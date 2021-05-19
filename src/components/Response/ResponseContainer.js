@@ -1,10 +1,8 @@
-import React, { useContext } from 'react'
-import { MainContainerContext } from '../../Global/context/MainContainerContext'
+import React from 'react'
 import {
-  Box,
   Container,
 } from '@material-ui/core'
-import MiddlewareContainer from './MiddlewareContainer'
+import MiddlewareContainer from './Middleware/MiddlewareContainer'
 import ResponseObject from './ResponseObject'
 import Variables from './Variables'
 
@@ -14,41 +12,25 @@ const styles = {
     gridArea: 'windows',
     display: 'flex', 
     flexDirection: 'row',
+    justfyContent: 'center',
+    alignItems: 'center',
     padding: 0,
     margin: 0,
-  }, 
-  responseContainer: {
-    width: '60%',
-    height: '90%',
-  }, 
-  requestValues: {
-    background: 'yellow',
+    border: '1px solid white'
   },
   infoContainer: {
     display: 'flex', 
-    width: '40%',
+    width: '100%',
     flexDirection: 'column',
+    padding: 0,
+    margin: 0,
   }, 
-  responseValues: {
-    background: 'purple',
-    height: '50%',
-  }, 
-  variables: {
-    background: 'green',
-    height: '50%',
-  }
 }
 
 const ResponseContainer = () => {
-  const { state: { currentRoute } } = useContext(MainContainerContext)
-
-
   return (
     <Container style={styles.mainContainer}>
-      <Container style={styles.responseContainer} className="responseContainer">
-        {`${currentRoute.method}: ${currentRoute.routeName}`}
-        <MiddlewareContainer />
-      </Container>
+      <MiddlewareContainer />
 
       <Container style={styles.infoContainer}>
         <ResponseObject />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
@@ -19,25 +19,13 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-
-
-export default function Method() {
+export default function Method(props) {
 
 
   const classes = useStyles();
-  const [state, setState] = useState({
-    method: '',
-  });
-
-  const handleChange = (event) => {
-    const method = event.target.method;
-    setState({
-      ...state,
-      [method]: event.target.value,
-    });
-  };
 
 
+  const setMethodType = props.value.setMethodType
 
   return (
     <div>
@@ -46,8 +34,7 @@ export default function Method() {
         <Select
           className={classes.cssLabel}
           native
-          value={state.method}
-          onChange={handleChange}
+          onChange={(e) => setMethodType(e.target.value)}
           label="method"
           classes={{
             root: classes.root,
@@ -58,10 +45,10 @@ export default function Method() {
             id: 'method',
           }}
         >
-          <option value='get'>GET</option>
-          <option value='put'>PUT</option>
-          <option value='post'>POST</option>
-          <option value='delete'>DELETE</option>
+          <option value='GET'>GET</option>
+          <option value='PUT'>PUT</option>
+          <option value='POST'>POST</option>
+          <option value='DELETE'>DELETE</option>
         </Select>
       </FormControl>
     </div>

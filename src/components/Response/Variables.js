@@ -10,6 +10,9 @@ const styles = {
     height: '50%',
     background: '#1e2125',
     borderRadius: 12,
+    border: '1px solid white',
+    padding: 0,
+    margin: 0,
   }
 }
 
@@ -19,15 +22,18 @@ const Variables = () => {
       currentRoute: { activeMiddleware }
     } 
   } = useContext(MainContainerContext)
-  console.log(activeMiddleware)
+
+  console.log((Object.values(activeMiddleware.variables)).length )
+
   return (
     <Container style={styles.container}>
       <h1>Variables</h1>
-      {activeMiddleware.variables.map((variableObj) => {
+      {Object.keys(activeMiddleware.variables).length 
+      ? activeMiddleware.variables.map((variableObj) => {
         return Object.keys(variableObj).map((variable) => (
           <p>{`${variable}: ${variableObj[variable]}`}</p>
         ))
-      })}
+      }): 'No variables available'}
     </Container>
   )
 }

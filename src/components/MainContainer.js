@@ -7,6 +7,7 @@ import TabContainer from './Tab/TabContainer';
 import SidebarContainer from './Sidebar/SidebarContainer';
 import Tree from './Tree/Tree'
 import ResponseContainer from './Response/ResponseContainer'
+import NavContainer from './Nav/NavContainer'
 
 const styles = {
   container: {
@@ -34,7 +35,7 @@ const styles = {
 const MainContainer = () => (
   <MainContainerProvider>
     <Container style={styles.container}>
-      <div style={{gridArea: 'nav', backgrond: 'orange'}}></div>
+      <NavContainer/>
       <SidebarContainer />
       <TabContainer />
       <ResponseContainer />
