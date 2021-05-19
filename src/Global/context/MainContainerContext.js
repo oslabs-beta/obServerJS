@@ -17,11 +17,71 @@ const initialState = {
     }
   ], // all available tabs
   sidebarSelections: [], // i.e. Collections, tree, request, response, etc. (min 1, max2)
+  currentRoute: {
+    method: 'GET',
+    routeName: '/user/create',
+    middleware: [
+      {
+        name: 'twoPlusTwo',
+        code: 'const twoPlusTwo = () => 2 + 2', 
+        status: 'passed',
+        toggled: false,
+        response: {
+          value: 4,
+        }, 
+        variables: [
+          {}
+        ]
+      }, 
+      {
+        name: 'threePlusThree',
+        code: 'const threePlusThree = () => 3 + 3', 
+        status: 'error',
+        toggled: true,
+        response: {
+          value: 6,
+        }
+      }, 
+      {
+        name: 'fourPlusFour',
+        code: 'const fourPlusFour = () => 4 + 4', 
+        status: 'skipped', 
+        toggled: false,
+        response: {
+          value: 8,
+          value1: 8, 
+          value2: 6, 
+          value3: 10, 
+          value4: 12
+        }
+      }
+    ], 
+    activeMiddleware:  {
+      name: 'twoPlusTwo',
+      code: 'const twoPlusTwo = () => 2 + 2', 
+      status: 'passed',
+      toggled: false,
+      response: {
+        value: 4,
+        value1: 8, 
+        value2: 6, 
+        value3: 10, 
+        value4: 12
+      }, 
+      variables: [
+        {
+          userRouter: 'blue',
+          user: 'Ashley', 
+          faveColor: 'blue'
+        }
+      ]
+    },
+  }
 }
 
 export const MainContainerContext = React.createContext();
 
-const MainContainerReducer = (state = initialState, action) => {
+const MainContainerReducer = (state, action) => {
   switch(action.type) {
     case actions.CLOSE_TAB: 
       return state
@@ -37,6 +97,19 @@ const MainContainerReducer = (state = initialState, action) => {
         }
       })
       return { ...state, allTabs: newTabs }
+    case actions.TOGGLE_MIDDLEWARE: 
+      const { idx } = action.payload
+
+      const currentToggleStatus = state.currentRoute.middleware[idx].toggled
+
+      let newRoutes = state.currentRoute
+
+      console.log('before update', newRoutes.middleware[idx].toggled)
+
+      newRoutes.middleware[idx].toggled = !currentToggleStatus
+
+      console.log('after update', newRoutes.middleware[idx].toggled)
+      return {...state, currentRoute: newRoutes}
     default: 
       return state    
   }
