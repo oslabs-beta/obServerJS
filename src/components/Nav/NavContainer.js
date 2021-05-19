@@ -16,12 +16,16 @@ import Body from './Body';
 const styles = {
   AppBar: {
     background: '#333333',
-    height: '5.5rem',
     display: 'grid',
     gridArea: 'nav',
-
+  },
+  Toolbar: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    border: '2px solid white'
   },
 }
+
 
 const SendButton = withStyles({
   root: {
@@ -67,41 +71,87 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
+
 export default function NavContainer() {
   const classes = useStyles();
 
+  const [url, setUrl] = React.useState('');
+  const [methodType, setMethodType] = React.useState('GET');
+  const [bodyInput, setBodyInput] = React.useState();
+
+
+  const handleSignup = async (e) => {
+    e.preventDefault();
+
+
+    if (methodType === 'PUT' || methodType === 'POST') {
+
+      fetch(`${url}`, {
+        method: `${methodType}`,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          bodyInput
+        }),
+      })
+        .then(data => {
+
+        })
+        .catch(error => console.error('Error:', error))
+    } else if (methodType === 'DELETE') {
+      fetch(`${url}`, {
+        method: `${methodType}`,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then(data => {
+
+        })
+        .catch(error => console.error('Error:', error))
+    } else {
+
+      fetch(`${url}`)
+        .then(data => {
+
+        })
+        .catch(error => console.error('Error:', error))
+    }
+  };
+
   return (
-    <div>
-      <AppBar position="static" style={styles.AppBar}>
 
-        <Toolbar component='form' noValidate autoComplete="off" variant="dense">
+    <AppBar position="static" style={styles.AppBar}>
 
-          <IconButton edge="start" className={classes.Icon} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
+      <Toolbar style={styles.Toolbar} component='form' noValidate autoComplete="off" variant="dense" onSubmit={handleSignup}>
+
+        <IconButton edge="start" className={classes.Icon} color="inherit" aria-label="menu">
+          <MenuIcon />
+        </IconButton>
 
 
-          <Url style={classes.Url} />
+        <Url value={{ setUrl }} style={classes.Url} />
 
-          <Method style={classes.Icon} />
+        <Method value={{ setMethodType }} style={classes.Icon} />
 
-          <Body />
+        <Body value={{ setBodyInput, bodyInput }} />
 
-          <SendButton variant="contained" color="primary">
-            Send
+        <SendButton type='submit' variant="contained" color="primary">
+          Send
               </SendButton>
 
-          <Login />
+        <Login style={styles.Login} />
 
-          <Signup />
+        <Signup />
 
-          < AccountCircleIcon fontSize="large" />
+        < AccountCircleIcon fontSize="large" />
 
 
 
-        </Toolbar>
+      </Toolbar>
 
-      </AppBar>
-    </div>
+    </AppBar>
+
   );
 }
