@@ -1,30 +1,46 @@
-import React, { useContext } from 'react'
-import {
-  Box,
-  Container,
-} from '@material-ui/core'
+import React from 'react'
+import { Paper } from '@material-ui/core'
 import * as actions from '../../../Global/actionTypes'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 
 const styles = {
   container: {
-    height: '100%',
-    border: '1px solid white',
+    background: '#1e2125',
+    height: '90%',
+    width: '20%',
+    display: 'flex', 
+    flexDirection: 'column',
+    alignSelf: 'start',
+    justifyContent: 'start',
+    alignItems: 'center',
+    padding: '1rem', 
+    margin: 0,
+    gap: '.2rem 0',
+    color: 'white',
   },
+  title: {
+
+  },
+  arrowIcon: {
+    color: 'white',
+    fontSize: '16px',
+  }
 }
 
 const createDropdownStyles = (status) => {
   const styleObj = {
-    margin: 0,
-    padding: 0,
     cursor: 'pointer',
+    width: '80%',
+    color: 'white',
+    fontSize: '10px',
+    margin: 0,
   }
   if (status === 'passed') 
-    styleObj.color = 'darkgreen'
+    styleObj.background = 'darkgreen'
   else if (status === 'error') 
-    styleObj.color = 'red'
+    styleObj.background = 'maroon'
   else 
-    styleObj.color = 'gray'
+    styleObj.background = 'gray'
 
   return styleObj
 }
@@ -34,18 +50,32 @@ const MiddlewareChain = ({ middleware, dispatch }) => {
   const toggleFunc = (idx) => dispatch({ type: actions.TOGGLE_MIDDLEWARE, payload: { idx } })
 
   return (
-    <Container style={styles.container}>
+    <Paper style={styles.container} elevation={3}>
+      <h4 style={styles.title}>
+        Execution Order
+      </h4>
+      
       {middleware.map((func, idx) => {
           const { name, status } = func
-
+          const dropdownStyle = createDropdownStyles(status)
           return (
-            <Box style={createDropdownStyles(status)} key={name} onClick={() => toggleFunc(idx)}>
-              <p>{name}</p>
-              <ArrowDownwardIcon />
-            </Box>
+            <>
+            <Paper 
+              key={name + idx} 
+              elevation={3}
+              variant="outlined" 
+              style={dropdownStyle}
+              onClick={() => toggleFunc(idx)}>
+              <p>
+                {name}
+              </p>
+              
+            </Paper>
+            <ArrowDownwardIcon style={styles.arrowIcon} key={idx} />
+            </>
           )
         })}
-    </Container>
+    </Paper>
   )
 }
 

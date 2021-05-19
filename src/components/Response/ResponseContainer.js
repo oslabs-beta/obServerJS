@@ -3,8 +3,7 @@ import {
   Container,
 } from '@material-ui/core'
 import MiddlewareContainer from './Middleware/MiddlewareContainer'
-import ResponseObject from './ResponseObject'
-import Variables from './Variables'
+import ValuesContainer from './Values/ValuesContainer'
 
 const styles = {
   mainContainer: {
@@ -14,9 +13,8 @@ const styles = {
     flexDirection: 'row',
     justfyContent: 'center',
     alignItems: 'center',
-    padding: 0,
+    padding: '0 2rem 0 .5rem',
     margin: 0,
-    border: '1px solid white'
   },
   infoContainer: {
     display: 'flex', 
@@ -32,10 +30,7 @@ const ResponseContainer = () => {
     <Container style={styles.mainContainer}>
       <MiddlewareContainer />
 
-      <Container style={styles.infoContainer}>
-        <ResponseObject />
-        <Variables />
-      </Container>
+      <ValuesContainer />
     </Container>
   )
 }

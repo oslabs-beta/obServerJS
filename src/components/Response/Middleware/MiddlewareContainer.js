@@ -1,30 +1,37 @@
 import React, { useContext } from 'react'
 import { MainContainerContext } from '../../../Global/context/MainContainerContext'
-import {
-  Container,
-} from '@material-ui/core'
+import { Container } from '@material-ui/core'
 import MiddlewareChain from './MiddlewareChain'
 import FunctionContainer from './FunctionContainer'
 
 const styles = {
   container: {
     display: 'flex',
+    justfyContent: 'center',
+    alignItems: 'center',
     margin: 0,
     padding: 0,
     height: '90%',
-    background: '#1e2125',
     borderRadius: 12,
     width: '200%',
   },
 }
 
 const MiddlewareFunc = () => {
-  const { state: { currentRoute: { middleware, activeMiddleware } }, dispatch } = useContext(MainContainerContext)
+  const { 
+    state: { 
+      allTabs, 
+      currentTabIdx
+    }, 
+    dispatch 
+  } = useContext(MainContainerContext)
+
+    const currentTab = allTabs[currentTabIdx]
 
   return (
     <Container style={styles.container}>
-      <MiddlewareChain middleware={middleware} dispatch={dispatch} />
-      <FunctionContainer activeMiddleware={activeMiddleware} />
+      <MiddlewareChain middleware={currentTab.middleware} dispatch={dispatch} />
+      <FunctionContainer currentTab={currentTab} />
     </Container>
   )
 }

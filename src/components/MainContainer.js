@@ -5,7 +5,6 @@ import {
 import MainContainerProvider from '../Global/context/MainContainerContext';
 import TabContainer from './Tab/TabContainer';
 import SidebarContainer from './Sidebar/SidebarContainer';
-import Tree from './Tree/Tree'
 import ResponseContainer from './Response/ResponseContainer'
 import NavContainer from './Nav/NavContainer'
 
