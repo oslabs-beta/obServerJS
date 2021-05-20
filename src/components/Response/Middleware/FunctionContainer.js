@@ -4,7 +4,7 @@ import {
   makeStyles
 } from '@material-ui/core'
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { solarizedDark } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+import { atelierCaveDark } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
 const useStyles = makeStyles(theme => ({
   mainContainer: {
@@ -51,7 +51,7 @@ const FunctionContainer = ({ currentTab }) => {
       <SyntaxHighlighter
         language="javascript"
         className={classes.code}
-        style={solarizedDark}
+        style={atelierCaveDark}
         showLineNumbers={true}
       >
         {activeMiddleware.code}

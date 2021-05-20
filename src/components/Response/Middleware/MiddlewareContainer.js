@@ -30,7 +30,12 @@ const MiddlewareFunc = () => {
 
   return (
     <Container style={styles.container}>
-      <MiddlewareChain middleware={currentTab.middleware} dispatch={dispatch} />
+      <MiddlewareChain 
+        middleware={currentTab.middleware} 
+        dispatch={dispatch} 
+        activeIdx={currentTab.currentMiddlewareIdx} 
+      />
+
       <FunctionContainer currentTab={currentTab} />
     </Container>
   )

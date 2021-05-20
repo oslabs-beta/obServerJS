@@ -19,7 +19,7 @@ const styles = {
   },
   key: {
     color: 'gray',
-    fontSize: 16,
+    fontSize: 14,
   }, 
   value: {
     color: 'white',

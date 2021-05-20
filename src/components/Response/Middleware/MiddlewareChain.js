@@ -18,8 +18,13 @@ const styles = {
     gap: '.2rem 0',
     color: 'white',
   },
-  title: {
-
+  paperContainer: {
+    width: '100%',
+    minHeight: '4rem',
+    background: '#1e2125',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   arrowIcon: {
     color: 'white',
@@ -40,13 +45,12 @@ const createDropdownStyles = (status) => {
   else if (status === 'error') 
     styleObj.background = 'maroon'
   else 
-    styleObj.background = 'gray'
+    styleObj.background = 'black'
 
   return styleObj
 }
 
-const MiddlewareChain = ({ middleware, dispatch }) => {
-
+const MiddlewareChain = ({ middleware, dispatch, activeIdx }) => {
   const toggleFunc = (idx) => dispatch({ type: actions.TOGGLE_MIDDLEWARE, payload: { idx } })
 
   return (
@@ -60,18 +64,18 @@ const MiddlewareChain = ({ middleware, dispatch }) => {
           const dropdownStyle = createDropdownStyles(status)
           return (
             <>
-            <Paper 
-              key={name + idx} 
-              elevation={3}
-              variant="outlined" 
-              style={dropdownStyle}
-              onClick={() => toggleFunc(idx)}>
-              <p>
-                {name}
-              </p>
-              
-            </Paper>
-            <ArrowDownwardIcon style={styles.arrowIcon} key={idx} />
+              <Paper 
+                key={name + idx}
+                elevation={3}
+                variant="outlined" 
+                style={dropdownStyle}
+                onClick={() => toggleFunc(idx)}>
+                <p>
+                  {name}
+                </p>
+              </Paper>
+
+              <ArrowDownwardIcon style={styles.arrowIcon} key={idx} />
             </>
           )
         })}
