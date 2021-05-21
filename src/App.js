@@ -11,7 +11,7 @@ function App() {
   const changeWindow = () => {
     // const newWindow = Math.floor(Math.random() * 100)
     // console.log(newWindow)
-    // dispatch({ type: actions.CHANGE_WINDOW, payload: newWindow})
+    dispatch({ type: actions.CHANGE_WINDOW, payload: 'Dashboard'})
   }
 
   return (
