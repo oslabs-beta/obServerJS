@@ -6,6 +6,7 @@ import AddIcon from '@material-ui/icons/Add';
 import IconButton from '@material-ui/core/IconButton';
 import { MainContainerContext } from '../../Global/context/MainContainerContext';
 import Tab from './Tab';
+import * as actions from '../../Global/actionTypes';
 
 
 const styles = {
@@ -13,10 +14,9 @@ const styles = {
     gridArea: 'tabs',
     display: 'flex',
     justifyContent: 'flex-start',
-    border: '1px solid pink',
     padding: 0,
     margin: 0,
-    background: '#383838',
+    background: '#1e2125',
   },
   addTab: {
     width: '5%',
@@ -26,7 +26,7 @@ const styles = {
     color: 'white',
     border: '1px solid grey',
     borderRadius: 0,
-    background: '#383838',
+    background: '#1e2125',
     margin: 0,
     padding: 0,
   },
@@ -36,10 +36,21 @@ const styles = {
 }
 
 const TabContainer = () => {
-  const { state: { allTabs } } = useContext(MainContainerContext);
+  const { state: { allTabs }, dispatch } = useContext(MainContainerContext);
 
   const addNewTab = () => {
-    alert('tab added')
+    dispatch({
+      type: actions.NEW_TAB,
+      payload: {
+        link: 'New Tab',
+        route: '',
+        method: 'METHOD',
+        active: true,
+        body: '',
+        currentMiddlewareIdx: 0,
+        middleware: []
+      },
+    })
   }
 
   return (
