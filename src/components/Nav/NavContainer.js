@@ -22,7 +22,6 @@ const styles = {
   Toolbar: {
     display: 'flex',
     justifyContent: 'space-between',
-    border: '2px solid white'
   },
 }
 
