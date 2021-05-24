@@ -11,19 +11,18 @@ const makeStyles = (tabData) => ({
     width: '250px',
     borderBottom: tabData.active ? '3px solid #8bd8bd' : 'none',
     borderRight: '1px solid gray',
-    color: 'white',
-    display: 'flex', 
+    borderRadius: 0,
+    color: '#aaaaaa',
+    display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
-    borderTopLeftRadius: !tabData.tabOrder ? '12px': 0, 
-    borderBottomLeftRadius: !tabData.tabOrder ? '12px': 0,
     margin: 0,
     padding: 0,
-  }, 
+  },
   method: {
     color: 'darkgray',
     fontSize: '.8rem',
-  }, 
+  },
   link: {
 
   }
@@ -34,7 +33,7 @@ const Tab = ({ tabData }) => {
   const styles = makeStyles(tabData)
 
   const makeActiveTab = () => {
-    dispatch({ 
+    dispatch({
       type: actions.CHANGE_ACTIVE_TAB,
       payload: tabData.tabOrder
     })
@@ -44,6 +43,7 @@ const Tab = ({ tabData }) => {
     <Container style={styles.container} onClick={makeActiveTab}>
       <span style={styles.method}>{tabData.method}</span>
       <span style={styles.link}>{tabData.link}</span>
+
     </Container>
   )
 }

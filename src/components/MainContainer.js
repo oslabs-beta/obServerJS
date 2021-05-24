@@ -14,12 +14,12 @@ const styles = {
     minHeight: '600px',
     maxHeight: '800px',
     width: '100vw',
-    border: '1px solid purple',
+    background: '#383838',
     display: 'grid',
     gridTemplateRows: '1fr 45px repeat(5, 1fr)',
     gridTemplateColumns: '100px repeat(7, 1fr)',
     gridTemplateAreas: `
-      "nav nav nav nav nav nav nav nav"
+      "sidebar nav nav nav nav nav nav nav"
       "sidebar tabs tabs tabs tabs tabs tabs tabs"
       "sidebar windows windows windows windows windows windows windows"
       "sidebar windows windows windows windows windows windows windows"
