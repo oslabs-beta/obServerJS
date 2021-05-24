@@ -39,6 +39,7 @@ const TabContainer = () => {
   const { state: { allTabs }, dispatch } = useContext(MainContainerContext);
 
   const addNewTab = () => {
+
     dispatch({
       type: actions.NEW_TAB,
       payload: {
@@ -57,7 +58,7 @@ const TabContainer = () => {
     <Container style={styles.container}>
       {allTabs.map((tab, idx) => <Tab tabData={tab} key={idx} />)}
       <Container style={styles.addTab} onClick={addNewTab}>
-        <IconButton onClick={addNewTab} style={styles.button} label="tab" component="span">
+        <IconButton style={styles.button} label="tab" component="span">
           <AddIcon />
         </IconButton>
       </Container>
