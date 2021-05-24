@@ -81,7 +81,7 @@ export default function NavContainer() {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-
+    console.log('Line84: url:', url, 'method:', methodType, 'body', bodyInput)
 
     if (methodType === 'PUT' || methodType === 'POST') {
 
@@ -109,7 +109,7 @@ export default function NavContainer() {
 
         })
         .catch(error => console.error('Error:', error))
-    } else {
+    } else if (methodType === 'GET') {
 
       fetch(`${url}`)
         .then(data => {
@@ -129,7 +129,6 @@ export default function NavContainer() {
           <MenuIcon />
         </IconButton>
 
-
         <Url value={{ setUrl }} style={classes.Url} />
 
         <Method value={{ setMethodType }} style={classes.Icon} />
@@ -138,7 +137,7 @@ export default function NavContainer() {
 
         <SendButton type='submit' variant="contained" color="primary">
           Send
-              </SendButton>
+        </SendButton>
 
         <Login style={styles.Login} />
 

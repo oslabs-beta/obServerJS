@@ -122,18 +122,16 @@ const MainContainerReducer = (state, action) => {
 
     case actions.NEW_TAB:
       const data = action.payload
-      // Add new function here to add new Tab
       const tabs = state.allTabs
       tabs.forEach((tab) => {
         tab.active = false
       })
       tabs.push(data)
-      //How do I add a new object to the allTabs Array?
       console.log(tabs)
       return { ...state, allTabs: tabs }
 
-    case actions.CHANGE_ACTIVE_TAB: // if we change active tab
-      const newTabs = state.allTabs; // run this functionality
+    case actions.CHANGE_ACTIVE_TAB:
+      const newTabs = state.allTabs;
       newTabs.forEach((tab) => {
         if (tab.tabOrder === action.payload) {
           tab.active = true

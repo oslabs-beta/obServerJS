@@ -24,7 +24,6 @@ const makeStyles = (tabData) => ({
     fontSize: '.8rem',
   },
   link: {
-
   }
 })
 

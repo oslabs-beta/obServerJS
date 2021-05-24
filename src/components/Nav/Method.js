@@ -40,10 +40,7 @@ export default function Method(props) {
             root: classes.root,
             icon: classes.cssLabel,
           }}
-          inputProps={{
-            method: '',
-            id: 'method',
-          }}
+          
         >
           <option value='GET'>GET</option>
           <option value='PUT'>PUT</option>
