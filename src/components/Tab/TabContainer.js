@@ -39,6 +39,7 @@ const TabContainer = () => {
   const { state: { allTabs }, dispatch } = useContext(MainContainerContext);
 
   const addNewTab = () => {
+
     dispatch({
       type: actions.NEW_TAB,
       payload: {

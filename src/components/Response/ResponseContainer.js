@@ -15,6 +15,7 @@ const styles = {
     alignItems: 'center',
     padding: '0 2rem 0 .5rem',
     margin: 0,
+    maxWidth: '100%',
   },
   infoContainer: {
     display: 'flex', 
