@@ -10,10 +10,12 @@ import NavContainer from './Nav/NavContainer'
 
 const styles = {
   container: {
-    height: '90vh',
+    padding: 0,
+    margin: 0,
+    height: '100vh',
     minHeight: '600px',
-    maxHeight: '800px',
-    width: '100vw',
+    width: '100%',
+    maxWidth: '100%',
     background: '#383838',
     display: 'grid',
     gridTemplateRows: '1fr 45px repeat(5, 1fr)',
@@ -27,7 +29,7 @@ const styles = {
       "sidebar windows windows windows windows windows windows windows"
       "sidebar windows windows windows windows windows windows windows"
     `,
-    padding: 0,
+
   }
 }
 

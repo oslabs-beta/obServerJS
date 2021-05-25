@@ -129,7 +129,7 @@ const MainContainerReducer = (state, action) => {
       })
       tabs.push(data)
       //How do I add a new object to the allTabs Array?
-      console.log(tabs)
+      console.log('adding a tab')
       return { ...state, allTabs: tabs }
 
     case actions.CHANGE_ACTIVE_TAB: // if we change active tab
