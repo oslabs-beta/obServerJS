@@ -4,6 +4,8 @@ import {
 } from '@material-ui/core';
 import { MainContainerContext } from '../../Global/context/MainContainerContext';
 import * as actions from '../../Global/actionTypes';
+import CloseIcon from '@material-ui/icons/Close';
+import IconButton from '@material-ui/core/IconButton';
 
 const makeStyles = (tabData) => ({
   container: {
@@ -24,7 +26,10 @@ const makeStyles = (tabData) => ({
     fontSize: '.8rem',
   },
   link: {
-
+  },
+  closeIcon: { 
+    background: '#1e2125',
+    color: '#aaaaaa',
   }
 })
 
@@ -43,7 +48,7 @@ const Tab = ({ tabData }) => {
     <Container style={styles.container} onClick={makeActiveTab}>
       <span style={styles.method}>{tabData.method}</span>
       <span style={styles.link}>{tabData.link}</span>
-
+      <IconButton onClick={console.log('close tab')} fontSize="small"><CloseIcon style={styles.closeIcon} /></IconButton>
     </Container>
   )
 }
