@@ -11,6 +11,7 @@ const initialState = {
       method: 'POST',
       active: false,
       body: '',
+      tabOrder: 0,
       currentMiddlewareIdx: 0,
       middleware: [
         {
@@ -107,6 +108,7 @@ const ResponseObject = () => {
       method: 'GET',
       body: '',
       active: true,
+      tabOrder: 1,
     }
   ],
   sidebarSelections: [], // i.e. Collections, tree, request, response, etc. (min 1, max2)
@@ -117,8 +119,22 @@ export const MainContainerContext = React.createContext();
 
 const MainContainerReducer = (state, action) => {
   switch (action.type) {
+    
     case actions.CLOSE_TAB:
-      return state
+      const tab = action.payload;
+      const currentState = [];
+      const reSort = () => {
+        for (let key of state.allTabs) {
+          if (key.tabOrder !== tab) {
+            if (key.tabOrder > tab) {
+              key.tabOrder--
+              }
+            currentState.push(key)
+          } 
+        }
+      }
+      reSort();
+      return { ...state, allTabs: currentState }
 
     case actions.NEW_TAB:
       const data = action.payload

@@ -11,7 +11,7 @@ import Button from '@material-ui/core/Button';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Body from './Body';
-
+import Logo from './logo3.png';
 
 const styles = {
   AppBar: {
@@ -66,6 +66,11 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
       width: '25ch',
     },
+    logo: {
+      
+      width: '100%',
+      margin: '0px 0'
+    }
   }
 }));
 
@@ -81,7 +86,7 @@ export default function NavContainer() {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    console.log('Line84: url:', url, 'method:', methodType, 'body', bodyInput)
+    // console.log('Line84: url:', url, 'method:', methodType, 'body', bodyInput)
 
     if (methodType === 'PUT' || methodType === 'POST') {
 
@@ -113,7 +118,10 @@ export default function NavContainer() {
 
       fetch(`${url}`)
         .then(data => {
-
+          return data.json();
+        })
+        .then(data => {
+          console.log(data)
         })
         .catch(error => console.error('Error:', error))
     }
@@ -125,9 +133,7 @@ export default function NavContainer() {
 
       <Toolbar style={styles.Toolbar} component='form' noValidate autoComplete="off" variant="dense" onSubmit={handleSignup}>
 
-        <IconButton edge="start" className={classes.Icon} color="inherit" aria-label="menu">
-          <MenuIcon />
-        </IconButton>
+        <img src={Logo} alt='logo' style={classes.logo} />
 
         <Url value={{ setUrl }} style={classes.Url} />
 
