@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
-import {
-  Container, withTheme
-} from '@material-ui/core';
+import { Container } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import IconButton from '@material-ui/core/IconButton';
 import { MainContainerContext } from '../../Global/context/MainContainerContext';

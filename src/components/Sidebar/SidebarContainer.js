@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import {
   Container,
 } from '@material-ui/core';
-import Button from './Buttons';
+import Button from './Button';
 import Help from './Help';
 import Settings from './Settings';
 
@@ -15,13 +15,13 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'space-between',
     padding: 0,
-    margin: 0,
+    margin: '30px 0 0 0',
     gridArea: 'sidebar'
   }
 }
 
 const SidebarContainer = () => {
-  const primaryButtons = ['Collections', 'Variables', 'Tree', 'Request', 'Response'];
+  const primaryButtons = ['Tree', 'Response'];
   return (
     <Container maxWidth="sm" style={styles.container}>
       <div>

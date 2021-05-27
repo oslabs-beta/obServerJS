@@ -2,6 +2,8 @@ import React, { useContext } from 'react'
 import {
   Box,
 } from '@material-ui/core';
+import { MainContainerContext } from '../../Global/context/MainContainerContext'
+import * as actions from '../../Global/actionTypes'
 
 const makeStyles = (selected) => ({
   box: {
@@ -19,14 +21,22 @@ const makeStyles = (selected) => ({
   }
 })
 
-const Buttons = ({text}) => {
-  // const [state: {  }, dispatch] = useContext();
-  const styles = makeStyles(true)
+const Button = ({text}) => {
+const { state: { sidebarSelection }, dispatch } = useContext(MainContainerContext)
+
+const changeWindow = () => {
+  dispatch({
+    type: actions.CHANGE_WINDOW, 
+    payload: text,
+  })
+}
+
+  const styles = makeStyles(sidebarSelection === text)
   return (
-    <Box style={styles.box}>
+    <Box style={styles.box} onClick={changeWindow}>
       {text}
     </Box>
   )
 }
 
-export default Buttons
+export default Button

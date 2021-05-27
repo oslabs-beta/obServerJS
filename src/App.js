@@ -1,11 +1,14 @@
 import './App.css';
 import MainContainer from './components/MainContainer';
+import MainContainerProvider from './Global/context/MainContainerContext';
 
 function App() {
 
   return (
     <div className="App">
-      <MainContainer />
+      <MainContainerProvider>
+        <MainContainer />
+      </MainContainerProvider>
     </div>
   );
 }

@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {
   Container,
 } from '@material-ui/core'
-import MainContainerProvider from '../Global/context/MainContainerContext';
 import TabContainer from './Tab/TabContainer';
 import SidebarContainer from './Sidebar/SidebarContainer';
-import ResponseContainer from './Response/ResponseContainer'
 import NavContainer from './Nav/NavContainer'
+import Tree from './Tree/Tree'
+import ResponseContainer from './Response/ResponseContainer'
+import { MainContainerContext } from '../Global/context/MainContainerContext';
 
 const styles = {
   container: {
@@ -15,6 +16,7 @@ const styles = {
     height: '100vh',
     minHeight: '600px',
     width: '100%',
+    overflow: 'hidden',
     maxWidth: '100%',
     background: '#383838',
     display: 'grid',
@@ -33,15 +35,19 @@ const styles = {
   }
 }
 
-const MainContainer = () => (
-  <MainContainerProvider>
+const MainContainer = () => {
+  const { state: { sidebarSelection } } = useContext(MainContainerContext)
+
+  return (
     <Container style={styles.container}>
       <NavContainer/>
       <SidebarContainer />
       <TabContainer />
-      <ResponseContainer />
+      {sidebarSelection === 'Response' 
+      ?  <ResponseContainer /> 
+      : <Tree />}
     </Container>
-  </MainContainerProvider>
-)
+  )
+}
 
 export default MainContainer
