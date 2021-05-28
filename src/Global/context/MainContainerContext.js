@@ -167,7 +167,7 @@ const MainContainerReducer = (state, action) => {
       return { ...state, allTabs }
 
     case actions.CHANGE_WINDOW: 
-
+    
       return { ...state, sidebarSelection: action.payload }
 
     default:
