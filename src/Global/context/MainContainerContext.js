@@ -11,6 +11,7 @@ const initialState = {
       method: 'POST',
       active: false,
       body: '',
+      response: {},
       tabOrder: 0,
       currentMiddlewareIdx: 0,
       middleware: [
@@ -119,7 +120,19 @@ export const MainContainerContext = React.createContext();
 
 const MainContainerReducer = (state, action) => {
   switch (action.type) {
-    
+    case actions.STORE_RESPONSE:
+      console.log("INSIDE REDUCER: ", action.payload)
+
+      let responseTabs = state.allTabs
+
+      responseTabs[state.currentTabIdx].middleware = action.payload.observer.stackLayers;
+      responseTabs[state.currentTabIdx].tree = action.payload.observer.tree;
+      responseTabs[state.currentTabIdx].response = action.payload.observer.response;
+
+      return {
+        ...state,
+        allTabs: responseTabs
+      };
     case actions.CLOSE_TAB:
       const tab = action.payload;
       const currentState = [];
@@ -128,9 +141,9 @@ const MainContainerReducer = (state, action) => {
           if (key.tabOrder !== tab) {
             if (key.tabOrder > tab) {
               key.tabOrder--
-              }
+            }
             currentState.push(key)
-          } 
+          }
         }
       }
       reSort();
@@ -166,8 +179,8 @@ const MainContainerReducer = (state, action) => {
 
       return { ...state, allTabs }
 
-    case actions.CHANGE_WINDOW: 
-    
+    case actions.CHANGE_WINDOW:
+
       return { ...state, sidebarSelection: action.payload }
 
     default:

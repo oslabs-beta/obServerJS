@@ -1,17 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import Signup from './Signup';
 import Url from './Url';
 import Login from './Login';
 import Method from './Method';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Body from './Body';
 import Logo from './logo3.png';
+import { MainContainerContext } from '../../Global/context/MainContainerContext';
+import * as actions from '../../Global/actionTypes';
 
 const styles = {
   AppBar: {
@@ -86,6 +86,7 @@ export default function NavContainer() {
   const [methodType, setMethodType] = React.useState('GET');
   const [bodyInput, setBodyInput] = React.useState();
 
+  const { dispatch } = useContext(MainContainerContext);
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -124,6 +125,10 @@ export default function NavContainer() {
         })
         .then(data => {
           console.log(data)
+          dispatch({
+            type: 'STORE_RESPONSE',//actions.STORE_RESPONSE,
+            payload: data
+          })
         })
         .catch(error => console.error('Error:', error))
     }

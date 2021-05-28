@@ -60,8 +60,8 @@ const MiddlewareChain = ({ middleware, dispatch, activeIdx }) => {
       </h4>
 
       {middleware.map((func, idx) => {
-        const { name, status } = func
-        const dropdownStyle = createDropdownStyles(status)
+        const { name, functionDef } = func
+        const dropdownStyle = createDropdownStyles(functionDef)
         return (
           <>
             <Paper

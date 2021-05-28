@@ -9,3 +9,5 @@ export const CHANGE_WINDOW = 'CHANGE_WINDOW';
 // Request Window
 export const TOGGLE_MIDDLEWARE = 'TOGGLE_MIDDLEWARE';
 
+export const STORE_RESPONSE = 'STORE_RESPONSE';
+
