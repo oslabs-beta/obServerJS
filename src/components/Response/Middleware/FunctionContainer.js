@@ -39,7 +39,22 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-const FunctionContainer = ({ currentTab }) => {
+const FunctionContainer = ({ currentTab, populated }) => {
+  return populated 
+  ? <PopulatedFunctionContainer currentTab={currentTab}/> 
+  : <NullFunctionContainer />
+}
+
+const NullFunctionContainer = () => {
+  const classes = useStyles()
+  return (
+    <Container className={classes.mainContainer}>
+      Code not avaialble
+    </Container>
+  )
+}
+
+const PopulatedFunctionContainer = ({ currentTab }) => {
   const classes = useStyles()
 
   const { currentMiddlewareIdx, middleware } = currentTab

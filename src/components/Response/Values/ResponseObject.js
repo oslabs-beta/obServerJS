@@ -34,7 +34,23 @@ const styles = {
   }
 }
 
-const ResponseObject = () => {
+const ResponseObject = ({ populated }) => {
+  return populated 
+  ? <PopulatedResponseObject />
+  : <NullResponseObject />
+}
+
+const NullResponseObject = () => {
+  return (
+    <Paper elevation={3} style={styles.container}>
+      <h1 style={styles.title}>
+          Response
+      </h1>
+    </Paper>
+  )
+}
+
+const PopulatedResponseObject = () => {
   const { 
     state: { 
       allTabs, 
@@ -44,7 +60,7 @@ const ResponseObject = () => {
 
   const currentTab = allTabs[currentTabIdx]
   const middlewareIdx = currentTab.currentMiddlewareIdx
-  const response = currentTab.middleware[middlewareIdx].response
+  const response = currentTab?.middleware[middlewareIdx]?.response || undefined
 
   return (
     <Paper elevation={3} style={styles.container}>

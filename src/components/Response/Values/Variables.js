@@ -34,7 +34,25 @@ const styles = {
   }
 }
 
-const Variables = () => {
+const Variables = ({ populated }) => {
+ return populated 
+ ? <PopulatedVariablesObject />
+ : <NullVariablesObject />
+}
+
+const NullVariablesObject = () => {
+  return (
+    <Paper elevation={3} style={styles.container}>
+      <h1 style={styles.title}>
+        Variables
+      </h1>
+    </Paper>
+  )
+}
+
+
+
+const PopulatedVariablesObject = () => {
   const { 
     state: { 
       allTabs, 
@@ -52,14 +70,14 @@ const Variables = () => {
         Variables
       </h1>
       {Object.keys(activeMiddleware?.variables)?.length 
-      ? activeMiddleware.variables.map((variableObj) => {
-        return Object.keys(variableObj).map((variable) => (
-          <p key={variable} style={styles.variables}>
-            <span style={styles.key}>{variable}: </span>
-            <span style={styles.value}> {variableObj[variable]}</span>
-          </p>
-        ))
-      }): <p>No variables found</p>}
+        ? activeMiddleware.variables.map((variableObj) => {
+          return Object.keys(variableObj).map((variable) => (
+            <p key={variable} style={styles.variables}>
+              <span style={styles.key}>{variable}: </span>
+              <span style={styles.value}> {variableObj[variable]}</span>
+            </p>
+          ))
+        }): <p>No variables found</p>}
     </Paper>
   )
 }

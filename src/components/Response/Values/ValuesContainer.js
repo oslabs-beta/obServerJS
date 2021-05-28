@@ -16,11 +16,11 @@ const styles = {
   }, 
 }
 
-const ValuesContainer = () => {
+const ValuesContainer = ({ populated }) => {
   return (
     <Container style={styles.infoContainer}>
-      <ResponseObject />
-      <Variables />
+      <ResponseObject populated={populated} />
+      <Variables populated={populated} />
     </Container>
   )
 }
