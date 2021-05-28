@@ -23,6 +23,9 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
   },
+  button: {
+    color: '#8cd8be'
+  }
 }
 
 
@@ -36,8 +39,8 @@ const SendButton = withStyles({
     border: '1px solid',
     borderRadius: 0,
     lineHeight: 1.5,
-    backgroundColor: '#097bed',
-    borderColor: '#0063cc',
+    backgroundColor: '#383838',
+    borderColor: '#8cd8be',
     fontFamily:
       'Rubik-Medium'
     ,
@@ -67,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
       width: '25ch',
     },
     logo: {
-      
+
       width: '100%',
       margin: '0px 0'
     }
@@ -86,7 +89,6 @@ export default function NavContainer() {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    // console.log('Line84: url:', url, 'method:', methodType, 'body', bodyInput)
 
     if (methodType === 'PUT' || methodType === 'POST') {
 
@@ -141,7 +143,7 @@ export default function NavContainer() {
 
         <Body value={{ setBodyInput, bodyInput }} />
 
-        <SendButton type='submit' variant="contained" color="primary">
+        <SendButton type='submit' variant="contained" style={styles.button}>
           Send
         </SendButton>
 
