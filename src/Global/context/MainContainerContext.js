@@ -103,6 +103,54 @@ const ResponseObject = () => {
           ]
         }
       ],
+      tree: {
+        name: 'App',
+        children: [
+          {
+            name: 'getMiddleware',
+            type: 'route',
+            children: [
+              { name: 'processCookies', type: 'function' },
+              { name: 'authUser', type: 'function' },
+              { name: 'sendResponse', type: 'function' },
+              {
+                name: 'getUsers',
+                type: 'route',
+                children: [
+                  {
+                    name: 'queryDB',
+                    type: 'function'
+                  },
+                  {
+                    name: 'editUser',
+                    type: 'route',
+                    children: [
+                      {
+                        name: 'getEmail',
+                        type: 'function'
+                      },
+                      {
+                        name: 'getName',
+                        type: 'function'
+                      },
+                      {
+                        name: 'formatBirthday',
+                        type: 'function'
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          { name: 'Cors', type: 'function' },
+          {
+            name: 'registerUser',
+            type: 'route',
+            children: [{ name: 'santitizeData', type: 'function' }, { name: 'addToDB', type: 'function' }, { name: 'redirectUser', type: 'function' }],
+          },
+        ],
+      }
     },
     {
       link: 'http://localhost:8080',
@@ -126,8 +174,8 @@ const MainContainerReducer = (state, action) => {
       let responseTabs = state.allTabs
 
       responseTabs[state.currentTabIdx].middleware = action.payload.observer.stackLayers;
-      responseTabs[state.currentTabIdx].tree = action.payload.observer.tree;
-      responseTabs[state.currentTabIdx].response = action.payload.observer.response;
+      //responseTabs[state.currentTabIdx].tree = action.payload.observer.tree;
+      //responseTabs[state.currentTabIdx].response = action.payload.observer.response;
 
       return {
         ...state,
@@ -161,15 +209,8 @@ const MainContainerReducer = (state, action) => {
       return { ...state, allTabs: tabs }
 
     case actions.CHANGE_ACTIVE_TAB:
-      const newTabs = state.allTabs;
-      newTabs.forEach((tab) => {
-        if (tab.tabOrder === action.payload) {
-          tab.active = true
-        } else {
-          tab.active = false
-        }
-      })
-      return { ...state, allTabs: newTabs }
+
+      return { ...state, currentTabIdx: action.payload }
 
     case actions.TOGGLE_MIDDLEWARE:
       const { idx } = action.payload

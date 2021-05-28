@@ -1,6 +1,6 @@
 import React from 'react'
-import { 
-  Container, 
+import {
+  Container,
   makeStyles
 } from '@material-ui/core'
 import SyntaxHighlighter from 'react-syntax-highlighter';
@@ -11,10 +11,10 @@ const useStyles = makeStyles(theme => ({
     minHeight: '50%',
     minWidth: '50%',
     width: 'auto',
-    display: 'flex', 
+    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-  }, 
+  },
   code: {
     minHeight: '10rem',
     minWidth: '20rem',
@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     '&::-webkit-scrollbar-thumb': {
       backgroundColor: 'gray',
       borderRadius: '10px',
-    }, 
+    },
     '&::-webkit-resizer': {
       background: 'gray',
     }
@@ -39,7 +39,22 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-const FunctionContainer = ({ currentTab }) => {
+const FunctionContainer = ({ currentTab, populated }) => {
+  return populated
+    ? <PopulatedFunctionContainer currentTab={currentTab} />
+    : <NullFunctionContainer />
+}
+
+const NullFunctionContainer = () => {
+  const classes = useStyles()
+  return (
+    <Container className={classes.mainContainer}>
+      Code not avaialble
+    </Container>
+  )
+}
+
+const PopulatedFunctionContainer = ({ currentTab }) => {
   const classes = useStyles()
 
   const { currentMiddlewareIdx, middleware } = currentTab
@@ -54,9 +69,9 @@ const FunctionContainer = ({ currentTab }) => {
         style={atelierCaveDark}
         showLineNumbers={true}
       >
-        {activeMiddleware.code}
+        {activeMiddleware.functionDef}
       </SyntaxHighlighter>
-      
+
     </Container>
   )
 }

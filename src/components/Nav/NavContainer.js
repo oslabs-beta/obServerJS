@@ -119,7 +119,7 @@ export default function NavContainer() {
         .catch(error => console.error('Error:', error))
     } else if (methodType === 'GET') {
 
-      fetch(`${url}`)
+      fetch(`http://localhost:3001/test/get`)
         .then(data => {
           return data.json();
         })

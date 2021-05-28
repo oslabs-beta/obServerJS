@@ -7,11 +7,11 @@ import * as actions from '../../Global/actionTypes';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 
-const makeStyles = (tabData) => ({
+const makeStyles = (active) => ({
   container: {
     background: '#1e2125',
     width: '250px',
-    borderBottom: tabData.active ? '3px solid #8bd8bd' : 'none',
+    borderBottom: active ? '3px solid #8bd8bd' : 'none',
     borderRight: '1px solid gray',
     borderRadius: 0,
     color: '#aaaaaa',
@@ -34,11 +34,11 @@ const makeStyles = (tabData) => ({
 })
 
 const Tab = ({ tabData }) => {
-  const { dispatch } = useContext(MainContainerContext);
-  const styles = makeStyles(tabData)
+  const { state: { currentTabIdx }, dispatch } = useContext(MainContainerContext);
+  const active = tabData.tabOrder === currentTabIdx
+  const styles = makeStyles(active)
 
   const makeActiveTab = () => {
-    console.log(tabData.tabOrder)
     dispatch({
       type: actions.CHANGE_ACTIVE_TAB,
       payload: tabData.tabOrder

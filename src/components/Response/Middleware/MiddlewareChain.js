@@ -50,9 +50,28 @@ const createDropdownStyles = (status) => {
   return styleObj
 }
 
-const MiddlewareChain = ({ middleware, dispatch, activeIdx }) => {
+const MiddlewareChain = ({ middleware, dispatch, activeIdx, populated }) => {
+  return populated 
+  ? <PopulatedMiddlewareChain 
+      middleware={middleware} 
+      dispatch={dispatch} 
+      activeIdx={activeIdx}
+    />
+  : <NullMiddlewareChain />
+}
+
+const NullMiddlewareChain = () => (
+  <Paper style={styles.container} elevation={3}>
+      <h4 style={styles.title}>
+        Execution Order
+      </h4>
+    </Paper>
+)
+
+const PopulatedMiddlewareChain = ({ middleware, dispatch, activeIdx, }) => {
   const toggleFunc = (idx) => dispatch({ type: actions.TOGGLE_MIDDLEWARE, payload: { idx } })
 
+    console.log("middleware map: ", middleware)
   return (
     <Paper style={styles.container} elevation={3}>
       <h4 style={styles.title}>
@@ -60,6 +79,7 @@ const MiddlewareChain = ({ middleware, dispatch, activeIdx }) => {
       </h4>
 
       {middleware.map((func, idx) => {
+        console.log(func)
         const { name, functionDef } = func
         const dropdownStyle = createDropdownStyles(functionDef)
         return (

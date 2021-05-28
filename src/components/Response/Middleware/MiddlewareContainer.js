@@ -17,7 +17,7 @@ const styles = {
   },
 }
 
-const MiddlewareFunc = () => {
+const MiddlewareFunc = ({ populated }) => {
   const { 
     state: { 
       allTabs, 
@@ -28,17 +28,20 @@ const MiddlewareFunc = () => {
 
     const currentTab = allTabs[currentTabIdx]
 
+    console.log("CURRENT TAB: ", currentTab)
   return (
     <Container style={styles.container}>
       <MiddlewareChain 
+        populated={populated}
         middleware={currentTab.middleware} 
         dispatch={dispatch} 
         activeIdx={currentTab.currentMiddlewareIdx} 
       />
 
-      <FunctionContainer currentTab={currentTab} />
+      <FunctionContainer populated={populated} currentTab={currentTab} />
     </Container>
   )
 }
+
 
 export default MiddlewareFunc
