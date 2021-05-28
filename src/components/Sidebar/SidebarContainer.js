@@ -6,6 +6,7 @@ import Button from './Button';
 import Help from './Help';
 import Settings from './Settings';
 
+
 const styles = {
   container: {
     minHeight: '500px',
@@ -17,7 +18,7 @@ const styles = {
     padding: 0,
     margin: '30px 0 0 0',
     gridArea: 'sidebar'
-  }
+  },
 }
 
 const SidebarContainer = () => {
@@ -25,6 +26,7 @@ const SidebarContainer = () => {
   return (
     <Container maxWidth="sm" style={styles.container}>
       <div>
+        
         {primaryButtons.map((option) => <Button text={option} key={option} />)}
       </div>
       <div>

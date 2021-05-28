@@ -27,7 +27,7 @@ const makeStyles = (tabData) => ({
   },
   link: {
   },
-  closeIcon: { 
+  closeIcon: {
     background: '#1e2125',
     color: '#aaaaaa',
   }
@@ -45,11 +45,18 @@ const Tab = ({ tabData }) => {
     })
   }
 
+  const closeTab = () => {
+    dispatch({
+      type: actions.CLOSE_TAB,
+      payload: tabData.tabOrder 
+    })
+  }
+
   return (
     <Container style={styles.container} onClick={makeActiveTab}>
       <span style={styles.method}>{tabData.method}</span>
       <span style={styles.link}>{tabData.link}</span>
-      <IconButton onClick={console.log('close tab')} fontSize="small"><CloseIcon style={styles.closeIcon} /></IconButton>
+      <IconButton onClick={() => closeTab()} fontSize="small"><CloseIcon style={styles.closeIcon} /></IconButton>
     </Container>
   )
 }

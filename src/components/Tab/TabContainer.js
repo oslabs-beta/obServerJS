@@ -47,6 +47,7 @@ const TabContainer = () => {
         active: true,
         body: '',
         currentMiddlewareIdx: 0,
+        tabOrder: allTabs.length,
         middleware: []
       },
     })

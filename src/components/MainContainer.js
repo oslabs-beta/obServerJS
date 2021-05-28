@@ -40,7 +40,7 @@ const MainContainer = () => {
 
   return (
     <Container style={styles.container}>
-      <NavContainer/>
+      <NavContainer />
       <SidebarContainer />
       <TabContainer />
       {sidebarSelection === 'Response' 
