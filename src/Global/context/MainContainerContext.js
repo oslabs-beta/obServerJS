@@ -111,7 +111,7 @@ const ResponseObject = () => {
       tabOrder: 1,
     }
   ],
-  sidebarSelections: [], // i.e. Collections, tree, request, response, etc. (min 1, max2)
+  sidebarSelection: 'Tree', // i.e. Collections, tree, request, response, etc. (min 1, max2)
 
 }
 
@@ -165,6 +165,10 @@ const MainContainerReducer = (state, action) => {
       allTabs[state.currentTabIdx].currentMiddlewareIdx = idx
 
       return { ...state, allTabs }
+
+    case actions.CHANGE_WINDOW: 
+    
+      return { ...state, sidebarSelection: action.payload }
 
     default:
       return state

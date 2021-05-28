@@ -38,6 +38,7 @@ const Tab = ({ tabData }) => {
   const styles = makeStyles(tabData)
 
   const makeActiveTab = () => {
+    console.log(tabData.tabOrder)
     dispatch({
       type: actions.CHANGE_ACTIVE_TAB,
       payload: tabData.tabOrder

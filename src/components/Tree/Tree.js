@@ -8,7 +8,6 @@ import TreeRect from './TreeRect';
 const styles = {
   parent: {
     gridArea: 'windows',
-    border: '1px solid yellow',
     margin: 0,
     padding: 0,
   }, 
