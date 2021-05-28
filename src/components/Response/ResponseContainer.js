@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {
   Container,
 } from '@material-ui/core'
+import { MainContainerContext } from '../../Global/context/MainContainerContext'
 import MiddlewareContainer from './Middleware/MiddlewareContainer'
 import ValuesContainer from './Values/ValuesContainer'
 
@@ -27,11 +28,15 @@ const styles = {
 }
 
 const ResponseContainer = () => {
+  const { state: { allTabs, currentTabIdx } } = useContext(MainContainerContext)
+  const populated = allTabs[currentTabIdx].middleware ? true : false
+  console.log(populated)
+
   return (
     <Container style={styles.mainContainer}>
-      <MiddlewareContainer />
+      <MiddlewareContainer populated={populated} />
 
-      <ValuesContainer />
+      <ValuesContainer populated={populated} />
     </Container>
   )
 }
