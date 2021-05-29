@@ -211,7 +211,7 @@ const MainContainerReducer = (state, action) => {
       return { ...state, allTabs: tabs, currentTabIdx: action.payload.tabOrder }
 
     case actions.CHANGE_ACTIVE_TAB:
-
+      
       return { ...state, currentTabIdx: action.payload }
 
     case actions.TOGGLE_MIDDLEWARE:
@@ -222,7 +222,7 @@ const MainContainerReducer = (state, action) => {
 
       return { ...state, allTabs }
 
-    case actions.CHANGE_WINDOW:
+    case actions.CHANGE_WINDOW: 
 
       return { ...state, sidebarSelection: action.payload }
 

@@ -1,5 +1,5 @@
 import { Group } from '@visx/group'
-import React, { useEffect, useState, useContext } from 'react'
+import React, {  useContext } from 'react'
 import { hierarchy, Tree } from '@visx/hierarchy';
 import {
   LinkHorizontal,

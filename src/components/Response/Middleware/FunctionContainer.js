@@ -40,7 +40,6 @@ const useStyles = makeStyles(theme => ({
 
 
 const FunctionContainer = ({ currentTab, populated }) => {
-  console.log('function container populated', populated)
   return populated
     ? <PopulatedFunctionContainer currentTab={currentTab} />
     : <NullFunctionContainer />
