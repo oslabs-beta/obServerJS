@@ -40,6 +40,7 @@ const useStyles = makeStyles(theme => ({
 
 
 const FunctionContainer = ({ currentTab, populated }) => {
+  console.log('function container populated', populated)
   return populated
     ? <PopulatedFunctionContainer currentTab={currentTab} />
     : <NullFunctionContainer />
@@ -61,6 +62,7 @@ const PopulatedFunctionContainer = ({ currentTab }) => {
 
   const activeMiddleware = middleware[currentMiddlewareIdx]
 
+  const functionAvailable = activeMiddleware.hasOwnProperty('functionDef')
   return (
     <Container className={classes.mainContainer}>
       <SyntaxHighlighter
@@ -69,7 +71,11 @@ const PopulatedFunctionContainer = ({ currentTab }) => {
         style={atelierCaveDark}
         showLineNumbers={true}
       >
-        {activeMiddleware.functionDef}
+        {
+          functionAvailable
+          ? activeMiddleware.functionDef
+          : '// FUNCTION NOT AVAILABLE'
+        }
       </SyntaxHighlighter>
 
     </Container>

@@ -17,7 +17,7 @@ const initialState = {
       middleware: [
         {
           name: 'twoPlusTwo',
-          code: 'const twoPlusTwo = () => 2 + 2',
+          functionDef: 'const twoPlusTwo = () => 2 + 2',
           status: 'passed',
           toggled: false,
           response: {
@@ -28,7 +28,7 @@ const initialState = {
         },
         {
           name: 'threePlusThree',
-          code:
+          functionDef:
             `import React, { useContext } from 'react'
 import { Container } from '@material-ui/core'
 import { MainContainerContext } from '../../../Global/context/MainContainerContext'
@@ -84,7 +84,7 @@ const ResponseObject = () => {
         },
         {
           name: 'fourPlusFour',
-          code: 'const fourPlusFour = () => 4 + 4',
+          functionDef: 'const fourPlusFour = () => 4 + 4',
           status: 'skipped',
           toggled: false,
           response: {
@@ -174,8 +174,10 @@ const MainContainerReducer = (state, action) => {
       let responseTabs = state.allTabs
 
       responseTabs[state.currentTabIdx].middleware = action.payload.observer.stackLayers;
-      //responseTabs[state.currentTabIdx].tree = action.payload.observer.tree;
-      //responseTabs[state.currentTabIdx].response = action.payload.observer.response;
+      responseTabs[state.currentTabIdx].tree = action.payload.observer.tree;
+      responseTabs[state.currentTabIdx].response = action.payload.response;
+
+      console.log('AFTER UPDATE', responseTabs[state.currentTabIdx])
 
       return {
         ...state,
@@ -206,7 +208,7 @@ const MainContainerReducer = (state, action) => {
       tabs.push(data)
       //How do I add a new object to the allTabs Array?
       console.log('adding a tab')
-      return { ...state, allTabs: tabs }
+      return { ...state, allTabs: tabs, currentTabIdx: action.payload.tabOrder }
 
     case actions.CHANGE_ACTIVE_TAB:
 
@@ -223,6 +225,16 @@ const MainContainerReducer = (state, action) => {
     case actions.CHANGE_WINDOW:
 
       return { ...state, sidebarSelection: action.payload }
+
+    case actions.UPDATE_TAB_INFO: 
+      const updatedTabs = state.allTabs
+
+      updatedTabs[state.currentTabIdx].link = action.payload.link
+      updatedTabs[state.currentTabIdx].method = action.payload.method
+
+      console.log('udpated tabs', updatedTabs[2])
+
+      return { ...state, allTabs: updatedTabs }    
 
     default:
       return state

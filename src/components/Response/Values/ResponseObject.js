@@ -30,7 +30,8 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     alignSelf: 'center',
-    margin: '0 5rem'
+    margin: '0 5rem', 
+    color: 'white',
   }
 }
 
@@ -60,19 +61,22 @@ const PopulatedResponseObject = () => {
 
   const currentTab = allTabs[currentTabIdx]
   const middlewareIdx = currentTab.currentMiddlewareIdx
-  const response = currentTab?.middleware[middlewareIdx]?.response || undefined
+  // const response = currentTab?.middleware[middlewareIdx]?.response || undefined
 
   return (
     <Paper elevation={3} style={styles.container}>
-      <h1 >
+      <h1 style={styles.title}>
         Response
       </h1>
-      {Object.entries(response).map(([key, value], idx) => (
+      <p style={styles.variables}>
+        {JSON.stringify(currentTab.response)}
+      </p>
+      {/* {Object.entries(response).map(([key, value], idx) => (
         <p key={idx} style={styles.variables}>
           <span style={styles.key}>{key}: </span>
           <span style={styles.value}>{value}</span>
         </p>
-      ))}
+      ))} */}
     </Paper>
   )
 }

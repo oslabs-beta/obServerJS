@@ -30,7 +30,7 @@ const styles = {
 const ResponseContainer = () => {
   const { state: { allTabs, currentTabIdx } } = useContext(MainContainerContext)
   console.log("MIDDLEWARE @ TAB[",currentTabIdx,"]", allTabs[currentTabIdx].middleware)
-  const populated = allTabs[currentTabIdx].middleware ? true : false
+  const populated = allTabs[currentTabIdx].middleware?.length ? true : false
   console.log(populated)
 
   return (

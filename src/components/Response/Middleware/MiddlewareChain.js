@@ -17,6 +17,7 @@ const styles = {
     margin: 0,
     gap: '.2rem 0',
     color: 'white',
+    overflowY: 'auto',
   },
   paperContainer: {
     width: '100%',
@@ -85,7 +86,7 @@ const PopulatedMiddlewareChain = ({ middleware, dispatch, activeIdx, }) => {
         return (
           <>
             <Paper
-              key={name + idx}
+              key={Math.random() * 9999999 + name}
               elevation={3}
               variant="outlined"
               style={dropdownStyle}
@@ -95,7 +96,7 @@ const PopulatedMiddlewareChain = ({ middleware, dispatch, activeIdx, }) => {
               </p>
             </Paper>
 
-            <ArrowDownwardIcon style={styles.arrowIcon} key={idx} />
+            <ArrowDownwardIcon style={styles.arrowIcon} key={Math.random() * 8888 + name} />
           </>
         )
       })}

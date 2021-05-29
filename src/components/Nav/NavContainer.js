@@ -126,7 +126,15 @@ export default function NavContainer() {
         .then(data => {
           console.log(data)
           dispatch({
-            type: 'STORE_RESPONSE',//actions.STORE_RESPONSE,
+            type: actions.UPDATE_TAB_INFO, 
+            payload: {
+              link: 'http://localhost:3001/test/get', 
+              method: methodType,
+            }
+          })
+
+          dispatch({
+            type: actions.STORE_RESPONSE,
             payload: data
           })
         })

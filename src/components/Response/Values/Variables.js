@@ -69,7 +69,7 @@ const PopulatedVariablesObject = () => {
       <h1 style={styles.title}>
         Variables
       </h1>
-      {Object.keys(activeMiddleware?.variables)?.length 
+      {/* {Object.keys(activeMiddleware?.variables)?.length 
         ? activeMiddleware.variables.map((variableObj) => {
           return Object.keys(variableObj).map((variable) => (
             <p key={variable} style={styles.variables}>
@@ -77,7 +77,8 @@ const PopulatedVariablesObject = () => {
               <span style={styles.value}> {variableObj[variable]}</span>
             </p>
           ))
-        }): <p>No variables found</p>}
+        }): <p>No variables found</p>} */}
+        <p>No Variables found </p>
     </Paper>
   )
 }
