@@ -186,6 +186,14 @@ const MainContainerReducer = (state, action) => {
     case actions.CLOSE_TAB:
       const tab = action.payload;
       const currentState = [];
+      let newTabIdx
+
+      if (state.currentTabIdx === action.payload) {
+        if (action.payload === 0 ) newTabIdx = state.currentTabIdx + 1
+        else newTabIdx = state.currentTabIdx - 1
+      } else newTabIdx = state.currentTabIdx
+ 
+
       const reSort = () => {
         for (let key of state.allTabs) {
           if (key.tabOrder !== tab) {
@@ -197,7 +205,7 @@ const MainContainerReducer = (state, action) => {
         }
       }
       reSort();
-      return { ...state, allTabs: currentState }
+      return { ...state, allTabs: currentState, currentTabIdx: newTabIdx }
 
     case actions.NEW_TAB:
       const data = action.payload

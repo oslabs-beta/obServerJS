@@ -15,7 +15,7 @@ const Graph = ({ margin, sizeWidth, sizeHeight, origin, zoom }) => {
   const { state: { currentTabIdx, allTabs } } = useContext(MainContainerContext)
   const forceUpdate = useForceUpdate()
   const currentTab = allTabs[currentTabIdx]
-  const data = currentTab.tree
+  const data = currentTab?.tree
 
   return !allTabs[currentTabIdx]?.tree 
          ?  null
