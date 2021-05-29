@@ -26,6 +26,8 @@ const makeStyles = (active) => ({
     fontSize: '.8rem',
   },
   link: {
+    width: '60%',
+    overflowX: 'hidden'
   },
   closeIcon: {
     background: '#1e2125',

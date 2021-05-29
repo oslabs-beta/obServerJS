@@ -28,6 +28,7 @@ const MiddlewareFunc = ({ populated }) => {
 
     const currentTab = allTabs[currentTabIdx]
 
+    console.log("CURRENT TAB: ", currentTab)
   return (
     <Container style={styles.container}>
       <MiddlewareChain 

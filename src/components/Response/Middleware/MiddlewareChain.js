@@ -17,6 +17,7 @@ const styles = {
     margin: 0,
     gap: '.2rem 0',
     color: 'white',
+    overflowY: 'auto',
   },
   paperContainer: {
     width: '100%',
@@ -71,6 +72,7 @@ const NullMiddlewareChain = () => (
 const PopulatedMiddlewareChain = ({ middleware, dispatch, activeIdx, }) => {
   const toggleFunc = (idx) => dispatch({ type: actions.TOGGLE_MIDDLEWARE, payload: { idx } })
 
+    console.log("middleware map: ", middleware)
   return (
     <Paper style={styles.container} elevation={3}>
       <h4 style={styles.title}>
@@ -78,12 +80,13 @@ const PopulatedMiddlewareChain = ({ middleware, dispatch, activeIdx, }) => {
       </h4>
 
       {middleware.map((func, idx) => {
-        const { name, status } = func
-        const dropdownStyle = createDropdownStyles(status)
+        console.log(func)
+        const { name, functionDef } = func
+        const dropdownStyle = createDropdownStyles(functionDef)
         return (
           <>
             <Paper
-              key={name + idx}
+              key={Math.random() * 9999999 + name}
               elevation={3}
               variant="outlined"
               style={dropdownStyle}
@@ -93,7 +96,7 @@ const PopulatedMiddlewareChain = ({ middleware, dispatch, activeIdx, }) => {
               </p>
             </Paper>
 
-            <ArrowDownwardIcon style={styles.arrowIcon} key={idx} />
+            <ArrowDownwardIcon style={styles.arrowIcon} key={Math.random() * 8888 + name} />
           </>
         )
       })}

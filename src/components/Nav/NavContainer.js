@@ -1,17 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import Signup from './Signup';
 import Url from './Url';
 import Login from './Login';
 import Method from './Method';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Body from './Body';
 import Logo from './logo3.png';
+import { MainContainerContext } from '../../Global/context/MainContainerContext';
+import * as actions from '../../Global/actionTypes';
 
 const styles = {
   AppBar: {
@@ -23,6 +23,9 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
   },
+  button: {
+    color: '#8cd8be'
+  }
 }
 
 
@@ -36,8 +39,8 @@ const SendButton = withStyles({
     border: '1px solid',
     borderRadius: 0,
     lineHeight: 1.5,
-    backgroundColor: '#097bed',
-    borderColor: '#0063cc',
+    backgroundColor: '#383838',
+    borderColor: '#8cd8be',
     fontFamily:
       'Rubik-Medium'
     ,
@@ -67,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
       width: '25ch',
     },
     logo: {
-      
+
       width: '100%',
       margin: '0px 0'
     }
@@ -83,10 +86,10 @@ export default function NavContainer() {
   const [methodType, setMethodType] = React.useState('GET');
   const [bodyInput, setBodyInput] = React.useState();
 
+  const { dispatch } = useContext(MainContainerContext);
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    // console.log('Line84: url:', url, 'method:', methodType, 'body', bodyInput)
 
     if (methodType === 'PUT' || methodType === 'POST') {
 
@@ -116,12 +119,24 @@ export default function NavContainer() {
         .catch(error => console.error('Error:', error))
     } else if (methodType === 'GET') {
 
-      fetch(`${url}`)
+      fetch(`http://localhost:3001/test/get`)
         .then(data => {
           return data.json();
         })
         .then(data => {
           console.log(data)
+          dispatch({
+            type: actions.UPDATE_TAB_INFO, 
+            payload: {
+              link: 'http://localhost:3001/test/get', 
+              method: methodType,
+            }
+          })
+
+          dispatch({
+            type: actions.STORE_RESPONSE,
+            payload: data
+          })
         })
         .catch(error => console.error('Error:', error))
     }
@@ -141,7 +156,7 @@ export default function NavContainer() {
 
         <Body value={{ setBodyInput, bodyInput }} />
 
-        <SendButton type='submit' variant="contained" color="primary">
+        <SendButton type='submit' variant="contained" style={styles.button}>
           Send
         </SendButton>
 

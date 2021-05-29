@@ -1,6 +1,6 @@
 import React from 'react'
-import { 
-  Container, 
+import {
+  Container,
   makeStyles
 } from '@material-ui/core'
 import SyntaxHighlighter from 'react-syntax-highlighter';
@@ -11,10 +11,10 @@ const useStyles = makeStyles(theme => ({
     minHeight: '50%',
     minWidth: '50%',
     width: 'auto',
-    display: 'flex', 
+    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-  }, 
+  },
   code: {
     minHeight: '10rem',
     minWidth: '20rem',
@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     '&::-webkit-scrollbar-thumb': {
       backgroundColor: 'gray',
       borderRadius: '10px',
-    }, 
+    },
     '&::-webkit-resizer': {
       background: 'gray',
     }
@@ -40,9 +40,9 @@ const useStyles = makeStyles(theme => ({
 
 
 const FunctionContainer = ({ currentTab, populated }) => {
-  return populated 
-  ? <PopulatedFunctionContainer currentTab={currentTab}/> 
-  : <NullFunctionContainer />
+  return populated
+    ? <PopulatedFunctionContainer currentTab={currentTab} />
+    : <NullFunctionContainer />
 }
 
 const NullFunctionContainer = () => {
@@ -61,6 +61,7 @@ const PopulatedFunctionContainer = ({ currentTab }) => {
 
   const activeMiddleware = middleware[currentMiddlewareIdx]
 
+  const functionAvailable = activeMiddleware.hasOwnProperty('functionDef')
   return (
     <Container className={classes.mainContainer}>
       <SyntaxHighlighter
@@ -69,9 +70,13 @@ const PopulatedFunctionContainer = ({ currentTab }) => {
         style={atelierCaveDark}
         showLineNumbers={true}
       >
-        {activeMiddleware.code}
+        {
+          functionAvailable
+          ? activeMiddleware.functionDef
+          : '// FUNCTION NOT AVAILABLE'
+        }
       </SyntaxHighlighter>
-      
+
     </Container>
   )
 }

@@ -1,5 +1,5 @@
 import { Group } from '@visx/group'
-import React, { useEffect, useState, useContext } from 'react'
+import React, {  useContext } from 'react'
 import { hierarchy, Tree } from '@visx/hierarchy';
 import {
   LinkHorizontal,
@@ -11,15 +11,13 @@ import MiddlewareNode from './MiddlewareNode';
 import RouteNode from './RouteNode';
 import NodeText from './NodeText';
 
-
 const Graph = ({ margin, sizeWidth, sizeHeight, origin, zoom }) => {
   const { state: { currentTabIdx, allTabs } } = useContext(MainContainerContext)
   const forceUpdate = useForceUpdate()
   const currentTab = allTabs[currentTabIdx]
-  const [data, setData] = useState(currentTab.tree);
+  const data = currentTab.tree
 
-
-  return !currentTab?.tree 
+  return !allTabs[currentTabIdx]?.tree 
          ?  null
          : (
           <Group top={margin.top} left={margin.left} transform={zoom.toString()}>
@@ -81,52 +79,3 @@ const Graph = ({ margin, sizeWidth, sizeHeight, origin, zoom }) => {
 }
 
 export default Graph
-
-const treeData = {
-  name: 'App',
-  children: [
-    {
-      name: 'getMiddleware',
-      type: 'route',
-      children: [
-        { name: 'processCookies', type: 'function' },
-        { name: 'authUser', type: 'function' },
-        { name: 'sendResponse', type: 'function' },
-        {
-          name: 'getUsers',
-          type: 'route',
-          children: [
-            {
-              name: 'queryDB',
-              type: 'function'
-            },
-            {
-              name: 'editUser',
-              type: 'route',
-              children: [
-                {
-                  name: 'getEmail',
-                  type: 'function'
-                },
-                {
-                  name: 'getName',
-                  type: 'function'
-                },
-                {
-                  name: 'formatBirthday',
-                  type: 'function'
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-    { name: 'Cors', type: 'function' },
-    {
-      name: 'registerUser',
-      type: 'route',
-      children: [{ name: 'santitizeData', type: 'function' }, { name: 'addToDB', type: 'function' }, { name: 'redirectUser', type: 'function' }],
-    },
-  ],
-};

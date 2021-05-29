@@ -12,14 +12,14 @@ const styles = {
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
-  }, 
+  },
   title: {
     color: 'white',
-  }, 
+  },
   key: {
     color: 'gray',
     fontSize: 14,
-  }, 
+  },
   value: {
     color: 'white',
     fontSize: 14,
@@ -27,52 +27,56 @@ const styles = {
   variables: {
     minWidth: '100px',
     maxWidth: '200px',
-    display: 'flex', 
+    display: 'flex',
     justifyContent: 'space-between',
     alignSelf: 'center',
-    margin: '0 5rem'
+    margin: '0 5rem', 
+    color: 'white',
   }
 }
 
 const ResponseObject = ({ populated }) => {
-  return populated 
-  ? <PopulatedResponseObject />
-  : <NullResponseObject />
+  return populated
+    ? <PopulatedResponseObject />
+    : <NullResponseObject />
 }
 
 const NullResponseObject = () => {
   return (
     <Paper elevation={3} style={styles.container}>
       <h1 style={styles.title}>
-          Response
+        Response
       </h1>
     </Paper>
   )
 }
 
 const PopulatedResponseObject = () => {
-  const { 
-    state: { 
-      allTabs, 
+  const {
+    state: {
+      allTabs,
       currentTabIdx
     },
   } = useContext(MainContainerContext)
 
   const currentTab = allTabs[currentTabIdx]
   const middlewareIdx = currentTab.currentMiddlewareIdx
-  const response = currentTab?.middleware[middlewareIdx]?.response || undefined
+  // const response = currentTab?.middleware[middlewareIdx]?.response || undefined
 
   return (
     <Paper elevation={3} style={styles.container}>
       <h1 style={styles.title}>
         Response
       </h1>
-      {Object.entries(response).map(([key, value], idx) => (
+      <p style={styles.variables}>
+        {JSON.stringify(currentTab.response)}
+      </p>
+      {/* {Object.entries(response).map(([key, value], idx) => (
         <p key={idx} style={styles.variables}>
           <span style={styles.key}>{key}: </span>
           <span style={styles.value}>{value}</span>
         </p>
-      ))}
+      ))} */}
     </Paper>
   )
 }
