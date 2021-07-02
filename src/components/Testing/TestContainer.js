@@ -36,7 +36,6 @@ const styles = {
 }
 
 const TestContainer = () => {
-  // const { state: { allTabs }, dispatch } = useContext(MainContainerContext);
   const { state: { allTests }, dispatch } = useContext(MainContainerContext);
 
   let tests = []
