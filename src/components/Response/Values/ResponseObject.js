@@ -30,7 +30,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     alignSelf: 'center',
-    margin: '0 5rem', 
+    margin: '0 5rem',
     color: 'white',
   }
 }
@@ -62,15 +62,27 @@ const PopulatedResponseObject = () => {
   const currentTab = allTabs[currentTabIdx]
   const middlewareIdx = currentTab.currentMiddlewareIdx
   // const response = currentTab?.middleware[middlewareIdx]?.response || undefined
-
+  // let rsp = [];
+  // console.log(currentTab.response)
+  let responseJ = JSON.parse(currentTab.response)
+  // for (let i = 0; i < Object.keys(responseJ).length; i++) {
+  //   console.log("responseJ: ", responseJ)
+  //   rsp += <p style={styles.variables}>"hi"</p>
+  // }
   return (
     <Paper elevation={3} style={styles.container}>
       <h1 style={styles.title}>
         Response
       </h1>
-      <p style={styles.variables}>
-        {JSON.stringify(currentTab.response)}
-      </p>
+      <p style={styles.variables}>asdfasdfasdf</p>
+      {
+        Object.entries(responseJ.vars).forEach(([key, value], idx) => {
+          <p style={styles.variables}>asdfasdfasdf</p>
+          console.log("responseJ: ", responseJ)
+          console.log("key: ", key)
+          console.log("value: ", value)
+        })
+      }
       {/* {Object.entries(response).map(([key, value], idx) => (
         <p key={idx} style={styles.variables}>
           <span style={styles.key}>{key}: </span>
