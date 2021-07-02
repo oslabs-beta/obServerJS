@@ -103,7 +103,23 @@ export default function NavContainer() {
         }),
       })
         .then(data => {
+          return data.json();
+        })
+        .then(data => {
+          console.log(data)
+          dispatch({
+            type: actions.UPDATE_TAB_INFO,
+            payload: {
+              //link: 'http://localhost:3001/test/get',
+              link: `${url}`,
+              method: methodType,
+            }
+          })
 
+          dispatch({
+            type: actions.STORE_RESPONSE,
+            payload: data
+          })
         })
         .catch(error => console.error('Error:', error))
     } else if (methodType === 'DELETE') {
@@ -114,21 +130,39 @@ export default function NavContainer() {
         },
       })
         .then(data => {
+          return data.json();
+        })
+        .then(data => {
+          console.log(data)
+          dispatch({
+            type: actions.UPDATE_TAB_INFO,
+            payload: {
+              //link: 'http://localhost:3001/test/get',
+              link: `${url}`,
+              method: methodType,
+            }
+          })
 
+          dispatch({
+            type: actions.STORE_RESPONSE,
+            payload: data
+          })
         })
         .catch(error => console.error('Error:', error))
     } else if (methodType === 'GET') {
 
-      fetch(`http://localhost:3001/test/get`)
+      //fetch(`http://localhost:3001/test/get`)
+      fetch(`${url}`)
         .then(data => {
           return data.json();
         })
         .then(data => {
           console.log(data)
           dispatch({
-            type: actions.UPDATE_TAB_INFO, 
+            type: actions.UPDATE_TAB_INFO,
             payload: {
-              link: 'http://localhost:3001/test/get', 
+              //link: 'http://localhost:3001/test/get',
+              link: `${url}`,
               method: methodType,
             }
           })
