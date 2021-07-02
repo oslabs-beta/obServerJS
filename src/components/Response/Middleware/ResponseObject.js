@@ -9,7 +9,7 @@ const styles = {
     padding: 0,
     margin: 0,
     minHeight: '40%',
-    width: '100%',
+    width: '60%',
     display: 'flex',
     flexDirection: 'column',
   },

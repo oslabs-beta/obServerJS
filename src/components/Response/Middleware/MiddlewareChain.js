@@ -6,8 +6,8 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 const styles = {
   container: {
     background: '#1e2125',
-    height: '90%',
-    width: '20%',
+    height: '94%',
+    width: '30%',
     display: 'flex',
     flexDirection: 'column',
     alignSelf: 'start',
@@ -18,6 +18,12 @@ const styles = {
     gap: '.2rem 0',
     color: 'white',
     overflowY: 'auto',
+  },
+  title: {
+    margin: 0,
+  },
+  timing: {
+    fontSize: 10,
   },
   paperContainer: {
     width: '100%',
@@ -40,6 +46,7 @@ const createDropdownStyles = (status) => {
     color: 'white',
     fontSize: '10px',
     margin: 0,
+    textOverflow: 'ellipsis',
   }
   if (status === 'passed')
     styleObj.background = 'darkgreen'
@@ -78,9 +85,11 @@ const PopulatedMiddlewareChain = ({ middleware, dispatch, activeIdx, }) => {
       <h4 style={styles.title}>
         Execution Order
       </h4>
+      <p style={styles.timing}>
+        {`Total Execution Time: 3 secs`}
+      </p>
 
       {middleware.map((func, idx) => {
-        console.log(func)
         const { name, functionDef } = func
         const dropdownStyle = createDropdownStyles(functionDef)
         return (

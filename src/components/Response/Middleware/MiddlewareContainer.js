@@ -3,18 +3,26 @@ import { MainContainerContext } from '../../../Global/context/MainContainerConte
 import { Container } from '@material-ui/core'
 import MiddlewareChain from './MiddlewareChain'
 import FunctionContainer from './FunctionContainer'
+import ResponseObject from './ResponseObject'
 
 const styles = {
   container: {
     display: 'flex',
-    justfyContent: 'center',
+    justfyContent: 'space-between',
     alignItems: 'center',
+    gap: '0 1rem',
     margin: 0,
     padding: 0,
     height: '90%',
     borderRadius: 12,
-    width: '200%',
   },
+  info: {
+    width: '50%',
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
+   
+  }
 }
 
 const MiddlewareFunc = ({ populated }) => {
@@ -30,14 +38,17 @@ const MiddlewareFunc = ({ populated }) => {
 
     console.log("CURRENT TAB: ", currentTab)
   return (
-    <Container style={styles.container}>
-      <MiddlewareChain 
-        populated={populated}
-        middleware={currentTab.middleware} 
-        dispatch={dispatch} 
-        activeIdx={currentTab.currentMiddlewareIdx} 
-      />
-
+    <Container style={styles.container}  maxWidth={false}>
+      <div style={styles.info}>
+        <MiddlewareChain 
+          populated={populated}
+          middleware={currentTab.middleware} 
+          dispatch={dispatch} 
+          activeIdx={currentTab.currentMiddlewareIdx} 
+        />
+        <ResponseObject populated={populated} />
+      </div>
+      
       <FunctionContainer populated={populated} currentTab={currentTab} />
     </Container>
   )

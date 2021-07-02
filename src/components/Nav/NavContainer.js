@@ -119,7 +119,7 @@ export default function NavContainer() {
         .catch(error => console.error('Error:', error))
     } else if (methodType === 'GET') {
 
-      fetch(`http://localhost:3001/test/get`)
+      fetch(url)
         .then(data => {
           return data.json();
         })
@@ -128,7 +128,7 @@ export default function NavContainer() {
           dispatch({
             type: actions.UPDATE_TAB_INFO, 
             payload: {
-              link: 'http://localhost:3001/test/get', 
+              link: url, 
               method: methodType,
             }
           })

@@ -1,28 +1,57 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Container,
-  makeStyles
+  makeStyles,
+  Paper,
 } from '@material-ui/core'
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atelierCaveDark } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
-const useStyles = makeStyles(theme => ({
+
+const useStyles = makeStyles({
   mainContainer: {
-    minHeight: '50%',
-    minWidth: '50%',
-    width: 'auto',
+    height: '100%',
+    width: '80%',
+    padding: '20px',
+    background: '#1e2125',
+    boxSizing: 'border-box',
     display: 'flex',
-    justifyContent: 'center',
+    flexDirection: 'column',
     alignItems: 'center',
   },
+  timing: {
+    color: 'white',
+    margin: '0',
+    padding: 0,
+  },
+  codeContainer: {
+    height: 300,
+    width: 800,
+    minWidth: 300,
+    minHeight: 300,
+    maxWidth: 800,
+    maxHeight: 550,
+  },
+  button: {
+    background: 'darkgrey',
+    border: 'none',
+    color: 'white',
+    height: 20,
+    width: 20,
+    margin: '0 5px',
+    outline: 'none',
+  },
   code: {
-    minHeight: '10rem',
-    minWidth: '20rem',
-    width: '100%',
+    height: 'inherit',
+    width: 'inherit',
+    minHeight: 'inherit',
+    maxHeight: 'inherit',
+    minWidth: 'inherit',
+    maxWidth: 'inherit',
     overflow: 'auto',
     resize: 'both',
     borderRadius: '8px',
-    fontSize: '10px',
+    fontSize: props => props?.fontSize || 10,
     textAlign: 'left',
     '&::-webkit-scrollbar': {
       width: '10px',
@@ -36,10 +65,10 @@ const useStyles = makeStyles(theme => ({
       background: 'gray',
     }
   }
-}))
-
+})
 
 const FunctionContainer = ({ currentTab, populated }) => {
+  console.log(populated)
   return populated
     ? <PopulatedFunctionContainer currentTab={currentTab} />
     : <NullFunctionContainer />
@@ -55,7 +84,9 @@ const NullFunctionContainer = () => {
 }
 
 const PopulatedFunctionContainer = ({ currentTab }) => {
-  const classes = useStyles()
+  const [fontSize, setFontSize] = useState(10)
+  const classes = useStyles({fontSize})
+  
 
   const { currentMiddlewareIdx, middleware } = currentTab
 
@@ -63,21 +94,41 @@ const PopulatedFunctionContainer = ({ currentTab }) => {
 
   const functionAvailable = activeMiddleware.hasOwnProperty('functionDef')
   return (
-    <Container className={classes.mainContainer}>
-      <SyntaxHighlighter
-        language="javascript"
-        className={classes.code}
-        style={atelierCaveDark}
-        showLineNumbers={true}
-      >
-        {
-          functionAvailable
-          ? activeMiddleware.functionDef
-          : '// FUNCTION NOT AVAILABLE'
-        }
-      </SyntaxHighlighter>
-
-    </Container>
+      <Paper className={classes.mainContainer} elevation={3}>
+        <h3 className={classes.timing}>
+          {`Execution Time: 20 secs`}
+        </h3>
+        <Container className={classes.codeContainer}>
+            <button 
+              className={classes.button} 
+              onClick={() => setFontSize(prev => prev - 2)}
+            >
+              -
+            </button>
+            <button 
+              className={classes.button} 
+              onClick={() => setFontSize(prev => prev + 2)}
+            >
+              +
+            </button>
+          <SyntaxHighlighter
+            language="javascript"
+            className={classes.code}
+            style={atelierCaveDark}
+            showLineNumbers={true}
+            wrapLongLines={true}
+            wrapLines={true}
+          >
+            {
+              functionAvailable
+              ? activeMiddleware.functionDef
+              : '// FUNCTION NOT AVAILABLE'
+            }
+            
+          </SyntaxHighlighter>
+          
+        </Container>
+    </Paper>
   )
 }
 
