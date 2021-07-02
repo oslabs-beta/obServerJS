@@ -3,6 +3,8 @@ import * as actions from '../actionTypes';
 
 const initialState = {
   currentTabIdx: 0,
+  // all tests
+  allTests: [],
   // all open tabs
   allTabs: [
     {
@@ -168,6 +170,21 @@ export const MainContainerContext = React.createContext();
 
 const MainContainerReducer = (state, action) => {
   switch (action.type) {
+    case actions.ADD_TEST:
+
+      const newAllTests = state.allTests
+
+      newAllTests.push({
+        url: action.payload.url,
+        method: action.payload.method,
+        body: action.payload.body,
+      })
+
+      return {
+        ...state,
+        allTests: newAllTests
+      }
+
     case actions.STORE_RESPONSE:
       console.log("INSIDE REDUCER: ", action.payload)
 
@@ -189,10 +206,10 @@ const MainContainerReducer = (state, action) => {
       let newTabIdx
 
       if (state.currentTabIdx === action.payload) {
-        if (action.payload === 0 ) newTabIdx = state.currentTabIdx + 1
+        if (action.payload === 0) newTabIdx = state.currentTabIdx + 1
         else newTabIdx = state.currentTabIdx - 1
       } else newTabIdx = state.currentTabIdx
- 
+
 
       const reSort = () => {
         for (let key of state.allTabs) {
@@ -219,7 +236,7 @@ const MainContainerReducer = (state, action) => {
       return { ...state, allTabs: tabs, currentTabIdx: action.payload.tabOrder }
 
     case actions.CHANGE_ACTIVE_TAB:
-      
+
       return { ...state, currentTabIdx: action.payload }
 
     case actions.TOGGLE_MIDDLEWARE:
@@ -230,11 +247,11 @@ const MainContainerReducer = (state, action) => {
 
       return { ...state, allTabs }
 
-    case actions.CHANGE_WINDOW: 
+    case actions.CHANGE_WINDOW:
 
       return { ...state, sidebarSelection: action.payload }
 
-    case actions.UPDATE_TAB_INFO: 
+    case actions.UPDATE_TAB_INFO:
       const updatedTabs = state.allTabs
 
       updatedTabs[state.currentTabIdx].link = action.payload.link
@@ -242,7 +259,7 @@ const MainContainerReducer = (state, action) => {
 
       console.log('udpated tabs', updatedTabs[2])
 
-      return { ...state, allTabs: updatedTabs }    
+      return { ...state, allTabs: updatedTabs }
 
     default:
       return state

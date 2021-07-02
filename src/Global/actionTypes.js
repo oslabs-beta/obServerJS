@@ -11,3 +11,6 @@ export const TOGGLE_MIDDLEWARE = 'TOGGLE_MIDDLEWARE';
 export const STORE_RESPONSE = 'STORE_RESPONSE';
 export const UPDATE_TAB_INFO = 'UPDATE_TAB_INFO';
 
+// Testing
+export const ADD_TEST = 'ADD_TEST'
+
