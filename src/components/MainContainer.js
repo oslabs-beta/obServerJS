@@ -6,6 +6,7 @@ import TabContainer from './Tab/TabContainer';
 import SidebarContainer from './Sidebar/SidebarContainer';
 import NavContainer from './Nav/NavContainer'
 import Tree from './Tree/Tree'
+import Testing from './Testing/Testing'
 import ResponseContainer from './Response/ResponseContainer'
 import { MainContainerContext } from '../Global/context/MainContainerContext';
 
@@ -43,9 +44,12 @@ const MainContainer = () => {
       <NavContainer />
       <SidebarContainer />
       <TabContainer />
-      {sidebarSelection === 'Response' 
-      ?  <ResponseContainer /> 
-      : <Tree />}
+      {
+        sidebarSelection === 'Response'
+          ? <ResponseContainer /> :
+          sidebarSelection === 'Testing' ?
+            <Testing /> : <Tree />
+      }
     </Container>
   )
 }

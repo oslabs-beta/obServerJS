@@ -22,7 +22,7 @@ const styles = {
 }
 
 const SidebarContainer = () => {
-  const primaryButtons = ['Tree', 'Response'];
+  const primaryButtons = ['Tree', 'Response', 'Testing'];
   return (
     <Container maxWidth="sm" style={styles.container}>
       <div>
