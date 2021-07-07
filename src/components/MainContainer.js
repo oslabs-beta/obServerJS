@@ -6,6 +6,7 @@ import TabContainer from './Tab/TabContainer';
 import SidebarContainer from './Sidebar/SidebarContainer';
 import NavContainer from './Nav/NavContainer'
 import Tree from './Tree/Tree'
+import TestContainer from './Testing/TestContainer'
 import Performance from './Performance/Performance'
 import ResponseContainer from './Response/ResponseContainer'
 import { MainContainerContext } from '../Global/context/MainContainerContext';
@@ -42,18 +43,21 @@ const MainContainer = () => {
   const { state: { sidebarSelection } } = useContext(MainContainerContext)
 
   const generateContent = () => {
-    switch(sidebarSelection) {
+    switch (sidebarSelection) {
       case 'Tree':
         console.log(sidebarSelection)
-        return  <Tree />
+        return <Tree />
       case 'Performance':
         console.log(sidebarSelection)
-        return  <Performance />
+        return <Performance />
       case 'Response':
         console.log(sidebarSelection)
-        return  <ResponseContainer />
-      default: 
-        return  <Tree />
+        return <ResponseContainer />
+      case 'Testing':
+        console.log(sidebarSelection)
+        return <TestContainer />
+      default:
+        return <Tree />
     }
   }
 
@@ -62,7 +66,7 @@ const MainContainer = () => {
       <NavContainer />
       <SidebarContainer />
       <TabContainer />
-     {generateContent()}
+      {generateContent()}
     </Container>
   )
 }

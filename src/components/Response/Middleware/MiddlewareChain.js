@@ -59,27 +59,27 @@ const createDropdownStyles = (status) => {
 }
 
 const MiddlewareChain = ({ middleware, dispatch, activeIdx, populated }) => {
-  return populated 
-  ? <PopulatedMiddlewareChain 
-      middleware={middleware} 
-      dispatch={dispatch} 
+  return populated
+    ? <PopulatedMiddlewareChain
+      middleware={middleware}
+      dispatch={dispatch}
       activeIdx={activeIdx}
     />
-  : <NullMiddlewareChain />
+    : <NullMiddlewareChain />
 }
 
 const NullMiddlewareChain = () => (
   <Paper style={styles.container} elevation={3}>
-      <h4 style={styles.title}>
-        Execution Order
-      </h4>
-    </Paper>
+    <h4 style={styles.title}>
+      Execution Order
+    </h4>
+  </Paper>
 )
 
 const PopulatedMiddlewareChain = ({ middleware, dispatch, activeIdx, }) => {
   const toggleFunc = (idx) => dispatch({ type: actions.TOGGLE_MIDDLEWARE, payload: { idx } })
 
-    console.log("middleware map: ", middleware)
+  console.log("middleware map: ", middleware)
   return (
     <Paper style={styles.container} elevation={3}>
       <h4 style={styles.title}>
@@ -89,7 +89,7 @@ const PopulatedMiddlewareChain = ({ middleware, dispatch, activeIdx, }) => {
         {`Total Execution Time: 3 secs`}
       </p>
 
-      {middleware.map((func, idx) => {
+      {middleware.map((func, idx, arr) => {
         const { name, functionDef } = func
         const dropdownStyle = createDropdownStyles(functionDef)
         return (
@@ -104,8 +104,10 @@ const PopulatedMiddlewareChain = ({ middleware, dispatch, activeIdx, }) => {
                 {name}
               </p>
             </Paper>
-
-            <ArrowDownwardIcon style={styles.arrowIcon} key={Math.random() * 8888 + name} />
+            {
+              idx < arr.length - 1 ?
+                < ArrowDownwardIcon style={styles.arrowIcon} key={Math.random() * 8888 + name} /> : null
+            }
           </>
         )
       })}
