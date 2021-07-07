@@ -6,11 +6,8 @@ import TabContainer from './Tab/TabContainer';
 import SidebarContainer from './Sidebar/SidebarContainer';
 import NavContainer from './Nav/NavContainer'
 import Tree from './Tree/Tree'
-<<<<<<< HEAD
 import TestContainer from './Testing/TestContainer'
-=======
 import Performance from './Performance/Performance'
->>>>>>> 2883015eed8ea0d2cacdbd22e2f72ac1e33dbbb4
 import ResponseContainer from './Response/ResponseContainer'
 import { MainContainerContext } from '../Global/context/MainContainerContext';
 
@@ -56,6 +53,9 @@ const MainContainer = () => {
       case 'Response':
         console.log(sidebarSelection)
         return <ResponseContainer />
+      case 'Testing':
+        console.log(sidebarSelection)
+        return <TestContainer />
       default:
         return <Tree />
     }
@@ -66,12 +66,6 @@ const MainContainer = () => {
       <NavContainer />
       <SidebarContainer />
       <TabContainer />
-      {
-        sidebarSelection === 'Response'
-          ? <ResponseContainer /> :
-          sidebarSelection === 'Testing' ?
-            <TestContainer /> : <Tree />
-      }
       {generateContent()}
     </Container>
   )
