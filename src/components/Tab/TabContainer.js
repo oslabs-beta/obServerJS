@@ -54,7 +54,7 @@ const TabContainer = () => {
   }
 
   return (
-    <Container style={styles.container}>
+    <Container style={styles.container} maxWidth={false}>
       {allTabs.map((tab, idx) => <Tab tabData={tab} key={idx} />)}
       <Container style={styles.addTab} onClick={addNewTab}>
         <IconButton style={styles.button} label="tab" component="span">
