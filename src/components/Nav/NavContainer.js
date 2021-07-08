@@ -1,18 +1,15 @@
 import React, { useContext } from "react";
-import Signup from './Signup';
 import Url from './Url';
-import Login from './Login';
 import Method from './Method';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Body from './Body';
 import Logo from './logo3.png';
 import { MainContainerContext } from '../../Global/context/MainContainerContext';
 import * as actions from '../../Global/actionTypes';
-import Divider from '@material-ui/core/Divider';
+
 
 const styles = {
   AppBar: {
@@ -198,13 +195,6 @@ export default function NavContainer() {
         <SendButton type='submit' variant="contained" style={styles.button}>
           Send
         </SendButton>
-
-        <Login style={styles.Login} />
-        <Divider style={styles.divider} orientation="vertical" flexItem />
-        <Signup />
-
-        < AccountCircleIcon fontSize="large" />
-
 
 
       </Toolbar>
