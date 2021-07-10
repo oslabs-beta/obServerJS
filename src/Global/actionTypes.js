@@ -13,4 +13,5 @@ export const UPDATE_TAB_INFO = 'UPDATE_TAB_INFO';
 
 // Testing
 export const ADD_TEST = 'ADD_TEST'
+export const STORE_TEST_RESULT = 'STORE_TEST_RESULT'
 
