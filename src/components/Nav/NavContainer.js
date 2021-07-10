@@ -12,6 +12,7 @@ import Body from './Body';
 import Logo from './logo3.png';
 import { MainContainerContext } from '../../Global/context/MainContainerContext';
 import * as actions from '../../Global/actionTypes';
+import Divider from '@material-ui/core/Divider';
 
 const styles = {
   AppBar: {
@@ -25,6 +26,12 @@ const styles = {
   },
   button: {
     color: '#8cd8be'
+  },
+  divider: {
+    alignSelf: 'center',
+    width: 'fit-content',
+    height: '2.5rem',
+    border: `1px solid #aaaaaa`,
   }
 }
 
@@ -160,7 +167,7 @@ export default function NavContainer() {
           dispatch({
             type: actions.UPDATE_TAB_INFO,
             payload: {
-              link: url,
+              link: 'http://localhost:3001/test/get',
               method: methodType,
             }
           })
@@ -193,7 +200,7 @@ export default function NavContainer() {
         </SendButton>
 
         <Login style={styles.Login} />
-
+        <Divider style={styles.divider} orientation="vertical" flexItem />
         <Signup />
 
         < AccountCircleIcon fontSize="large" />
