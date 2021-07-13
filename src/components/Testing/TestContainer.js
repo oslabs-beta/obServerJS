@@ -41,12 +41,18 @@ const TestContainer = () => {
   let tests = []
   allTests.map((el, idx) => {
     {
-      tests.push(<div>
-        URL: {el.url}
-        Method: {el.method}
-        {/*TODO: FIX BODY DISPLAY
-         Body: {el.body} */}
-      </div>)
+      tests.push(
+        //<div>
+        //   URL: {el.url}
+        //   Method: {el.method}
+        //   {/*TODO: FIX BODY DISPLAY
+        //    Body: {el.body} */}
+        // </div>
+        {
+          URL: el.url,
+          Method: el.method,
+          Body: el.body
+        })
     }
   })
 
@@ -55,9 +61,10 @@ const TestContainer = () => {
 
       <TestMenuBar></TestMenuBar>
 
-      {
+      {/* {
         tests
-      }
+      } */}
+      <TestComponent></TestComponent>
 
     </Container >
   )

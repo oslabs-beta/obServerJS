@@ -42,16 +42,15 @@ const styles = {
 const useStyles = makeStyles(styles);
 
 
-export default function Body(props) {
+export default function ExpectedResponse(props) {
   const [open, setOpen] = React.useState(false);
 
-  const setBodyInput = props.value.setBodyInput;
-  const bodyInput = props.value.bodyInput;
+  const setExpectedResponse = props.value.setExpectedResponse;
+  const expectedResponse = props.value.expectedResponse;
 
   const handleClickOpen = () => {
     setOpen(true);
   };
-
 
   const handleClose = () => {
     setOpen(false);
@@ -62,21 +61,21 @@ export default function Body(props) {
   return (
     <div>
       <Button variant="outlined" className={classes.root} onClick={handleClickOpen} endIcon={<AddIcon />}>
-        Body
+        ExpectedResponse
       </Button>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" style={styles.Modal}>
-        <DialogTitle id="form-dialog-title">Add Your Request Body</DialogTitle>
+        <DialogTitle id="form-dialog-title">Add Your Expected Response Body</DialogTitle>
         <DialogContent style={styles.Content}>
 
           <TextField
-            style={styles.BodyInput}
+            style={styles.bodyInput}
             id="outlined-multiline-static"
-            label="Request Body"
+            label="Expected Response"
             multiline
             rows={5}
-            onChange={(e) => setBodyInput(e.target.value)}
+            onChange={(e) => setExpectedResponse(e.target.value)}
             variant="outlined"
-            value={bodyInput}
+            value={expectedResponse}
           />
         </DialogContent>
         <DialogActions>

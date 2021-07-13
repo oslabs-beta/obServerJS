@@ -170,14 +170,27 @@ export const MainContainerContext = React.createContext();
 
 const MainContainerReducer = (state, action) => {
   switch (action.type) {
+    case actions.STORE_TEST_RESULT:
+
+      let newAllTestsRes = state.allTests
+
+      newAllTestsRes[action.payload.testIdx].passed = action.payload.testResult
+
+      console.log("DEBUG :: NEW ALL TESTS => ", newAllTestsRes)
+      return {
+        ...state,
+        allTests: newAllTestsRes
+      }
+
     case actions.ADD_TEST:
 
-      const newAllTests = state.allTests
+      let newAllTests = state.allTests
 
       newAllTests.push({
         url: action.payload.url,
         method: action.payload.method,
         body: action.payload.body,
+        expectedResponse: action.payload.expectedResponse
       })
 
       return {
