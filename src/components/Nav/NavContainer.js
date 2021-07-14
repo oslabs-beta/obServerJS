@@ -15,14 +15,15 @@ const styles = {
   AppBar: {
     background: '#333333',
     display: 'grid',
-    gridArea: 'nav',
+    gridArea: 'nav', 
   },
   Toolbar: {
     display: 'flex',
     justifyContent: 'space-between',
   },
   button: {
-    color: '#8cd8be'
+    color: '#8cd8be',
+    marginLeft: '12rem',
   },
   divider: {
     alignSelf: 'center',
@@ -45,9 +46,6 @@ const SendButton = withStyles({
     lineHeight: 1.5,
     backgroundColor: '#383838',
     borderColor: '#8cd8be',
-    fontFamily:
-      'Rubik-Medium'
-    ,
     '&:hover': {
       backgroundColor: '#0069d9',
       borderColor: '#0062cc',
@@ -80,7 +78,6 @@ const useStyles = makeStyles((theme) => ({
     }
   }
 }));
-
 
 
 export default function NavContainer() {

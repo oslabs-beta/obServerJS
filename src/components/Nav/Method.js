@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
   cssLabel: {
     color: '#aaaaaa',
   },
+  white: {
+    color: '#000000'
+  },
 }));
 
 
@@ -35,6 +38,7 @@ export default function Method(props) {
           className={classes.cssLabel}
           native
           onChange={(e) => setMethodType(e.target.value)}
+          outlined={classes.cssLabel}
           label="method"
           classes={{
             root: classes.root,
