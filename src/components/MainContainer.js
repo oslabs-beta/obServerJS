@@ -47,9 +47,9 @@ const MainContainer = () => {
       case 'Tree':
         console.log(sidebarSelection)
         return <Tree />
-      case 'Performance':
-        console.log(sidebarSelection)
-        return <Performance />
+      // case 'Performance':
+      //   console.log(sidebarSelection)
+      //   return <Performance />
       case 'Response':
         console.log(sidebarSelection)
         return <ResponseContainer />
