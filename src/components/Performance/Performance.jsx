@@ -27,7 +27,7 @@ const styles = {
   }, 
 }
 
-const ResponseContainer = () => {
+const PerformanceContainer = () => {
   const { 
     state: { 
       allTabs, 
@@ -47,4 +47,4 @@ const ResponseContainer = () => {
   )
 }
 
-export default ResponseContainer
+export default PerformanceContainer
