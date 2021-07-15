@@ -86,7 +86,7 @@ const PopulatedMiddlewareChain = ({ middleware, dispatch, activeIdx, }) => {
         Execution Order
       </h4>
       <p style={styles.timing}>
-        {`Total Execution Time: 3 secs`}
+        {/* {`Total Execution Time: 3 secs`} */}
       </p>
 
       {middleware.map((func, idx, arr) => {
