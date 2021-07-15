@@ -30,6 +30,7 @@ const RunTestsComponent = () => {
         })
         .then(data => {
           console.log(data)
+          retData = data.response;
           // dispatch({
           //   type: actions.UPDATE_TAB_INFO,
           //   payload: {
@@ -57,6 +58,7 @@ const RunTestsComponent = () => {
         })
         .then(data => {
           console.log(data)
+          retData = data.response;
           // dispatch({
           //   type: actions.UPDATE_TAB_INFO,
           //   payload: {
