@@ -63,9 +63,9 @@ const PopulatedResponseObject = () => {
   const middlewareIdx = currentTab.currentMiddlewareIdx
 
   const jsonparse = (jsonObj) => {
+    if (Object.keys(jsonObj).length === 0 || jsonObj === null) return <p></p>;
     let objVars = []
 
-    console.log("HELLO: ", JSON.parse(jsonObj))
     let obj = JSON.parse(jsonObj)
 
     Object.keys(obj.vars).forEach((el, idx) => {

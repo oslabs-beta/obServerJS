@@ -21,34 +21,44 @@ const styles = {
     height: '100%',
     display: 'flex',
     justifyContent: 'space-between',
-   
+
   }
 }
 
 const MiddlewareFunc = ({ populated }) => {
-  const { 
-    state: { 
-      allTabs, 
+  const {
+    state: {
+      allTabs,
       currentTabIdx
-    }, 
-    dispatch 
+    },
+    dispatch
   } = useContext(MainContainerContext)
 
-    const currentTab = allTabs[currentTabIdx]
+  const currentTab = allTabs[currentTabIdx]
 
-    console.log("CURRENT TAB: ", currentTab)
+  const generateChain = () => {
+    if (allTabs.length > 0) {
+      return <MiddlewareChain
+        populated={populated}
+        middleware={currentTab.middleware}
+        dispatch={dispatch}
+        activeIdx={currentTab.currentMiddlewareIdx}
+      />
+    } else {
+      return <MiddlewareChain
+        populated={populated}
+      />
+    }
+  }
+
   return (
-    <Container style={styles.container}  maxWidth={false}>
+    <Container style={styles.container} maxWidth={false}>
       <div style={styles.info}>
-        <MiddlewareChain 
-          populated={populated}
-          middleware={currentTab.middleware} 
-          dispatch={dispatch} 
-          activeIdx={currentTab.currentMiddlewareIdx} 
-        />
+        {
+          generateChain()
+        }
         <ResponseObject populated={populated} />
       </div>
-      
       <FunctionContainer populated={populated} currentTab={currentTab} />
     </Container>
   )

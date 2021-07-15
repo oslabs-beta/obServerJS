@@ -6,7 +6,20 @@ const initialState = {
   // all tests
   allTests: [],
   // all open tabs
-  allTabs: [],
+  allTabs: [
+    // {
+    //   link: '',
+    //   route: '',
+    //   method: '',
+    //   active: false,
+    //   body: 'test',
+    //   response: {},
+    //   tabOrder: 0,
+    //   currentMiddlewareIdx: 0,
+    //   middleware: [{}],
+    //   tree: {}
+    // }
+  ],
   sidebarSelection: 'Tree', // i.e. Collections, tree, request, response, etc. (min 1, max2)
 
 }
