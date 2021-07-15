@@ -76,11 +76,14 @@ const MainContainerReducer = (state, action) => {
       const currentState = [];
       let newTabIdx
 
-      if (state.currentTabIdx === action.payload) {
-        if (action.payload === 0) newTabIdx = state.currentTabIdx + 1
-        else newTabIdx = state.currentTabIdx - 1
-      } else newTabIdx = state.currentTabIdx
-
+      if (action.payload === state.allTabs.length - 1) {
+        if (state.allTabs.length - 1 < 0) newTabIdx = 0
+        else {
+          newTabIdx = state.allTabs.length - 1 - 1
+        }
+      } else {
+        newTabIdx = action.payload
+      }
 
       const reSort = () => {
         for (let key of state.allTabs) {
@@ -93,6 +96,7 @@ const MainContainerReducer = (state, action) => {
         }
       }
       reSort();
+
       return { ...state, allTabs: currentState, currentTabIdx: newTabIdx }
 
     case actions.NEW_TAB:

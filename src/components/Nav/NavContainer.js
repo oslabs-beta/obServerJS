@@ -10,12 +10,11 @@ import Logo from './logo3.png';
 import { MainContainerContext } from '../../Global/context/MainContainerContext';
 import * as actions from '../../Global/actionTypes';
 
-
 const styles = {
   AppBar: {
     background: '#333333',
     display: 'grid',
-    gridArea: 'nav', 
+    gridArea: 'nav',
   },
   Toolbar: {
     display: 'flex',
@@ -86,8 +85,25 @@ export default function NavContainer() {
   const [url, setUrl] = React.useState('');
   const [methodType, setMethodType] = React.useState('GET');
   const [bodyInput, setBodyInput] = React.useState();
+  const { state: { allTabs }, dispatch } = useContext(MainContainerContext);
 
-  const { dispatch } = useContext(MainContainerContext);
+  const createFirstTabIfNone = () => {
+    if (allTabs.length === 0) {
+      dispatch({
+        type: actions.NEW_TAB,
+        payload: {
+          link: 'New Tab',
+          route: '',
+          method: 'METHOD',
+          active: true,
+          body: '',
+          currentMiddlewareIdx: 0,
+          tabOrder: allTabs.length,
+          middleware: []
+        },
+      })
+    }
+  }
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -107,11 +123,12 @@ export default function NavContainer() {
           return data.json();
         })
         .then(data => {
-          console.log(data)
+
+          createFirstTabIfNone();
+
           dispatch({
             type: actions.UPDATE_TAB_INFO,
             payload: {
-              //link: 'http://localhost:3001/test/get',
               link: `${url}`,
               method: methodType,
             }
@@ -134,11 +151,12 @@ export default function NavContainer() {
           return data.json();
         })
         .then(data => {
-          console.log(data)
+
+          createFirstTabIfNone();
+
           dispatch({
             type: actions.UPDATE_TAB_INFO,
             payload: {
-              //link: 'http://localhost:3001/test/get',
               link: `${url}`,
               method: methodType,
             }
@@ -157,11 +175,13 @@ export default function NavContainer() {
           return data.json();
         })
         .then(data => {
-          console.log(data)
+
+          createFirstTabIfNone();
+
           dispatch({
             type: actions.UPDATE_TAB_INFO,
             payload: {
-              link: 'http://localhost:3001/test/get',
+              link: `${url}`,
               method: methodType,
             }
           })

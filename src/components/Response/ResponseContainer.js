@@ -19,10 +19,9 @@ const styles = {
 
 const ResponseContainer = () => {
   const { state: { allTabs, currentTabIdx } } = useContext(MainContainerContext)
-  // console.log('response', allTabs[currentTabIdx].middleware)
   let populated;
 
-  if (allTabs.length !== 0) {
+  if (allTabs[currentTabIdx]) {
     populated = allTabs[currentTabIdx].middleware?.length ? true : false
   } else {
     populated = false
@@ -31,7 +30,6 @@ const ResponseContainer = () => {
   return (
     <Container style={styles.mainContainer} maxWidth={false}>
       <MiddlewareContainer populated={populated} />
-
       {/* <ValuesContainer populated={populated} /> */}
     </Container>
   )

@@ -50,7 +50,7 @@ const Tab = ({ tabData }) => {
   const closeTab = () => {
     dispatch({
       type: actions.CLOSE_TAB,
-      payload: tabData.tabOrder 
+      payload: currentTabIdx
     })
   }
 
