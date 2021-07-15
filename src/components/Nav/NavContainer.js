@@ -1,30 +1,35 @@
 import React, { useContext } from "react";
-import Signup from './Signup';
 import Url from './Url';
-import Login from './Login';
 import Method from './Method';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Body from './Body';
 import Logo from './logo3.png';
 import { MainContainerContext } from '../../Global/context/MainContainerContext';
 import * as actions from '../../Global/actionTypes';
 
+
 const styles = {
   AppBar: {
     background: '#333333',
     display: 'grid',
-    gridArea: 'nav',
+    gridArea: 'nav', 
   },
   Toolbar: {
     display: 'flex',
     justifyContent: 'space-between',
   },
   button: {
-    color: '#8cd8be'
+    color: '#8cd8be',
+    marginLeft: '12rem',
+  },
+  divider: {
+    alignSelf: 'center',
+    width: 'fit-content',
+    height: '2.5rem',
+    border: `1px solid #aaaaaa`,
   }
 }
 
@@ -41,9 +46,6 @@ const SendButton = withStyles({
     lineHeight: 1.5,
     backgroundColor: '#383838',
     borderColor: '#8cd8be',
-    fontFamily:
-      'Rubik-Medium'
-    ,
     '&:hover': {
       backgroundColor: '#0069d9',
       borderColor: '#0062cc',
@@ -76,7 +78,6 @@ const useStyles = makeStyles((theme) => ({
     }
   }
 }));
-
 
 
 export default function NavContainer() {
@@ -160,7 +161,7 @@ export default function NavContainer() {
           dispatch({
             type: actions.UPDATE_TAB_INFO,
             payload: {
-              link: url,
+              link: 'http://localhost:3001/test/get',
               method: methodType,
             }
           })
@@ -191,13 +192,6 @@ export default function NavContainer() {
         <SendButton type='submit' variant="contained" style={styles.button}>
           Send
         </SendButton>
-
-        <Login style={styles.Login} />
-
-        <Signup />
-
-        < AccountCircleIcon fontSize="large" />
-
 
 
       </Toolbar>

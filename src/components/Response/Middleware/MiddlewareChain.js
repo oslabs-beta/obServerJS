@@ -6,7 +6,7 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 const styles = {
   container: {
     background: '#1e2125',
-    height: '94%',
+    height: '97%',
     width: '30%',
     display: 'flex',
     flexDirection: 'column',
