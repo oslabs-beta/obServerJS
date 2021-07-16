@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+/* eslint-disable react/button-has-type */
+import React, { useState } from 'react';
 import {
   Container,
   makeStyles,
   Paper,
-} from '@material-ui/core'
+} from '@material-ui/core';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { atelierCaveDark } from 'react-syntax-highlighter/dist/esm/styles/hljs'
-
+import { atelierCaveDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 const useStyles = makeStyles({
   mainContainer: {
@@ -51,7 +51,7 @@ const useStyles = makeStyles({
     overflow: 'auto',
     resize: 'both',
     borderRadius: '8px',
-    fontSize: props => props?.fontSize || 10,
+    fontSize: (props) => props?.fontSize || 10,
     textAlign: 'left',
     '&::-webkit-scrollbar': {
       width: '10px',
@@ -63,36 +63,34 @@ const useStyles = makeStyles({
     },
     '&::-webkit-resizer': {
       background: 'gray',
-    }
-  }
-})
+    },
+  },
+});
 
-const FunctionContainer = ({ currentTab, populated }) => {
-  console.log(populated)
-  return populated
+const FunctionContainer = ({ currentTab, populated }) => (
+  populated
     ? <PopulatedFunctionContainer currentTab={currentTab} />
-    : <NullFunctionContainer />
-}
+    : <NullFunctionContainer />);
 
 const NullFunctionContainer = () => {
-  const classes = useStyles()
+  const classes = useStyles();
   return (
     <Container className={classes.mainContainer}>
       Code not avaialble
     </Container>
-  )
-}
+  );
+};
 
 const PopulatedFunctionContainer = ({ currentTab }) => {
-  const [fontSize, setFontSize] = useState(10)
-  const classes = useStyles({ fontSize })
+  const [fontSize, setFontSize] = useState(10);
+  const classes = useStyles({ fontSize });
 
+  const { currentMiddlewareIdx, middleware } = currentTab;
 
-  const { currentMiddlewareIdx, middleware } = currentTab
+  const activeMiddleware = middleware[currentMiddlewareIdx];
 
-  const activeMiddleware = middleware[currentMiddlewareIdx]
-
-  const functionAvailable = activeMiddleware?.hasOwnProperty('functionDef')
+  // eslint-disable-next-line no-prototype-builtins
+  const functionAvailable = activeMiddleware?.hasOwnProperty('functionDef');
   return (
     <Paper className={classes.mainContainer} elevation={3}>
       <h3 className={classes.timing}>
@@ -101,13 +99,13 @@ const PopulatedFunctionContainer = ({ currentTab }) => {
       <Container className={classes.codeContainer}>
         <button
           className={classes.button}
-          onClick={() => setFontSize(prev => prev - 2)}
+          onClick={() => setFontSize((prev) => prev - 2)}
         >
           -
         </button>
         <button
           className={classes.button}
-          onClick={() => setFontSize(prev => prev + 2)}
+          onClick={() => setFontSize((prev) => prev + 2)}
         >
           +
         </button>
@@ -115,9 +113,9 @@ const PopulatedFunctionContainer = ({ currentTab }) => {
           language="javascript"
           className={classes.code}
           style={atelierCaveDark}
-          showLineNumbers={true}
-          wrapLongLines={true}
-          wrapLines={true}
+          showLineNumbers
+          wrapLongLines
+          wrapLines
         >
           {
             functionAvailable
@@ -129,7 +127,7 @@ const PopulatedFunctionContainer = ({ currentTab }) => {
 
       </Container>
     </Paper>
-  )
-}
+  );
+};
 
-export default FunctionContainer
+export default FunctionContainer;
