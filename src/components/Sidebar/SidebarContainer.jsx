@@ -1,11 +1,10 @@
-import React, { useContext } from 'react'
+import React from 'react';
 import {
   Container,
 } from '@material-ui/core';
 import Button from './Button';
 import Help from './Help';
 import Settings from './Settings';
-
 
 const styles = {
   container: {
@@ -17,9 +16,9 @@ const styles = {
     justifyContent: 'space-between',
     padding: '45px 0',
     margin: 0,
-    gridArea: 'sidebar'
+    gridArea: 'sidebar',
   },
-}
+};
 
 const SidebarContainer = () => {
   const primaryButtons = ['Tree', 'Response', 'Testing'];
@@ -34,7 +33,7 @@ const SidebarContainer = () => {
       </div>
 
     </Container>
-  )
-}
+  );
+};
 
 export default SidebarContainer;

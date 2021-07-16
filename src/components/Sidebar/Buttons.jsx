@@ -1,8 +1,7 @@
-import React, { useContext } from 'react'
+import React from 'react';
 import {
   Box,
 } from '@material-ui/core';
-
 
 const makeStyles = (selected) => ({
   box: {
@@ -17,18 +16,18 @@ const makeStyles = (selected) => ({
     fontSize: '.6rem',
     borderLeft: (selected ? '4px solid #50b26c' : 'none'),
     boxSizing: 'border-box',
-  }
-})
+  },
+});
 
 const Buttons = ({ text }) => {
   // const [state: {  }, dispatch] = useContext();
-  const styles = makeStyles(true)
+  const styles = makeStyles(true);
   return (
-      <Box style={styles.box}>
-        
-        {text}
-      </Box>
-  )
-}
+    <Box style={styles.box}>
 
-export default Buttons
+      {text}
+    </Box>
+  );
+};
+
+export default Buttons;
