@@ -1,5 +1,5 @@
 import React from 'react';
-import { Zoom } from '@visx/zoom'
+import { Zoom } from '@visx/zoom';
 import { LinearGradient } from '@visx/gradient';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import Graph from './Graph/Graph';
@@ -11,7 +11,7 @@ const styles = {
     margin: 0,
     padding: 0,
   },
-}
+};
 
 const Tree = () => (
   <ParentSize style={styles.parent}>
@@ -35,31 +35,31 @@ const Tree = () => (
           scaleYMax={4}
           transformMatrix={initialTransform}
         >
-          {zoom => (
+          {(zoom) => (
             <TreeStructure totalWidth={width} totalHeight={height} zoom={zoom} />
           )}
 
         </Zoom>
-      )
-
+      );
     }}
   </ParentSize>
-)
+);
 
 const TreeStructure = ({ totalWidth, totalHeight, zoom }) => {
-  let margin = { top: 30, left: 30, right: 30, bottom: 70 }
+  const margin = {
+    top: 30, left: 30, right: 30, bottom: 70,
+  };
 
-  let innerWidth = totalWidth - margin.left - margin.right
-  let innerHeight = totalHeight - margin.top - margin.bottom
+  const innerWidth = totalWidth - margin.left - margin.right;
+  const innerHeight = totalHeight - margin.top - margin.bottom;
 
   const origin = {
     x: 0,
-    y: 0
-  }
+    y: 0,
+  };
 
-  const sizeWidth = innerHeight
-  const sizeHeight = innerWidth
-
+  const sizeWidth = innerHeight;
+  const sizeHeight = innerWidth;
 
   return (
     <div style={{ cursor: zoom.isDragging ? 'grabbing' : 'grab' }}>
@@ -75,7 +75,7 @@ const TreeStructure = ({ totalWidth, totalHeight, zoom }) => {
         />
       </svg>
     </div>
-  )
-}
+  );
+};
 
-export default Tree
+export default Tree;
