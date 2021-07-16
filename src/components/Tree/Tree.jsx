@@ -10,9 +10,8 @@ const styles = {
     gridArea: 'windows',
     margin: 0,
     padding: 0,
-  }, 
+  },
 }
-
 
 const Tree = () => (
   <ParentSize style={styles.parent}>
@@ -28,19 +27,19 @@ const Tree = () => (
 
       return (
         <Zoom
-        height={height}
-        width={width}
-        scaleXMin={1 / 2}
-        scaleXMax={4}
-        scaleYMin={1 / 2}
-        scaleYMax={4}
-        transformMatrix={initialTransform}
-      >
-        {zoom => (
-          <TreeStructure totalWidth={width} totalHeight={height} zoom={zoom} />
-        )}
-        
-      </Zoom>
+          height={height}
+          width={width}
+          scaleXMin={1 / 2}
+          scaleXMax={4}
+          scaleYMin={1 / 2}
+          scaleYMax={4}
+          transformMatrix={initialTransform}
+        >
+          {zoom => (
+            <TreeStructure totalWidth={width} totalHeight={height} zoom={zoom} />
+          )}
+
+        </Zoom>
       )
 
     }}
@@ -54,7 +53,7 @@ const TreeStructure = ({ totalWidth, totalHeight, zoom }) => {
   let innerHeight = totalHeight - margin.top - margin.bottom
 
   const origin = {
-    x: 0, 
+    x: 0,
     y: 0
   }
 
@@ -65,15 +64,15 @@ const TreeStructure = ({ totalWidth, totalHeight, zoom }) => {
   return (
     <div style={{ cursor: zoom.isDragging ? 'grabbing' : 'grab' }}>
       <svg width={totalWidth} height={totalHeight}>
-      <LinearGradient id="links-gradient" from="#fd9b93" to="#fe6e9e" />
-      <TreeRect width={totalWidth} height={totalHeight} zoom={zoom} />
-      <Graph 
-        origin={origin}
-        margin={margin}
-        sizeWidth={sizeWidth}
-        sizeHeight={sizeHeight}
-        zoom={zoom}
-      />
+        <LinearGradient id="links-gradient" from="#fd9b93" to="#fe6e9e" />
+        <TreeRect width={totalWidth} height={totalHeight} zoom={zoom} />
+        <Graph
+          origin={origin}
+          margin={margin}
+          sizeWidth={sizeWidth}
+          sizeHeight={sizeHeight}
+          zoom={zoom}
+        />
       </svg>
     </div>
   )

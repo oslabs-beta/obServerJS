@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
-import { MainContainerContext } from '../../../Global/context/MainContainerContext'
-import { Container } from '@material-ui/core'
-import MiddlewareChain from './MiddlewareChain'
-import FunctionContainer from './FunctionContainer'
-import ResponseObject from './ResponseObject'
+import React, { useContext } from 'react';
+import { Container } from '@material-ui/core';
+import { MainContainerContext } from '../../../Global/context/MainContainerContext';
+import MiddlewareChain from './MiddlewareChain';
+import FunctionContainer from './FunctionContainer';
+import ResponseObject from './ResponseObject';
 
 const styles = {
   container: {
@@ -22,34 +22,37 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
 
-  }
-}
+  },
+};
 
 const MiddlewareFunc = ({ populated }) => {
   const {
     state: {
       allTabs,
-      currentTabIdx
+      currentTabIdx,
     },
-    dispatch
-  } = useContext(MainContainerContext)
+    dispatch,
+  } = useContext(MainContainerContext);
 
-  const currentTab = allTabs[currentTabIdx]
+  const currentTab = allTabs[currentTabIdx];
 
   const generateChain = () => {
     if (allTabs.length > 0) {
-      return <MiddlewareChain
-        populated={populated}
-        middleware={currentTab.middleware}
-        dispatch={dispatch}
-        activeIdx={currentTab.currentMiddlewareIdx}
-      />
-    } else {
-      return <MiddlewareChain
-        populated={populated}
-      />
+      return (
+        <MiddlewareChain
+          populated={populated}
+          middleware={currentTab.middleware}
+          dispatch={dispatch}
+          activeIdx={currentTab.currentMiddlewareIdx}
+        />
+      );
     }
-  }
+    return (
+      <MiddlewareChain
+        populated={populated}
+      />
+    );
+  };
 
   return (
     <Container style={styles.container} maxWidth={false}>
@@ -61,8 +64,7 @@ const MiddlewareFunc = ({ populated }) => {
       </div>
       <FunctionContainer populated={populated} currentTab={currentTab} />
     </Container>
-  )
-}
+  );
+};
 
-
-export default MiddlewareFunc
+export default MiddlewareFunc;
