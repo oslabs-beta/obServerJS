@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
-import Url from './Url';
-import Method from './Method';
+import React, { useContext } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
+import Url from './Url';
+import Method from './Method';
 import Body from './Body';
-import Logo from './logo3.png';
+import Logo from '../../img/logo3.png';
 import { MainContainerContext } from '../../Global/context/MainContainerContext';
 import * as actions from '../../Global/actionTypes';
 
@@ -28,10 +28,9 @@ const styles = {
     alignSelf: 'center',
     width: 'fit-content',
     height: '2.5rem',
-    border: `1px solid #aaaaaa`,
-  }
-}
-
+    border: '1px solid #aaaaaa',
+  },
+};
 
 const SendButton = withStyles({
   root: {
@@ -73,11 +72,10 @@ const useStyles = makeStyles((theme) => ({
     logo: {
 
       width: '100%',
-      margin: '0px 0'
-    }
-  }
+      margin: '0px 0',
+    },
+  },
 }));
-
 
 export default function NavContainer() {
   const classes = useStyles();
@@ -99,31 +97,27 @@ export default function NavContainer() {
           body: '',
           currentMiddlewareIdx: 0,
           tabOrder: allTabs.length,
-          middleware: []
+          middleware: [],
         },
-      })
+      });
     }
-  }
+  };
 
   const handleSignup = async (e) => {
     e.preventDefault();
 
     if (methodType === 'PUT' || methodType === 'POST') {
-
       fetch(`${url}`, {
         method: `${methodType}`,
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          bodyInput
+          bodyInput,
         }),
       })
-        .then(data => {
-          return data.json();
-        })
-        .then(data => {
-
+        .then((data) => data.json())
+        .then((data) => {
           createFirstTabIfNone();
 
           dispatch({
@@ -131,27 +125,24 @@ export default function NavContainer() {
             payload: {
               link: `${url}`,
               method: methodType,
-            }
-          })
+            },
+          });
 
           dispatch({
             type: actions.STORE_RESPONSE,
-            payload: data
-          })
+            payload: data,
+          });
         })
-        .catch(error => console.error('Error:', error))
+        .catch((error) => error);
     } else if (methodType === 'DELETE') {
       fetch(`${url}`, {
         method: `${methodType}`,
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
       })
-        .then(data => {
-          return data.json();
-        })
-        .then(data => {
-
+        .then((data) => data.json())
+        .then((data) => {
           createFirstTabIfNone();
 
           dispatch({
@@ -159,23 +150,19 @@ export default function NavContainer() {
             payload: {
               link: `${url}`,
               method: methodType,
-            }
-          })
+            },
+          });
 
           dispatch({
             type: actions.STORE_RESPONSE,
-            payload: data
-          })
+            payload: data,
+          });
         })
-        .catch(error => console.error('Error:', error))
+        .catch((error) => error);
     } else if (methodType === 'GET') {
-
       fetch(url)
-        .then(data => {
-          return data.json();
-        })
-        .then(data => {
-
+        .then((data) => data.json())
+        .then((data) => {
           createFirstTabIfNone();
 
           dispatch({
@@ -183,15 +170,15 @@ export default function NavContainer() {
             payload: {
               link: `${url}`,
               method: methodType,
-            }
-          })
+            },
+          });
 
           dispatch({
             type: actions.STORE_RESPONSE,
-            payload: data
-          })
+            payload: data,
+          });
         })
-        .catch(error => console.error('Error:', error))
+        .catch((error) => error);
     }
   };
 
@@ -199,9 +186,9 @@ export default function NavContainer() {
 
     <AppBar position="static" style={styles.AppBar}>
 
-      <Toolbar style={styles.Toolbar} component='form' noValidate autoComplete="off" variant="dense" onSubmit={handleSignup}>
+      <Toolbar style={styles.Toolbar} component="form" noValidate autoComplete="off" variant="dense" onSubmit={handleSignup}>
 
-        <img src={Logo} alt='logo' style={classes.logo} />
+        <img src={Logo} alt="logo" style={classes.logo} />
 
         <Url value={{ setUrl }} style={classes.Url} />
 
@@ -209,10 +196,9 @@ export default function NavContainer() {
 
         <Body value={{ setBodyInput, bodyInput }} />
 
-        <SendButton type='submit' variant="contained" style={styles.button}>
+        <SendButton type="submit" variant="contained" style={styles.button}>
           Send
         </SendButton>
-
 
       </Toolbar>
 

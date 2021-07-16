@@ -14,5 +14,6 @@ module.exports = {
   plugins: ['react'],
   rules: {
     'react/prop-types': 'off',
+    'linebreak-style': 0,
   },
 };

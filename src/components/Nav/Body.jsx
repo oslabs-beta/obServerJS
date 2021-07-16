@@ -1,4 +1,5 @@
-import React from 'react'
+/* eslint-disable react/destructuring-assignment */
+import React from 'react';
 import AddIcon from '@material-ui/icons/Add';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -28,30 +29,27 @@ const styles = {
   Modal: {
     top: `${top}%`,
     left: `${left}%`,
-    transform: `translate(-10, -10)`,
+    transform: 'translate(-10, -10)',
   },
   Content: {
-    width: '25rem'
+    width: '25rem',
   },
   BodyInput: {
-    width: '24rem'
-  }
+    width: '24rem',
+  },
 };
 
-
 const useStyles = makeStyles(styles);
-
 
 export default function Body(props) {
   const [open, setOpen] = React.useState(false);
 
-  const setBodyInput = props.value.setBodyInput;
-  const bodyInput = props.value.bodyInput;
+  const { setBodyInput } = props.value;
+  const { bodyInput } = props.value;
 
   const handleClickOpen = () => {
     setOpen(true);
   };
-
 
   const handleClose = () => {
     setOpen(false);
@@ -61,13 +59,22 @@ export default function Body(props) {
 
   return (
     <div>
-      <Button variant="outlined" className={classes.root} onClick={handleClickOpen} endIcon={<AddIcon />}>
+      <Button
+        variant="outlined"
+        className={classes.root}
+        onClick={handleClickOpen}
+        endIcon={<AddIcon />}
+      >
         Body
       </Button>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" style={styles.Modal}>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title"
+        style={styles.Modal}
+      >
         <DialogTitle id="form-dialog-title">Add Your Request Body</DialogTitle>
         <DialogContent style={styles.Content}>
-
           <TextField
             style={styles.BodyInput}
             id="outlined-multiline-static"

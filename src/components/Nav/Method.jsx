@@ -1,4 +1,5 @@
-import React from 'react'
+/* eslint-disable react/destructuring-assignment */
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
@@ -16,19 +17,14 @@ const useStyles = makeStyles((theme) => ({
     color: '#aaaaaa',
   },
   white: {
-    color: '#000000'
+    color: '#000000',
   },
 }));
 
-
-
 export default function Method(props) {
-
-
   const classes = useStyles();
 
-
-  const setMethodType = props.value.setMethodType
+  const { setMethodType } = props.value;
 
   return (
     <div>
@@ -44,14 +40,13 @@ export default function Method(props) {
             root: classes.root,
             icon: classes.cssLabel,
           }}
-          
         >
-          <option value='GET'>GET</option>
-          <option value='PUT'>PUT</option>
-          <option value='POST'>POST</option>
-          <option value='DELETE'>DELETE</option>
+          <option value="GET">GET</option>
+          <option value="PUT">PUT</option>
+          <option value="POST">POST</option>
+          <option value="DELETE">DELETE</option>
         </Select>
       </FormControl>
     </div>
-  )
+  );
 }
