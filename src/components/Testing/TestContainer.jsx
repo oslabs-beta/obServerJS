@@ -26,20 +26,20 @@ const styles = {
   },
   button: {
     color: '#aaaaaa',
-  }
-}
+  },
+};
 
 const TestContainer = () => {
-  const [showModal, setShowModal] = useState(false)
-  const [currentTest, setCurrentTest] = useState(null)
-  const handleClose = () => setShowModal(false)
-  const handleOpen = () => setShowModal(true)
+  const [showModal, setShowModal] = useState(false);
+  const [currentTest, setCurrentTest] = useState(null);
+  const handleClose = () => setShowModal(false);
+  const handleOpen = () => setShowModal(true);
 
   return (
     <Container style={styles.container}>
-      <TestMenuBar 
-        openModal={handleOpen} 
-        closeModal={handleClose} 
+      <TestMenuBar
+        openModal={handleOpen}
+        closeModal={handleClose}
         showModal={showModal}
         setCurrentTest={setCurrentTest}
       />
@@ -48,8 +48,8 @@ const TestContainer = () => {
         <IndividualTestView testCase={currentTest} />
       )}
 
-    </Container >
-  )
-}
+    </Container>
+  );
+};
 
-export default TestContainer
+export default TestContainer;

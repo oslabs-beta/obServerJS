@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper } from '@material-ui/core'
+import { Paper } from '@material-ui/core';
 
 const styles = {
   containerFail: {
@@ -9,7 +9,7 @@ const styles = {
     padding: '.6rem',
     display: 'flex',
     flexDirection: 'column',
-  }, 
+  },
   containerPass: {
     backgroundColor: 'darkgreen',
     color: 'white',
@@ -17,7 +17,7 @@ const styles = {
     padding: '.6rem',
     display: 'flex',
     flexDirection: 'column',
-  }, 
+  },
   containerOther: {
     backgroundColor: 'gray',
     color: 'white',
@@ -25,31 +25,35 @@ const styles = {
     padding: '.6rem',
     display: 'flex',
     flexDirection: 'column',
-  }
-}
+  },
+};
 
 const TestComponent = ({ test, setCurrentTest }) => {
   const generateTestColor = () => {
-    if(test?.status === 1) return styles.containerPass
-    else if(test?.status === 0) return styles.containerFail
-    else if (!test.hasOwnProperty('status')) return styles.containerOther
-  }
+    if (test?.status === 1) return styles.containerPass;
+    if (test?.status === 0) return styles.containerFail;
+    // eslint-disable-next-line no-prototype-builtins
+    if (!test.hasOwnProperty('status')) return styles.containerOther;
+    return styles.containerOther;
+  };
 
   const generateTesStatus = () => {
-    if(test?.status === 1) return 'PASSED'
-    else if(test?.status === 0) return 'FAILED'
-    else if (!test.hasOwnProperty('status')) return 'NOT RUN'
-  }
+    if (test?.status === 1) return 'PASSED';
+    if (test?.status === 0) return 'FAILED';
+    // eslint-disable-next-line no-prototype-builtins
+    if (!test.hasOwnProperty('status')) return 'NOT RUN';
+    return 'NOT RUN';
+  };
 
-  const style = generateTestColor()
-  const status = generateTesStatus()
+  const style = generateTestColor();
+  const status = generateTesStatus();
   return (
     <Paper style={style} onClick={() => setCurrentTest(test)}>
-      <span>{test.url}</span> 
+      <span>{test.url}</span>
       <span>{test.method}</span>
       <span>{status}</span>
     </Paper>
-  )
-}
+  );
+};
 
-export default TestComponent
+export default TestComponent;

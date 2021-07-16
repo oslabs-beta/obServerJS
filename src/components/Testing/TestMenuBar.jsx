@@ -1,10 +1,9 @@
-import { useContext, useState } from "react";
+import { React, useContext } from 'react';
 import { Container } from '@material-ui/core';
 import { MainContainerContext } from '../../Global/context/MainContainerContext';
-import TestControls from "./TestControls"
-import TestComponent from './TestComponent'
-import AddTestModal from './AddTestModal'
-
+import TestControls from './TestControls';
+import TestComponent from './TestComponent';
+import AddTestModal from './AddTestModal';
 
 const styles = {
   container: {
@@ -31,21 +30,21 @@ const styles = {
   },
   button: {
     color: '#aaaaaa',
-  }
-}
+  },
+};
 
-const TestMenuBar = ({openModal, closeModal, showModal, setCurrentTest}) => {
-  const { state: { allTests} } = useContext(MainContainerContext)
-
+const TestMenuBar = ({
+  openModal, closeModal, showModal, setCurrentTest,
+}) => {
+  const { state: { allTests } } = useContext(MainContainerContext);
 
   return (
     <Container style={styles.container}>
-      <TestControls openModal={openModal} allTests={allTests}/>
-      {allTests.map((test) => <TestComponent test={test} setCurrentTest={setCurrentTest}/>)}
-      {showModal ? <AddTestModal showModal={showModal} closeModal={closeModal}/> : null}
+      <TestControls openModal={openModal} allTests={allTests} />
+      {allTests.map((test) => <TestComponent test={test} setCurrentTest={setCurrentTest} />)}
+      {showModal ? <AddTestModal showModal={showModal} closeModal={closeModal} /> : null}
     </Container>
-  )
+  );
+};
 
-}
-
-export default TestMenuBar
+export default TestMenuBar;
