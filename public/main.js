@@ -1,10 +1,11 @@
-const { app, BrowserWindow } = require('electron')
-const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer')
+/* eslint-disable import/no-extraneous-dependencies */
+const { app, BrowserWindow } = require('electron');
+const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
 
-const path = require('path')
-const isDev = require('electron-is-dev')
+const path = require('path');
+const isDev = require('electron-is-dev');
 
-require('@electron/remote/main').initialize()
+require('@electron/remote/main').initialize();
 
 function createWindow() {
   // Create the browser window.
@@ -13,37 +14,37 @@ function createWindow() {
     height: 600,
     webPreferences: {
       nodeIntegration: true,
-      enableRemoteModule: true
-    }, 
-    title: "obServerJS",
-  })
+      enableRemoteModule: true,
+    },
+    title: 'obServerJS',
+  });
 
   win.loadURL(
     isDev
       ? 'http://localhost:3000'
-      : `file://${path.join(__dirname, '../build/index.html')}`
-  )
+      : `file://${path.join(__dirname, '../build/index.html')}`,
+  );
 }
 
-app.on('ready', createWindow)
+app.on('ready', createWindow);
 
 // Quit when all windows are closed.
-app.on('window-all-closed', function () {
+app.on('window-all-closed', () => {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {
-    app.quit()
+    app.quit();
   }
-})
+});
 
-app.on('activate', function () {
+app.on('activate', () => {
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
-  if (BrowserWindow.getAllWindows().length === 0) createWindow()
-})
+  if (BrowserWindow.getAllWindows().length === 0) createWindow();
+});
 
 app.whenReady().then(() => {
   installExtension(REACT_DEVELOPER_TOOLS)
-      .then((name) => console.log(`Added Extension:  ${name}`))
-      .catch((err) => console.log('An error occurred: ', err));
+    .then((name) => console.log(`Added Extension:  ${name}`))
+    .catch((err) => console.log('An error occurred: ', err));
 });
