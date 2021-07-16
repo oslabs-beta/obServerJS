@@ -6,7 +6,6 @@ import { MainContainerContext } from '../../Global/context/MainContainerContext'
 import Tab from './Tab';
 import * as actions from '../../Global/actionTypes';
 
-
 const styles = {
   container: {
     gridArea: 'tabs',
@@ -30,14 +29,13 @@ const styles = {
   },
   button: {
     color: '#aaaaaa',
-  }
-}
+  },
+};
 
 const TabContainer = () => {
   const { state: { allTabs }, dispatch } = useContext(MainContainerContext);
 
   const addNewTab = () => {
-
     dispatch({
       type: actions.NEW_TAB,
       payload: {
@@ -48,21 +46,21 @@ const TabContainer = () => {
         body: '',
         currentMiddlewareIdx: 0,
         tabOrder: allTabs.length,
-        middleware: []
+        middleware: [],
       },
-    })
-  }
+    });
+  };
 
   return (
     <Container style={styles.container} maxWidth={false}>
-      {allTabs.map((tab, idx) => <Tab tabData={tab} key={idx} />)}
+      {allTabs.map((tab) => <Tab tabData={tab} key={`tab + ${tab}`} />)}
       <Container style={styles.addTab} onClick={addNewTab}>
         <IconButton style={styles.button} label="tab" component="span">
           <AddIcon />
         </IconButton>
       </Container>
     </Container>
-  )
-}
+  );
+};
 
-export default TabContainer
+export default TabContainer;
