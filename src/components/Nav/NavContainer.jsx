@@ -6,7 +6,7 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Url from './Url';
 import Method from './Method';
 import Body from './Body';
-import Logo from '../../img/logo3.png';
+import Logo from '../../img/logo.png';
 import { MainContainerContext } from '../../Global/context/MainContainerContext';
 import * as actions from '../../Global/actionTypes';
 
