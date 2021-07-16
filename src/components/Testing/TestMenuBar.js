@@ -1,14 +1,20 @@
-import RunTestsComponent from "./RunTestsComponent"
-import AddTestComponent from "./AddTestComponent"
+import { useContext, useState } from "react";
 import { Container } from '@material-ui/core';
+import { MainContainerContext } from '../../Global/context/MainContainerContext';
+import TestControls from "./TestControls"
+import TestComponent from './TestComponent'
+import AddTestModal from './AddTestModal'
+
 
 const styles = {
   container: {
     gridArea: 'tabs',
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'flex-start',
     padding: 0,
     margin: 0,
+    width: '20%',
     background: '#1e2125',
   },
   addTab: {
@@ -28,12 +34,15 @@ const styles = {
   }
 }
 
-const TestMenuBar = () => {
+const TestMenuBar = ({openModal, closeModal, showModal, setCurrentTest}) => {
+  const { state: { allTests} } = useContext(MainContainerContext)
+
 
   return (
     <Container style={styles.container}>
-      <RunTestsComponent></RunTestsComponent>
-      <AddTestComponent></AddTestComponent>
+      <TestControls openModal={openModal} allTests={allTests}/>
+      {allTests.map((test) => <TestComponent test={test} setCurrentTest={setCurrentTest}/>)}
+      {showModal ? <AddTestModal showModal={showModal} closeModal={closeModal}/> : null}
     </Container>
   )
 
