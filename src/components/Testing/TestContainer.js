@@ -1,12 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import { Container } from '@material-ui/core';
-import AddIcon from '@material-ui/icons/Add';
-import IconButton from '@material-ui/core/IconButton';
-import { MainContainerContext } from '../../Global/context/MainContainerContext';
-// import Tab from './Tab';
-import * as actions from '../../Global/actionTypes';
-
-import TestComponent from './TestComponent'
+import IndividualTestView from './IndividualTestView';
 import TestMenuBar from './TestMenuBar';
 
 const styles = {
@@ -36,35 +30,23 @@ const styles = {
 }
 
 const TestContainer = () => {
-  const { state: { allTests }, dispatch } = useContext(MainContainerContext);
-
-  let tests = []
-  allTests.map((el, idx) => {
-    {
-      tests.push(
-        //<div>
-        //   URL: {el.url}
-        //   Method: {el.method}
-        //   {/*TODO: FIX BODY DISPLAY
-        //    Body: {el.body} */}
-        // </div>
-        {
-          URL: el.url,
-          Method: el.method,
-          Body: el.body
-        })
-    }
-  })
+  const [showModal, setShowModal] = useState(false)
+  const [currentTest, setCurrentTest] = useState(null)
+  const handleClose = () => setShowModal(false)
+  const handleOpen = () => setShowModal(true)
 
   return (
     <Container style={styles.container}>
+      <TestMenuBar 
+        openModal={handleOpen} 
+        closeModal={handleClose} 
+        showModal={showModal}
+        setCurrentTest={setCurrentTest}
+      />
 
-      <TestMenuBar></TestMenuBar>
-
-      {/* {
-        tests
-      } */}
-      <TestComponent></TestComponent>
+      {currentTest && (
+        <IndividualTestView testCase={currentTest} />
+      )}
 
     </Container >
   )

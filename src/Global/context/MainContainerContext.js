@@ -4,7 +4,44 @@ import * as actions from '../actionTypes';
 const initialState = {
   currentTabIdx: 0,
   // all tests
-  allTests: [],
+  allTests: [
+    {
+      url: 'localhost:3000/test', 
+      method: 'PUT', 
+      status: 1,
+      body: '{"test":"test"}',
+      condition: 'To Equal', 
+      expectedResponse: '{"test":"test"}',
+      receivedResponse: '{"test":"test"}',
+    }, 
+    {
+      url: 'localhost:3000/test', 
+      method: 'PUT', 
+      status: 0,
+      body: '{"test":"test"}',
+      condition: 'To Equal', 
+      expectedResponse: '{"test":"test"}',
+      receivedResponse: '{"test": null}',
+    }, 
+    {
+      url: 'localhost:3000/test', 
+      method: 'PUT', 
+      status: 0,
+      body: '{"test":"test"}',
+      condition: 'To Equal', 
+      expectedResponse: '{"test":"test"}',
+      receivedResponse: '{"test": null}',
+    }, 
+    {
+      url: 'localhost:3000/test', 
+      method: 'PUT', 
+      status: 1,
+      body: '{"test":"test"}',
+      condition: 'To Equal', 
+      expectedResponse: '{"test":"test"}',
+      receivedResponse: '{"test":"test"}',
+    }, 
+  ],
   // all open tabs
   allTabs: [
     // {
@@ -20,7 +57,7 @@ const initialState = {
     //   tree: {}
     // }
   ],
-  sidebarSelection: 'Tree', // i.e. Collections, tree, request, response, etc. (min 1, max2)
+  sidebarSelection: 'Testing', // i.e. Collections, tree, request, response, etc. (min 1, max2)
 
 }
 
@@ -48,7 +85,8 @@ const MainContainerReducer = (state, action) => {
         url: action.payload.url,
         method: action.payload.method,
         body: action.payload.body,
-        expectedResponse: action.payload.expectedResponse
+        expectedResponse: action.payload.expectedResponse, 
+        condition: action.payload.condition,
       })
 
       return {
