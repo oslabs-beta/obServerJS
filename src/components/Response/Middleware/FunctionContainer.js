@@ -96,7 +96,7 @@ const PopulatedFunctionContainer = ({ currentTab }) => {
   return (
     <Paper className={classes.mainContainer} elevation={3}>
       <h3 className={classes.timing}>
-        {`Execution Time: 20 secs`}
+        {/* {`Execution Time: 20 secs`} */}
       </h3>
       <Container className={classes.codeContainer}>
         <button
