@@ -2,10 +2,28 @@ import { MainContainerContext } from '../../Global/context/MainContainerContext'
 import React, { useContext } from 'react';
 import lodash from 'lodash';
 import * as actions from '../../Global/actionTypes'
-
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 const RunTestsComponent = () => {
 
   const { state: { allTests }, dispatch } = useContext(MainContainerContext);
+
+  const styles = {
+    container: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      color: 'white',
+      fontSize: '30'
+    },
+    playButton: {
+      color: 'green',
+      fontSize: '30',
+    },
+    addButton: {
+      color: 'red',
+      fontSize: '30',
+    },
+  }
 
   const runSingleTest = async (url, methodType, bodyInput) => {
     console.log("INside running test: URL :: ", url)
@@ -120,10 +138,14 @@ const RunTestsComponent = () => {
         }
       })
 
+      allTests[i].receivedResponse = res;
+
       if (passed) {
         console.log("TEST PASSED!")
+        allTests[i].status = 1
       } else {
         console.log("TEST FAILED!")
+        allTests[i].status = 0
       }
     }
 
@@ -132,9 +154,9 @@ const RunTestsComponent = () => {
   }
 
   return (
-    <button onClick={runTests}>
+    <PlayArrowIcon style={styles.playButton} onClick={runTests}>
       Run Tests Component
-    </button>
+    </PlayArrowIcon>
   )
 }
 
