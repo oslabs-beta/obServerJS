@@ -1,5 +1,4 @@
 import AddIcon from '@material-ui/icons/Add';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import { Container } from '@material-ui/core';
 import RunTestsComponent from './RunTestsComponent';
 
@@ -30,7 +29,6 @@ const TestControls = ({ openModal, allTests }) => {
 
   return (
     <Container style={styles.container}>
-      {/* <PlayArrowIcon style={styles.playButton} /> */}
       <RunTestsComponent></RunTestsComponent>
       <p>{passing} / {allTests.length} Passing</p>
       <AddIcon style={styles.addButton} onClick={() => openModal()} />
