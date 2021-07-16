@@ -1,12 +1,9 @@
 import React, { useContext } from "react";
-import Signup from './Signup';
 import Url from './Url';
-import Login from './Login';
 import Method from './Method';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Body from './Body';
 import Logo from './logo3.png';
@@ -24,7 +21,14 @@ const styles = {
     justifyContent: 'space-between',
   },
   button: {
-    color: '#8cd8be'
+    color: '#8cd8be',
+    marginLeft: '12rem',
+  },
+  divider: {
+    alignSelf: 'center',
+    width: 'fit-content',
+    height: '2.5rem',
+    border: `1px solid #aaaaaa`,
   }
 }
 
@@ -41,9 +45,6 @@ const SendButton = withStyles({
     lineHeight: 1.5,
     backgroundColor: '#383838',
     borderColor: '#8cd8be',
-    fontFamily:
-      'Rubik-Medium'
-    ,
     '&:hover': {
       backgroundColor: '#0069d9',
       borderColor: '#0062cc',
@@ -78,15 +79,31 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
 export default function NavContainer() {
   const classes = useStyles();
 
   const [url, setUrl] = React.useState('');
   const [methodType, setMethodType] = React.useState('GET');
   const [bodyInput, setBodyInput] = React.useState();
+  const { state: { allTabs }, dispatch } = useContext(MainContainerContext);
 
-  const { dispatch } = useContext(MainContainerContext);
+  const createFirstTabIfNone = () => {
+    if (allTabs.length === 0) {
+      dispatch({
+        type: actions.NEW_TAB,
+        payload: {
+          link: 'New Tab',
+          route: '',
+          method: 'METHOD',
+          active: true,
+          body: '',
+          currentMiddlewareIdx: 0,
+          tabOrder: allTabs.length,
+          middleware: []
+        },
+      })
+    }
+  }
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -106,11 +123,12 @@ export default function NavContainer() {
           return data.json();
         })
         .then(data => {
-          console.log(data)
+
+          createFirstTabIfNone();
+
           dispatch({
             type: actions.UPDATE_TAB_INFO,
             payload: {
-              //link: 'http://localhost:3001/test/get',
               link: `${url}`,
               method: methodType,
             }
@@ -133,11 +151,12 @@ export default function NavContainer() {
           return data.json();
         })
         .then(data => {
-          console.log(data)
+
+          createFirstTabIfNone();
+
           dispatch({
             type: actions.UPDATE_TAB_INFO,
             payload: {
-              //link: 'http://localhost:3001/test/get',
               link: `${url}`,
               method: methodType,
             }
@@ -156,11 +175,13 @@ export default function NavContainer() {
           return data.json();
         })
         .then(data => {
-          console.log(data)
+
+          createFirstTabIfNone();
+
           dispatch({
             type: actions.UPDATE_TAB_INFO,
             payload: {
-              link: url,
+              link: `${url}`,
               method: methodType,
             }
           })
@@ -191,13 +212,6 @@ export default function NavContainer() {
         <SendButton type='submit' variant="contained" style={styles.button}>
           Send
         </SendButton>
-
-        <Login style={styles.Login} />
-
-        <Signup />
-
-        < AccountCircleIcon fontSize="large" />
-
 
 
       </Toolbar>

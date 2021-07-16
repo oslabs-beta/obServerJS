@@ -85,49 +85,49 @@ const NullFunctionContainer = () => {
 
 const PopulatedFunctionContainer = ({ currentTab }) => {
   const [fontSize, setFontSize] = useState(10)
-  const classes = useStyles({fontSize})
-  
+  const classes = useStyles({ fontSize })
+
 
   const { currentMiddlewareIdx, middleware } = currentTab
 
   const activeMiddleware = middleware[currentMiddlewareIdx]
 
-  const functionAvailable = activeMiddleware.hasOwnProperty('functionDef')
+  const functionAvailable = activeMiddleware?.hasOwnProperty('functionDef')
   return (
-      <Paper className={classes.mainContainer} elevation={3}>
-        <h3 className={classes.timing}>
-          {`Execution Time: 20 secs`}
-        </h3>
-        <Container className={classes.codeContainer}>
-            <button 
-              className={classes.button} 
-              onClick={() => setFontSize(prev => prev - 2)}
-            >
-              -
-            </button>
-            <button 
-              className={classes.button} 
-              onClick={() => setFontSize(prev => prev + 2)}
-            >
-              +
-            </button>
-          <SyntaxHighlighter
-            language="javascript"
-            className={classes.code}
-            style={atelierCaveDark}
-            showLineNumbers={true}
-            wrapLongLines={true}
-            wrapLines={true}
-          >
-            {
-              functionAvailable
+    <Paper className={classes.mainContainer} elevation={3}>
+      <h3 className={classes.timing}>
+        {`Execution Time: 20 secs`}
+      </h3>
+      <Container className={classes.codeContainer}>
+        <button
+          className={classes.button}
+          onClick={() => setFontSize(prev => prev - 2)}
+        >
+          -
+        </button>
+        <button
+          className={classes.button}
+          onClick={() => setFontSize(prev => prev + 2)}
+        >
+          +
+        </button>
+        <SyntaxHighlighter
+          language="javascript"
+          className={classes.code}
+          style={atelierCaveDark}
+          showLineNumbers={true}
+          wrapLongLines={true}
+          wrapLines={true}
+        >
+          {
+            functionAvailable
               ? activeMiddleware.functionDef
               : '// FUNCTION NOT AVAILABLE'
-            }
-            
-          </SyntaxHighlighter>
-          
-        </Container>
+          }
+
+        </SyntaxHighlighter>
+
+      </Container>
     </Paper>
   )
 }

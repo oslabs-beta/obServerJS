@@ -23,7 +23,7 @@ const styles = {
     overflow: 'hidden',
     background: '#383838',
     display: 'grid',
-    gridTemplateRows: '1fr 45px repeat(5, 1fr)',
+    gridTemplateRows: '0.55fr 45px repeat(5, 1fr)',
     gridTemplateColumns: '100px repeat(7, 1fr)',
     gridTemplateAreas: `
       "nav nav nav nav nav nav nav nav"
@@ -47,9 +47,9 @@ const MainContainer = () => {
       case 'Tree':
         console.log(sidebarSelection)
         return <Tree />
-      case 'Performance':
-        console.log(sidebarSelection)
-        return <Performance />
+      // case 'Performance':
+      //   console.log(sidebarSelection)
+      //   return <Performance />
       case 'Response':
         console.log(sidebarSelection)
         return <ResponseContainer />

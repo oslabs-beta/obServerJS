@@ -8,7 +8,7 @@ const styles = {
   mainContainer: {
     background: '#292c30',
     gridArea: 'windows',
-    display: 'flex', 
+    display: 'flex',
     flexDirection: 'row',
     justfyContent: 'center',
     alignItems: 'center',
@@ -19,13 +19,17 @@ const styles = {
 
 const ResponseContainer = () => {
   const { state: { allTabs, currentTabIdx } } = useContext(MainContainerContext)
-  console.log('response', allTabs[currentTabIdx].middleware)
-  const populated = allTabs[currentTabIdx].middleware?.length ? true : false
+  let populated;
+
+  if (allTabs[currentTabIdx]) {
+    populated = allTabs[currentTabIdx].middleware?.length ? true : false
+  } else {
+    populated = false
+  }
 
   return (
     <Container style={styles.mainContainer} maxWidth={false}>
       <MiddlewareContainer populated={populated} />
-
       {/* <ValuesContainer populated={populated} /> */}
     </Container>
   )

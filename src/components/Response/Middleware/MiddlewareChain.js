@@ -6,7 +6,7 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 const styles = {
   container: {
     background: '#1e2125',
-    height: '94%',
+    height: '97%',
     width: '30%',
     display: 'flex',
     flexDirection: 'column',
@@ -76,8 +76,41 @@ const NullMiddlewareChain = () => (
   </Paper>
 )
 
-const PopulatedMiddlewareChain = ({ middleware, dispatch, activeIdx, }) => {
+const generateMiddlewareChain = (middleware, dispatch) => {
+
   const toggleFunc = (idx) => dispatch({ type: actions.TOGGLE_MIDDLEWARE, payload: { idx } })
+
+  let map = []
+
+  if (middleware.length === 0) return;
+
+  middleware.map((func, idx, arr) => {
+    const { name, functionDef } = func
+    const dropdownStyle = createDropdownStyles(functionDef)
+    map.push(
+      <>
+        <Paper
+          key={Math.random() * 9999999 + name}
+          elevation={3}
+          variant="outlined"
+          style={dropdownStyle}
+          onClick={() => toggleFunc(idx)}>
+          <p>
+            {name}
+          </p>
+        </Paper>
+        {
+          idx < arr.length - 1 ?
+            < ArrowDownwardIcon style={styles.arrowIcon} key={Math.random() * 8888 + name} /> : null
+        }
+      </>
+    )
+  })
+
+  return map
+}
+
+const PopulatedMiddlewareChain = ({ middleware, dispatch, activeIdx, }) => {
 
   console.log("middleware map: ", middleware)
   return (
@@ -86,31 +119,11 @@ const PopulatedMiddlewareChain = ({ middleware, dispatch, activeIdx, }) => {
         Execution Order
       </h4>
       <p style={styles.timing}>
-        {`Total Execution Time: 3 secs`}
+        {/* {`Total Execution Time: 3 secs`} */}
       </p>
-
-      {middleware.map((func, idx, arr) => {
-        const { name, functionDef } = func
-        const dropdownStyle = createDropdownStyles(functionDef)
-        return (
-          <>
-            <Paper
-              key={Math.random() * 9999999 + name}
-              elevation={3}
-              variant="outlined"
-              style={dropdownStyle}
-              onClick={() => toggleFunc(idx)}>
-              <p>
-                {name}
-              </p>
-            </Paper>
-            {
-              idx < arr.length - 1 ?
-                < ArrowDownwardIcon style={styles.arrowIcon} key={Math.random() * 8888 + name} /> : null
-            }
-          </>
-        )
-      })}
+      {
+        generateMiddlewareChain(middleware, dispatch)
+      }
     </Paper>
   )
 }

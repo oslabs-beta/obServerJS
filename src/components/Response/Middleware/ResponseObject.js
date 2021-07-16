@@ -61,34 +61,28 @@ const PopulatedResponseObject = () => {
 
   const currentTab = allTabs[currentTabIdx]
   const middlewareIdx = currentTab.currentMiddlewareIdx
-  // const response = currentTab?.middleware[middlewareIdx]?.response || undefined
-  // let rsp = [];
-  // console.log(currentTab.response)
-  let responseJ = JSON.parse(currentTab.response)
-  // for (let i = 0; i < Object.keys(responseJ).length; i++) {
-  //   console.log("responseJ: ", responseJ)
-  //   rsp += <p style={styles.variables}>"hi"</p>
-  // }
+
+  const jsonparse = (jsonObj) => {
+    if (Object.keys(jsonObj).length === 0 || jsonObj === null) return <p></p>;
+    let objVars = []
+
+    let obj = JSON.parse(jsonObj)
+
+    Object.keys(obj.vars).forEach((el, idx) => {
+      objVars.push(<p style={styles.variables}>{el} : {obj.vars[el]}</p>)
+    })
+
+    return objVars
+  }
+
   return (
     <Paper elevation={3} style={styles.container}>
       <h1 style={styles.title}>
         Response
       </h1>
-      <p style={styles.variables}>asdfasdfasdf</p>
       {
-        Object.entries(responseJ.vars).forEach(([key, value], idx) => {
-          <p style={styles.variables}>asdfasdfasdf</p>
-          console.log("responseJ: ", responseJ)
-          console.log("key: ", key)
-          console.log("value: ", value)
-        })
+        jsonparse(currentTab.response)
       }
-      {/* {Object.entries(response).map(([key, value], idx) => (
-        <p key={idx} style={styles.variables}>
-          <span style={styles.key}>{key}: </span>
-          <span style={styles.value}>{value}</span>
-        </p>
-      ))} */}
     </Paper>
   )
 }
