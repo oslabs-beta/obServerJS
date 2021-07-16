@@ -1,5 +1,6 @@
-import React, { useReducer } from "react";
-import * as actions from "../actionTypes";
+/* eslint-disable no-case-declarations */
+import React, { useReducer } from 'react';
+import * as actions from '../actionTypes';
 
 const initialState = {
   // index of the current active tab
@@ -10,7 +11,7 @@ const initialState = {
   // all open tabs
   // TODO: put a tab format for reference
   allTabs: [],
-  sidebarSelection: "Testing", // i.e. Collections, tree, request, response, etc. (min 1, max2)
+  sidebarSelection: 'Testing', // i.e. Collections, tree, request, response, etc. (min 1, max2)
 };
 
 export const MainContainerContext = React.createContext();
@@ -19,7 +20,7 @@ const MainContainerReducer = (state, action) => {
   switch (action.type) {
     // Store the test results into state and update their passed field
     case actions.STORE_TEST_RESULT:
-      let newAllTestsRes = state.allTests;
+      const newAllTestsRes = state.allTests;
 
       newAllTestsRes[action.payload.testIdx].passed = action.payload.testResult;
 
@@ -30,7 +31,7 @@ const MainContainerReducer = (state, action) => {
 
     // Add a request test to state
     case actions.ADD_TEST:
-      let newAllTests = state.allTests;
+      const newAllTests = state.allTests;
 
       newAllTests.push({
         url: action.payload.url,
@@ -47,10 +48,9 @@ const MainContainerReducer = (state, action) => {
 
     // Store the response into state, including middleware chain, full app tree, and response body
     case actions.STORE_RESPONSE:
-      let responseTabs = state.allTabs;
+      const responseTabs = state.allTabs;
 
-      responseTabs[state.currentTabIdx].middleware =
-        action.payload.observer.stackLayers;
+      responseTabs[state.currentTabIdx].middleware = action.payload.observer.stackLayers;
       responseTabs[state.currentTabIdx].tree = action.payload.observer.tree;
       responseTabs[state.currentTabIdx].response = action.payload.response;
 
@@ -78,10 +78,11 @@ const MainContainerReducer = (state, action) => {
 
       // We need to resort the new array with the updated tab order after removing one
       const reSort = () => {
-        for (let key of state.allTabs) {
+        // eslint-disable-next-line no-restricted-syntax
+        for (const key of state.allTabs) {
           if (key.tabOrder !== tab) {
             if (key.tabOrder > tab) {
-              key.tabOrder--;
+              key.tabOrder -= 1;
             }
             currentState.push(key);
           }
@@ -96,8 +97,9 @@ const MainContainerReducer = (state, action) => {
       const data = action.payload;
       const tabs = state.allTabs;
 
-      tabs.forEach((tab) => {
-        tab.active = false;
+      tabs.forEach((newTab) => {
+        // eslint-disable-next-line no-param-reassign
+        newTab.active = false;
       });
 
       tabs.push(data);
@@ -116,7 +118,7 @@ const MainContainerReducer = (state, action) => {
     case actions.TOGGLE_MIDDLEWARE:
       const { idx } = action.payload;
 
-      const allTabs = state.allTabs;
+      const { allTabs } = state;
       allTabs[state.currentTabIdx].currentMiddlewareIdx = idx;
 
       return { ...state, allTabs };

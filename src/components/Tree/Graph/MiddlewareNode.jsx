@@ -1,7 +1,11 @@
-import React from 'react'
+/* eslint-disable indent */
+/* eslint-disable no-param-reassign */
+/* eslint-disable react/jsx-indent */
+import React from 'react';
 
-const MiddlewareNode = ({ height, width, node, forceUpdate }) => {
-  return (
+const MiddlewareNode = ({
+  height, width, node, forceUpdate,
+}) => (
     <rect
       height={height}
       width={width * 2}
@@ -15,10 +19,9 @@ const MiddlewareNode = ({ height, width, node, forceUpdate }) => {
       rx={node.data.children ? 0 : 10}
       onClick={() => {
         node.data.isExpanded = !node.data.isExpanded;
-        forceUpdate()
+        forceUpdate();
       }}
-  />
-  )
-}
+    />
+  );
 
-export default MiddlewareNode
+export default MiddlewareNode;

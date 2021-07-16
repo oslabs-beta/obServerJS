@@ -1,7 +1,7 @@
-import React, { useContext } from 'react'
-import { Container } from '@material-ui/core'
-import { MainContainerContext } from '../../Global/context/MainContainerContext'
-import MiddlewareContainer from './Middleware/MiddlewareContainer'
+import React, { useContext } from 'react';
+import { Container } from '@material-ui/core';
+import { MainContainerContext } from '../../Global/context/MainContainerContext';
+import MiddlewareContainer from './Middleware/MiddlewareContainer';
 // import ValuesContainer from './Values/ValuesContainer'
 
 const styles = {
@@ -15,16 +15,16 @@ const styles = {
     padding: '0 2rem 0 .5rem',
     margin: 0,
   },
-}
+};
 
 const ResponseContainer = () => {
-  const { state: { allTabs, currentTabIdx } } = useContext(MainContainerContext)
+  const { state: { allTabs, currentTabIdx } } = useContext(MainContainerContext);
   let populated;
 
   if (allTabs[currentTabIdx]) {
-    populated = allTabs[currentTabIdx].middleware?.length ? true : false
+    populated = !!allTabs[currentTabIdx].middleware?.length;
   } else {
-    populated = false
+    populated = false;
   }
 
   return (
@@ -32,7 +32,7 @@ const ResponseContainer = () => {
       <MiddlewareContainer populated={populated} />
       {/* <ValuesContainer populated={populated} /> */}
     </Container>
-  )
-}
+  );
+};
 
-export default ResponseContainer
+export default ResponseContainer;
