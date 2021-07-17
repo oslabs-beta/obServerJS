@@ -1,7 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
 const { app, BrowserWindow } = require('electron');
-const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
-
 const path = require('path');
 const isDev = require('electron-is-dev');
 
