@@ -1,5 +1,5 @@
 ![](https://github.com/oslabs-beta/obServerJS/blob/main/app/src/img/logo.png)
-# [obServerJS](www.observerjs.com)
+# [obServerJS](https://www.observerjs.com)
 A server-side application to support request/response debugging, multiple endpoint testing, and middleware transparency.
 
 # ***Quick Setup***
