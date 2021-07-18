@@ -1,4 +1,5 @@
-# obServerJS
+![](https://github.com/oslabs-beta/obServerJS/blob/main/app/src/img/logo.png)
+# [obServerJS](www.observerjs.com)
 A server-side application to support request/response debugging, multiple endpoint testing, and middleware transparency.
 
 # ***Quick Setup***
@@ -14,14 +15,13 @@ Simply download the application HERE.
 ## Installing NPM Package
 On the server you want to debug, install the 'express-observer' NPM package.
 
-`$npm install express-observer`
+    $npm install express-observer
 
 On the same server, comment out the line that imports express.
-
-`$//const express = require('express');`
-
 And import the 'express-observer' package in it's place.
-`$const express = require('express-observer');`
+
+    //const express = require('express');
+    const express = require('express-observer');
 
 # ***Features***
 
@@ -40,13 +40,13 @@ Your full response body will be displayed here.
 ### Source Code
 Here is where the source code will be displayed when you click on any node in the 'Execution Order' section. You can control the size with zoom or stretching the section.
 
-### Testing
+## Testing
 This 'Testing' tab allows you to create a request/response testing suite for your server. Users can add requests to any endpoints as a test case, and provide the expected response of that request. 
 When you hit the green play button, it will run through all test cases and display the results.
 Clicking on any test case will display the expected response and the actual response in the sections on the right.
 
 # ***Authors***
-* Ashley Pean
-* Julia Collins
-* Josh Roberts
-* Eric Wilding
+* [Ashley Pean](https://github.com/ashleypean)
+* [Julia Collins](https://github.com/alderAcres)
+* [Josh Roberts](https://github.com/quantumspot)
+* [Eric Wilding](https://github.com/e-wilding)
