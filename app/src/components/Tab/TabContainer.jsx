@@ -53,7 +53,7 @@ const TabContainer = () => {
 
   return (
     <Container style={styles.container} maxWidth={false}>
-      {allTabs.map((tab) => <Tab tabData={tab} key={`tab + ${tab}`} />)}
+      {allTabs.map((tab) => <Tab tabData={tab} key={`tab + ${Math.random() * 123} `} />)}
       <Container style={styles.addTab} onClick={addNewTab}>
         <IconButton style={styles.button} label="tab" component="span">
           <AddIcon />

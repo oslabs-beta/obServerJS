@@ -59,23 +59,47 @@ const PopulatedResponseObject = () => {
 
   const jsonparse = (jsonObj) => {
     if (Object.keys(jsonObj).length === 0 || jsonObj === null) return <p />;
-    const objVars = [];
+    const keyValPairs = [];
 
     const obj = JSON.parse(jsonObj);
 
-    Object.keys(obj.vars).forEach((el) => {
-      objVars.push(
-        <p style={styles.variables}>
-          {el}
-          {' '}
-          :
-          {' '}
-          {obj.vars[el]}
-        </p>,
-      );
-    });
+    // We don't exactly know the format of the data being returned,
+    // so we have to account for many cases
+    // Let's assume for now there aren't nested, but that case will need to be handled.
+    // We can also optimize code reuse here, and
+    // the physical display of the objects should ideally be cleaned up too.
 
-    return objVars;
+    // Array of objects:
+    if (Object.prototype.toString.call(obj) === '[object Array]') {
+      obj.forEach((el) => {
+        Object.keys(el).forEach((key) => {
+          keyValPairs.push(
+            <p style={styles.variables}>
+              {key}
+              {' '}
+              :
+              {' '}
+              {obj[key]}
+            </p>,
+          );
+        });
+      });
+    } else if (Object.prototype.toString.call(obj) === '[object Object]') {
+    // Single Object:
+      Object.keys(obj).forEach((key) => {
+        keyValPairs.push(
+          <p style={styles.variables}>
+            {key}
+            {' '}
+            :
+            {' '}
+            {obj[key]}
+          </p>,
+        );
+      });
+    }
+
+    return keyValPairs;
   };
 
   return (

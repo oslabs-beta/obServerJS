@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React from 'react';
 import { Paper } from '@material-ui/core';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
@@ -84,7 +85,6 @@ const generateMiddlewareChain = (middleware, dispatch) => {
   const toggleFunc = (idx) => dispatch({ type: actions.TOGGLE_MIDDLEWARE, payload: { idx } });
 
   const map = [];
-
   if (middleware.length === 0) return;
 
   middleware.map((func, idx, arr) => {
@@ -100,7 +100,9 @@ const generateMiddlewareChain = (middleware, dispatch) => {
           onClick={() => toggleFunc(idx)}
         >
           <p>
-            {name}
+            <center>
+              {name}
+            </center>
           </p>
         </Paper>
         {
@@ -109,9 +111,10 @@ const generateMiddlewareChain = (middleware, dispatch) => {
         }
       </>,
     );
-
-    return map;
   });
+
+  // eslint-disable-next-line consistent-return
+  return map;
 };
 
 const PopulatedMiddlewareChain = ({ middleware, dispatch }) => (
