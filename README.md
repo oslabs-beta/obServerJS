@@ -1,5 +1,5 @@
 # obServerJS
-Server side middleware, request/response debugging and testing application.
+A server-side application to support request/response debugging, streamlined endpoint testing, and middleware transparency.
 
 # ***Quick Setup***
 This will be a two step process that includes:
