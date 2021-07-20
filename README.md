@@ -45,6 +45,13 @@ This 'Testing' tab allows you to create a request/response testing suite for you
 When you hit the green play button, it will run through all test cases and display the results.
 Clicking on any test case will display the expected response and the actual response in the sections on the right.
 
+# ***Repo Structure***
+app => The main external electron application
+
+npm => The express-observer NPM package
+
+site => Our observerjs.com website
+
 # ***Authors***
 * [Ashley Pean](https://github.com/ashleypean)
 * [Julia Collins](https://github.com/alderAcres)
