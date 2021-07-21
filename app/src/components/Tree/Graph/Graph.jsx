@@ -42,7 +42,7 @@ const Graph = ({
               ))}
 
               {tree.descendants().map((node) => {
-                const width = 40;
+                const width = 60;
                 const height = 20;
 
                 return (
