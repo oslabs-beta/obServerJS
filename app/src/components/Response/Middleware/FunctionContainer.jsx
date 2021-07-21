@@ -11,13 +11,13 @@ import { atelierCaveDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 const useStyles = makeStyles({
   mainContainer: {
     height: '100%',
-    width: '80%',
+    width: '60%',
     padding: '20px',
     background: '#1e2125',
     boxSizing: 'border-box',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'start',
   },
   timing: {
     color: 'white',
