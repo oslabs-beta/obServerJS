@@ -12,9 +12,11 @@ const styles = {
     width: '60%',
     display: 'flex',
     flexDirection: 'column',
+    overflowY: 'auto',
   },
   title: {
     color: 'white',
+    alignSelf: 'center',
   },
   key: {
     color: 'gray',
@@ -24,14 +26,25 @@ const styles = {
     color: 'white',
     fontSize: 14,
   },
-  variables: {
+  keys: {
     minWidth: '100px',
     maxWidth: '200px',
     display: 'flex',
     justifyContent: 'space-between',
-    alignSelf: 'center',
+    alignSelf: 'start',
+    color: 'green',
+  },
+  values: {
+    minWidth: '100px',
+    maxWidth: '300px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignSelf: 'start',
     margin: '0 5rem',
     color: 'white',
+  },
+  curlyBrace: {
+    color: 'yellow',
   },
 };
 
@@ -72,31 +85,41 @@ const PopulatedResponseObject = () => {
     // Array of objects:
     if (Object.prototype.toString.call(obj) === '[object Array]') {
       obj.forEach((el) => {
+        keyValPairs.push(<p style={styles.curlyBrace}>{'{'}</p>);
+
         Object.keys(el).forEach((key) => {
           keyValPairs.push(
-            <p style={styles.variables}>
+            <code style={styles.keys}>
               {key}
               {' '}
               :
+            </code>,
+            <code style={styles.values}>
               {' '}
-              {obj[key]}
-            </p>,
+              {el[key]}
+            </code>,
           );
         });
+
+        keyValPairs.push(<p style={styles.curlyBrace}>{'}'}</p>);
       });
     } else if (Object.prototype.toString.call(obj) === '[object Object]') {
     // Single Object:
+      keyValPairs.push(<p style={styles.curlyBrace}>{'{'}</p>);
       Object.keys(obj).forEach((key) => {
         keyValPairs.push(
-          <p style={styles.variables}>
+          <code style={styles.keys}>
             {key}
             {' '}
             :
+          </code>,
+          <code style={styles.values}>
             {' '}
             {obj[key]}
-          </p>,
+          </code>,
         );
       });
+      keyValPairs.push(<p style={styles.curlyBrace}>{'}'}</p>);
     }
 
     return keyValPairs;
