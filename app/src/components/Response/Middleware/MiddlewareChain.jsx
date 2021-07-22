@@ -1,8 +1,9 @@
 /* eslint-disable array-callback-return */
-import React from 'react';
+import { React, useContext } from 'react';
 import { Paper } from '@material-ui/core';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import * as actions from '../../../Global/actionTypes';
+import { MainContainerContext } from '../../../Global/context/MainContainerContext';
 
 const styles = {
   container: {
@@ -22,6 +23,7 @@ const styles = {
   },
   title: {
     margin: 0,
+    alignSelf: 'center',
   },
   timing: {
     fontSize: 10,
@@ -40,7 +42,7 @@ const styles = {
   },
 };
 
-const createDropdownStyles = (status) => {
+const createDropdownStyles = (status, middlewareIdx, idx) => {
   const styleObj = {
     cursor: 'pointer',
     width: '80%',
@@ -56,6 +58,10 @@ const createDropdownStyles = (status) => {
     styleObj.background = 'maroon';
   } else {
     styleObj.background = 'black';
+  }
+
+  if (middlewareIdx === idx) {
+    styleObj.borderColor = 'green';
   }
 
   return styleObj;
@@ -83,13 +89,17 @@ const NullMiddlewareChain = () => (
 
 const generateMiddlewareChain = (middleware, dispatch) => {
   const toggleFunc = (idx) => dispatch({ type: actions.TOGGLE_MIDDLEWARE, payload: { idx } });
+  const { state: { allTabs, currentTabIdx } } = useContext(MainContainerContext);
 
   const map = [];
   if (middleware.length === 0) return;
 
   middleware.map((func, idx, arr) => {
     const { name, functionDef } = func;
-    const dropdownStyle = createDropdownStyles(functionDef);
+
+    const dropdownStyle = createDropdownStyles(functionDef,
+      allTabs[currentTabIdx]?.currentMiddlewareIdx, idx);
+
     map.push(
       <>
         <Paper
