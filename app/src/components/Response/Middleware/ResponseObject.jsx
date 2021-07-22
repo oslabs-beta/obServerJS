@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Paper } from '@material-ui/core';
 import { MainContainerContext } from '../../../Global/context/MainContainerContext';
+import '../../../App.css';
 
 const styles = {
   container: {
@@ -12,7 +13,8 @@ const styles = {
     width: '60%',
     display: 'flex',
     flexDirection: 'column',
-    overflowY: 'auto',
+    height: '100%',
+    overflow: 'auto',
   },
   title: {
     color: 'white',
@@ -126,7 +128,9 @@ const PopulatedResponseObject = () => {
   };
 
   return (
-    <Paper elevation={3} style={styles.container}>
+    // Adding scroll Class and css in App.css until we can figure out issues
+    // with integrating with MUI
+    <Paper elevation={3} style={styles.container} className="scroll">
       <h1 style={styles.title}>
         Response
       </h1>

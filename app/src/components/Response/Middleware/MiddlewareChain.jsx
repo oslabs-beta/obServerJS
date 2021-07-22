@@ -128,7 +128,9 @@ const generateMiddlewareChain = (middleware, dispatch) => {
 };
 
 const PopulatedMiddlewareChain = ({ middleware, dispatch }) => (
-  <Paper style={styles.container} elevation={3}>
+  // Adding scroll Class and css in App.css until we can figure out issues
+  // with integrating with MUI
+  <Paper style={styles.container} elevation={3} className="scroll">
     <h4 style={styles.title}>
       Execution Order
     </h4>
