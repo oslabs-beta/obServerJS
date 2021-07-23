@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
-import { Paper } from '@material-ui/core';
+import {
+  makeStyles,
+  Paper,
+} from '@material-ui/core';
 import { MainContainerContext } from '../../../Global/context/MainContainerContext';
-import '../../../App.css';
 
-const styles = {
+const useStyles = makeStyles({
   container: {
     background: '#1e2125',
     borderRadius: 12,
@@ -15,6 +17,17 @@ const styles = {
     flexDirection: 'column',
     height: '100%',
     overflow: 'auto',
+    '&::-webkit-scrollbar': {
+      width: '10px',
+      height: '10px',
+    },
+    '&::-webkit-scrollbar-thumb': {
+      backgroundColor: 'gray',
+      borderRadius: '10px',
+    },
+    '&::-webkit-resizer': {
+      background: 'gray',
+    },
   },
   title: {
     color: 'white',
@@ -48,19 +61,22 @@ const styles = {
   curlyBrace: {
     color: 'yellow',
   },
-};
+});
 
 const ResponseObject = ({ populated }) => (populated
   ? <PopulatedResponseObject />
   : <NullResponseObject />);
 
-const NullResponseObject = () => (
-  <Paper elevation={3} style={styles.container}>
-    <h1 style={styles.title}>
-      Response
-    </h1>
-  </Paper>
-);
+const NullResponseObject = () => {
+  const styles = useStyles();
+  return (
+    <Paper elevation={3} className={styles.container}>
+      <h1 className={styles.title}>
+        Response
+      </h1>
+    </Paper>
+  );
+};
 
 const PopulatedResponseObject = () => {
   const {
@@ -71,6 +87,7 @@ const PopulatedResponseObject = () => {
   } = useContext(MainContainerContext);
 
   const currentTab = allTabs[currentTabIdx];
+  const styles = useStyles();
 
   const jsonparse = (jsonObj) => {
     if (Object.keys(jsonObj).length === 0 || jsonObj === null) return <p />;
@@ -87,51 +104,49 @@ const PopulatedResponseObject = () => {
     // Array of objects:
     if (Object.prototype.toString.call(obj) === '[object Array]') {
       obj.forEach((el) => {
-        keyValPairs.push(<p style={styles.curlyBrace}>{'{'}</p>);
+        keyValPairs.push(<p className={styles.curlyBrace}>{'{'}</p>);
 
         Object.keys(el).forEach((key) => {
           keyValPairs.push(
-            <code style={styles.keys}>
+            <code className={styles.keys}>
               {key}
               {' '}
               :
             </code>,
-            <code style={styles.values}>
+            <code className={styles.values}>
               {' '}
               {el[key]}
             </code>,
           );
         });
 
-        keyValPairs.push(<p style={styles.curlyBrace}>{'}'}</p>);
+        keyValPairs.push(<p className={styles.curlyBrace}>{'}'}</p>);
       });
     } else if (Object.prototype.toString.call(obj) === '[object Object]') {
     // Single Object:
-      keyValPairs.push(<p style={styles.curlyBrace}>{'{'}</p>);
+      keyValPairs.push(<p className={styles.curlyBrace}>{'{'}</p>);
       Object.keys(obj).forEach((key) => {
         keyValPairs.push(
-          <code style={styles.keys}>
+          <code className={styles.keys}>
             {key}
             {' '}
             :
           </code>,
-          <code style={styles.values}>
+          <code className={styles.values}>
             {' '}
             {obj[key]}
           </code>,
         );
       });
-      keyValPairs.push(<p style={styles.curlyBrace}>{'}'}</p>);
+      keyValPairs.push(<p className={styles.curlyBrace}>{'}'}</p>);
     }
 
     return keyValPairs;
   };
 
   return (
-    // Adding scroll Class and css in App.css until we can figure out issues
-    // with integrating with MUI
-    <Paper elevation={3} style={styles.container} className="scroll">
-      <h1 style={styles.title}>
+    <Paper elevation={3} className={styles.container}>
+      <h1 className={styles.title}>
         Response
       </h1>
       {
