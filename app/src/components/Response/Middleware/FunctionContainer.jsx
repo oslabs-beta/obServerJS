@@ -11,9 +11,11 @@ import '../../../App.css';
 
 const useStyles = makeStyles({
   mainContainer: {
-    height: '100%',
-    width: '60%',
+    width: '75%',
     padding: '20px',
+    height: '100%',
+    maxWidth: '100%',
+    maxHeight: '100%',
     background: '#1e2125',
     boxSizing: 'border-box',
     display: 'flex',
@@ -26,12 +28,10 @@ const useStyles = makeStyles({
     padding: 0,
   },
   codeContainer: {
-    height: 300,
-    width: 800,
     minWidth: 300,
     minHeight: 300,
-    maxWidth: 800,
-    maxHeight: 550,
+    maxWidth: '100%',
+    maxHeight: '97%',
   },
   button: {
     background: 'darkgrey',
@@ -43,6 +43,7 @@ const useStyles = makeStyles({
     outline: 'none',
   },
   code: {
+    alignContent: 'start',
     height: 'inherit',
     width: 'inherit',
     minHeight: 'inherit',
