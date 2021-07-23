@@ -57,8 +57,10 @@ const useStyles = makeStyles({
     alignSelf: 'start',
     margin: '0 5rem',
     color: 'white',
+    textAlign: 'left',
   },
   curlyBrace: {
+    alignSelf: 'start',
     color: 'yellow',
   },
 });
