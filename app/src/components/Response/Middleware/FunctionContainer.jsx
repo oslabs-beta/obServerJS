@@ -7,6 +7,7 @@ import {
 } from '@material-ui/core';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atelierCaveDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import '../../../App.css';
 
 const useStyles = makeStyles({
   mainContainer: {

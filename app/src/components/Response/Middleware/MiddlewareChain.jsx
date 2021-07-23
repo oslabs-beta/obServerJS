@@ -1,11 +1,14 @@
 /* eslint-disable array-callback-return */
 import { React, useContext } from 'react';
-import { Paper } from '@material-ui/core';
+import {
+  makeStyles,
+  Paper,
+} from '@material-ui/core';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import * as actions from '../../../Global/actionTypes';
 import { MainContainerContext } from '../../../Global/context/MainContainerContext';
 
-const styles = {
+const useStyles = makeStyles({
   container: {
     background: '#1e2125',
     height: '97%',
@@ -20,6 +23,17 @@ const styles = {
     gap: '.2rem 0',
     color: 'white',
     overflowY: 'auto',
+    '&::-webkit-scrollbar': {
+      width: '10px',
+      height: '10px',
+    },
+    '&::-webkit-scrollbar-thumb': {
+      backgroundColor: 'gray',
+      borderRadius: '10px',
+    },
+    '&::-webkit-resizer': {
+      background: 'gray',
+    },
   },
   title: {
     margin: 0,
@@ -40,7 +54,7 @@ const styles = {
     color: 'white',
     fontSize: '16px',
   },
-};
+});
 
 const createDropdownStyles = (status, middlewareIdx, idx) => {
   const styleObj = {
@@ -79,18 +93,22 @@ const MiddlewareChain = ({
   )
   : <NullMiddlewareChain />);
 
-const NullMiddlewareChain = () => (
-  <Paper style={styles.container} elevation={3}>
-    <h4 style={styles.title}>
-      Execution Order
-    </h4>
-  </Paper>
-);
+const NullMiddlewareChain = () => {
+  const styles = useStyles();
+
+  return (
+    <Paper className={styles.container} elevation={3}>
+      <h4 className={styles.title}>
+        Execution Order
+      </h4>
+    </Paper>
+  );
+};
 
 const generateMiddlewareChain = (middleware, dispatch) => {
   const toggleFunc = (idx) => dispatch({ type: actions.TOGGLE_MIDDLEWARE, payload: { idx } });
   const { state: { allTabs, currentTabIdx } } = useContext(MainContainerContext);
-
+  const styles = useStyles();
   const map = [];
   if (middleware.length === 0) return;
 
@@ -117,7 +135,7 @@ const generateMiddlewareChain = (middleware, dispatch) => {
         </Paper>
         {
           idx < arr.length - 1
-            ? <ArrowDownwardIcon style={styles.arrowIcon} key={`arrow${name}`} /> : null
+            ? <ArrowDownwardIcon className={styles.arrowIcon} key={`arrow${name}`} /> : null
         }
       </>,
     );
@@ -127,18 +145,22 @@ const generateMiddlewareChain = (middleware, dispatch) => {
   return map;
 };
 
-const PopulatedMiddlewareChain = ({ middleware, dispatch }) => (
-  <Paper style={styles.container} elevation={3}>
-    <h4 style={styles.title}>
-      Execution Order
-    </h4>
-    <p style={styles.timing}>
-      {/* {`Total Execution Time: 3 secs`} */}
-    </p>
-    {
+const PopulatedMiddlewareChain = ({ middleware, dispatch }) => {
+  const styles = useStyles();
+
+  return (
+    <Paper className={styles.container} elevation={3}>
+      <h4 className={styles.title}>
+        Execution Order
+      </h4>
+      <p className={styles.timing}>
+        {/* {`Total Execution Time: 3 secs`} */}
+      </p>
+      {
       generateMiddlewareChain(middleware, dispatch)
     }
-  </Paper>
-);
+    </Paper>
+  );
+};
 
 export default MiddlewareChain;
