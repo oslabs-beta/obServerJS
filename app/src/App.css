@@ -1,3 +1,7 @@
+.App {
+  text-align: center;
+}
+
 :root {
   --Nav-bar: #333333;
   --Darkest-black: #181818;
