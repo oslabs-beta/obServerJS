@@ -25,8 +25,8 @@ var setPrototypeOf = require('setprototypeof')
  * @api private
  */
 
-exports.init = function(app){
-  return function expressInit(req, res, next){
+exports.init = function (app) {
+  return function expressInit(req, res, next) {
     if (app.enabled('x-powered-by')) res.setHeader('X-Powered-By', 'Express');
     req.res = res;
     res.req = req;
@@ -35,7 +35,6 @@ exports.init = function(app){
     setPrototypeOf(req, app.request)
     setPrototypeOf(res, app.response)
 
-   
     // console.log('new app', app._router.stack[6].handle.stack[1].route.stack)
     res.locals = res.locals || Object.create(null);
 

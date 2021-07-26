@@ -14,9 +14,7 @@
  */
 
 var pathRegexp = require('path-to-regexp');
-const Route = require('./route');
 var debug = require('debug')('express:router:layer');
-const observer = require('../observer')
 
 /**
  * Module variables.
@@ -48,8 +46,6 @@ function Layer(path, options, fn) {
   // set fast path flags
   this.regexp.fast_star = path === '*'
   this.regexp.fast_slash = path === '/' && opts.end === false
-
-
 }
 
 /**

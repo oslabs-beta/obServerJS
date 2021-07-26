@@ -17,7 +17,7 @@ var debug = require('debug')('express:router:route');
 var flatten = require('array-flatten');
 var Layer = require('./layer');
 var methods = require('methods');
-const observer = require('../observer');
+
 /**
  * Module variables.
  * @private
@@ -92,7 +92,6 @@ Route.prototype._options = function _options() {
 
 /**
  * dispatch req, res into this route
- * 
  */
 Route.prototype.dispatch = function dispatch(req, res, done) {
   var idx = 0;
@@ -130,8 +129,6 @@ Route.prototype.dispatch = function dispatch(req, res, done) {
 
     if (err) {
       layer.handle_error(err, req, res, next);
-      // console.log('logging err layers in route')
-      // observer.stack.push(["err", err, "layer", layer])
     } else {
       layer.handle_request(req, res, next);
     }

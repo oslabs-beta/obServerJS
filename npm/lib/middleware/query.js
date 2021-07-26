@@ -36,7 +36,7 @@ module.exports = function query(options) {
     opts.allowPrototypes = true;
   }
 
-  return function query(req, res, next){
+  return function query(req, res, next) {
     if (!req.query) {
       var val = parseUrl(req).query;
       req.query = queryparse(val, opts);

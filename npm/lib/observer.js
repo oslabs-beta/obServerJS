@@ -1,8 +1,10 @@
-const observer = {};
+/*
+  Our observer object that will contain the tree, stackLayers, and other express server information
+  that we will add to the response object to be consumed by our application.
+*/
+var observer = {};
 
-observer.test = [];
 observer.stackLayers = [];
-module.exports = observer;
 
 function DispatchNode(layer) {
   this.name = layer.name
@@ -15,12 +17,17 @@ function FunctionNode(layer) {
   this.type = 'function'
   this.fn = layer.handle.toString()
 }
+
 function RouteNode(layer) {
   this.path = layer?.route?.path || layer.path
   this.type = 'route'
   this.children = []
   this.stackLength = layer?.route?.stack?.length || layer.handle.stack.length
 }
+
+/*
+  Method that will be invoked right before we send the response, after the app stack is complete. 
+*/
 observer.createTree = (app) => {
   const tree = {
     name: 'App',
@@ -30,6 +37,7 @@ observer.createTree = (app) => {
 
   return tree;
 }
+
 /* 
   Iterate through all layers of the stack 
   If the layer is a route, check for middleware function and recurse through the tree
@@ -70,3 +78,5 @@ const traverseStack = (tree, stack) => {
     }
   }
 }
+
+module.exports = observer;
