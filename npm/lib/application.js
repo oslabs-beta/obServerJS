@@ -29,8 +29,6 @@ var flatten = require('array-flatten');
 var merge = require('utils-merge');
 var resolve = require('path').resolve;
 var setPrototypeOf = require('setprototypeof');
-const observer = require('./observer');
-const { AsyncResource } = require('async_hooks');
 var slice = Array.prototype.slice;
 
 /**
@@ -184,8 +182,6 @@ app.handle = function handle(req, res, callback) {
  *
  * @public
  */
-
-let count = 0;
 app.use = function use(fn) {
   var offset = 0;
   var path = '/';
@@ -207,7 +203,6 @@ app.use = function use(fn) {
   }
   //(edge case where only one key === no route. just function)
   var fns = flatten(slice.call(arguments, offset));
-  let fnDef = fns[0].toString()
 
   if (fns.length === 0) {
     throw new TypeError('app.use() requires a middleware function')

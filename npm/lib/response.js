@@ -108,14 +108,19 @@ res.links = function (links) {
 
 res.send = function send(body) {
 
+  /*
+    Create the observer app stack tree
+  */
   observer.tree = observer.createTree(this.app)
-  // observer.tree.children.push(observer.routes)
-  for (let i = 0; i < this.app._router.stack.length; i++) {
-    if (this.app._router.stack[i].handle.stack) {
-      let route = this.app._router.stack[i].name;
 
+  /*
+    Algorithm to generate the rest of the execution stack that is nested in routers.
+  */
+  for (var i = 0; i < this.app._router.stack.length; i++) {
+    if (this.app._router.stack[i].handle.stack) {
       if (observer.routes == null) observer.routes = []
-      let children = []
+
+      var children = []
 
       this.app._router.stack[i].handle.stack?.forEach((el, i) => {
         children.push({
@@ -130,10 +135,26 @@ res.send = function send(body) {
         name: this.app._router.stack[i].path,
         children: children
       })
-
     }
   }
 
+  /*
+    Need to then add these routes to the observer 'tree' in order to conform to the 
+    structure that is used to parse in the application.
+  */
+  observer.routes?.forEach((el, i) => {
+    observer.tree.children.push(el)
+  })
+
+  /*
+    Clear the routes so we don't get duplicates if multiple requests were sent before
+    restarting the server.
+  */
+  observer.routes = []
+
+  /*
+    Populate the stack layers that represent the execution flow of a request.
+  */
   if (this.req.route) {
     for (let i = 0; i < this.req.route.stack.length; i++) {
       observer.stackLayers.push({
@@ -143,12 +164,14 @@ res.send = function send(body) {
       })
     }
   }
-  observer.routes?.forEach((el, i) => {
-    observer.tree.children.push(el)
-  })
 
+  /*
+    Since the chunk is encoded and sent, we need to first combine all the info we want onto
+    the object before it's encoded.
 
-  observer.routes = []
+    So we'll create our observer object and the original response body object separately.
+    Each parsed specifically in the application.
+  */
   var obs = JSON.stringify({ observer: { ...observer }, response: body })
 
   var chunk = obs
@@ -201,7 +224,6 @@ res.send = function send(body) {
           this.type('bin');
         }
       } else {
-        console.log(this.json(chunk))
         return this.json(chunk);
       }
       break;
@@ -266,8 +288,10 @@ res.send = function send(body) {
   } else {
     // respond
     this.end(chunk, encoding)
-    //buffer to string for chunk
-    //empty stack layers
+
+    /*
+      Clear out our observer fields after we send back data.
+    */
     observer.stackLayers = [];
     observer.tree = {};
   }

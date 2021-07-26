@@ -23,7 +23,6 @@ var flatten = require('array-flatten');
 var parseUrl = require('parseurl');
 var setPrototypeOf = require('setprototypeof')
 var observer = require('../observer')
-let routeDis;
 
 /**
  * Module variables.
@@ -33,8 +32,6 @@ let routeDis;
 var objectRegExp = /^\[object (\S+)\]$/;
 var slice = Array.prototype.slice;
 var toString = Object.prototype.toString;
-
-let count = 0;
 
 /**
  * Initialize a new `Router` with the given `options`.
@@ -179,12 +176,10 @@ proto.handle = function handle(req, res, out) {
   req.originalUrl = req.originalUrl || req.url;
   next();
 
-  let errorSent = false;
   function next(err) {
     var layerError = err === 'route'
       ? null
       : err;
-
 
     // remove added slash
     if (slashAdded) {
@@ -231,16 +226,13 @@ proto.handle = function handle(req, res, out) {
       route = layer.route;
 
       if (match === true) {
-        //pushing in route specific layer stack (including error handler)
-
+        //pushing in route specific layer stacks (including error handler)
         if (err) {
-          console.log("DEBUG :: error self:", self)
           observer.stackLayers.push({
             status: 'err',
             name: layer.name,
             functionDef: layer.handle.toString(),
             path: layer.path ? layer.path : undefined,
-            //use if stack is needed
           })
         } else {
           observer.stackLayers.push({
@@ -248,8 +240,6 @@ proto.handle = function handle(req, res, out) {
             name: layer.name,
             functionDef: layer.handle.toString(),
             path: layer.path ? layer.path : undefined,
-            //use if stack is needed
-
           })
         }
       }
