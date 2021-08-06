@@ -1,6 +1,8 @@
 ![](https://github.com/oslabs-beta/obServerJS/blob/main/app/src/img/logo.png)
-# [obServerJS](https://www.observerjs.com)
-A server-side application to support request/response debugging, multiple endpoint testing, and middleware transparency.
+# [ObServerJS](https://www.observerjs.com)
+- ⭐️ Love Our App? We'll trade you a a lifetime of good karma for a star 😉 ! ⭐️
+
+A visual dashboard built for server-side applications to support request/response debugging, multiple endpoint testing, and middleware transparency. Just imagine postman for express.js with far less, but more powerful features and a cleaner UI. Just saying 💁‍♀️
 
 # ***Quick Setup***
 This will be a two step process that includes:
@@ -10,7 +12,7 @@ This will be a two step process that includes:
 
 ## Installing obServerJS desktop application
 
-Simply download the application HERE.
+Simply download the application * [HERE](https://www.observerjs.com/#download).
 
 ## Installing NPM Package
 On the server you want to debug, install the 'express-observer' NPM package.
@@ -20,8 +22,8 @@ On the server you want to debug, install the 'express-observer' NPM package.
 On the same server, comment out the line that imports express.
 And import the 'express-observer' package in it's place.
 
-    //const express = require('express');
-    const express = require('express-observer');
+![](https://github.com/oslabs-beta/obServerJS/app/src/img/require.png)
+    
 
 # ***Features***
 
