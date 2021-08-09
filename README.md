@@ -2,7 +2,7 @@
 # [ObServerJS](https://www.observerjs.com)
 - ⭐️ Love Our App? We'll trade you a lifetime of good karma for a star 😉 ! ⭐️
 
-A visual dashboard built for server-side applications to support request/response debugging, multiple endpoint testing, and middleware transparency. Just imagine postman for express.js with far less, but more powerful features and a cleaner UI. Just saying 💁‍♀️
+A visual dashboard built for server-side applications to support request/response debugging, multiple endpoint testing, and middleware transparency. Just imagine postman for express.js with far less, but more powerful features and a cleaner UI. Just sayin...💁‍♀️
 
 # ***Quick Setup***
 This will be a two step process that includes:
@@ -22,7 +22,7 @@ On the server you want to debug, install the 'express-observer' NPM package.
 On the same server, comment out the line that imports express.
 And import the 'express-observer' package in it's place.
 
-[![example](https://github.com/oslabs-beta/obServerJS/blob/main/app/src/img/require.png)]
+![example](https://github.com/oslabs-beta/obServerJS/blob/main/app/src/img/require.png)
     
 
 # ***Features***
@@ -30,11 +30,15 @@ And import the 'express-observer' package in it's place.
 ## App Tree
 Displays the entire express routing stack that include all routes, endpoints, and middleware functions that are implemented in your server.
 
+![dashboard1](https://github.com/oslabs-beta/obServerJS/blob/main/app/src/img/dashboard1.png)
+
 ## Response
 
 ### Execution Order
 This section displays the expected middleware flow of your request route. So any middleware functions that are not invoked during the request are not displayed here.
 You can click on any of the nodes to display the source code for that middleware function.
+
+![example](https://github.com/oslabs-beta/obServerJS/blob/main/app/src/img/dashboard3.png)
 
 ### Response
 Your full response body will be displayed here.
