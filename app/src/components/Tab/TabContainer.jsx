@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Container } from '@material-ui/core';
+import { v4 as uuidv4 } from 'uuid';
 import AddIcon from '@material-ui/icons/Add';
 import IconButton from '@material-ui/core/IconButton';
 import { MainContainerContext } from '../../Global/context/MainContainerContext';
@@ -53,7 +54,7 @@ const TabContainer = () => {
 
   return (
     <Container style={styles.container} maxWidth={false}>
-      {allTabs.map((tab) => <Tab tabData={tab} key={`tab + ${Math.random() * 123} `} />)}
+      {allTabs.map((tab) => <Tab tabData={tab} key={uuidv4()} />)}
       <Container style={styles.addTab} onClick={addNewTab}>
         <IconButton style={styles.button} label="tab" component="span">
           <AddIcon />

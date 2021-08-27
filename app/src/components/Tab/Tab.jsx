@@ -4,6 +4,7 @@ import {
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
+import PropTypes from 'prop-types';
 import { MainContainerContext } from '../../Global/context/MainContainerContext';
 import * as actions from '../../Global/actionTypes';
 
@@ -24,6 +25,7 @@ const makeStyles = (active) => ({
   method: {
     color: 'darkgray',
     fontSize: '.8rem',
+    paddingLeft: '5px',
   },
   link: {
     width: '60%',
@@ -61,6 +63,17 @@ const Tab = ({ tabData }) => {
       <IconButton onClick={() => closeTab()} fontSize="small"><CloseIcon style={styles.closeIcon} /></IconButton>
     </Container>
   );
+};
+
+// PropTypes added to catch errors with typechecking
+Tab.propTypes = {
+  // validates the tabData prop and corresponding values
+  // if the tabData prop is not present or invalid data type, it will throw an error in the console
+  tabData: PropTypes.shape({
+    method: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired,
+    tabOrder: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default Tab;

@@ -20,7 +20,7 @@ export default function Url(props) {
   const classes = useStyles();
   return (
     <div>
-      <Input className={classes.urlInput} onChange={(e) => setUrl(e.target.value)} id="outlined-basic" placeholder="Request URL" variant="outlined" />
+      <Input className={classes.urlInput} onChange={(e) => setUrl(e.target.value)} id="outlined-basic" placeholder="  Request URL" variant="outlined" />
     </div>
   );
 }

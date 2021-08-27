@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Container,
 } from '@material-ui/core';
+import PropTypes from 'prop-types';
 import Button from './Button';
 import Help from './Help';
 import Settings from './Settings';
@@ -34,6 +35,16 @@ const SidebarContainer = () => {
 
     </Container>
   );
+};
+// PropTypes added to catch errors with typechecking
+Button.propTypes = {
+  text: PropTypes.string.isRequired,
+};
+Help.propTypes = {
+  text: PropTypes.node,
+};
+Settings.propTypes = {
+  text: PropTypes.node,
 };
 
 export default SidebarContainer;

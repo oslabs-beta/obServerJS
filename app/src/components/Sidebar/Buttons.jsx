@@ -24,7 +24,6 @@ const Buttons = ({ text }) => {
   const styles = makeStyles(true);
   return (
     <Box style={styles.box}>
-
       {text}
     </Box>
   );
