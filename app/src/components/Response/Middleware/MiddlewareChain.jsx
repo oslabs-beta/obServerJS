@@ -157,8 +157,8 @@ const PopulatedMiddlewareChain = ({ middleware, dispatch }) => {
         {/* {`Total Execution Time: 3 secs`} */}
       </p>
       {
-      generateMiddlewareChain(middleware, dispatch)
-    }
+        generateMiddlewareChain(middleware, dispatch)
+      }
     </Paper>
   );
 };
