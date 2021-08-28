@@ -11,7 +11,7 @@ import '../../../App.css';
 
 const useStyles = makeStyles({
   mainContainer: {
-    width: '75%',
+    width: '45%',
     padding: '20px',
     height: '100%',
     maxWidth: '100%',
